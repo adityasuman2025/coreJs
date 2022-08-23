@@ -1,0 +1,39 @@
+<html> 
+<body>
+    <button onclick="getRandomUser()">Get Random User</button>
+    <div id="randomUser1"></div>
+    <div id="randomUser2"></div>
+
+    <script>
+        let candidates = ["bhemu", "bhaia", "singh", "aditya", "bhe", "suman", "aditi", "adarsh", "jay", "yash"]
+        let maxLengthAllowed = candidates.length;
+        const candidatesAtATime = 2;
+
+        function getRandomUser() {
+            for (let i = 0; i < candidatesAtATime; i++) {
+                let randomIndex = Math.floor(Math.random() * maxLengthAllowed)
+                let selectedCandi = candidates[randomIndex]
+
+                if ((randomIndex < 1) && (maxLengthAllowed < 1)) {
+                    document.getElementById("randomUser" + (i + 1)).innerText = "all candidates already selected";
+                    console.log("all candidates already selected", randomIndex, selectedCandi, maxLengthAllowed);
+                    continue;
+                }
+                
+                document.getElementById("randomUser" + (i + 1)).innerText = selectedCandi;
+                console.log("randomIndex", randomIndex, selectedCandi, maxLengthAllowed);
+
+                swap(randomIndex, maxLengthAllowed -  1);
+                maxLengthAllowed--;
+            }
+        }
+
+        function swap(fromIndex, toIndex) {
+            let elem = candidates[toIndex];
+
+            candidates[toIndex] = candidates[fromIndex];
+            candidates[fromIndex] = elem;
+        }
+    </script>
+</body>
+</html>

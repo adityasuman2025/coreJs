@@ -1,0 +1,59 @@
+<html> 
+<body>
+    <button id="debounce">Debounce</button>
+
+    <input type="text" id="searchBox" onkeyup="handleKeyUp()" />
+
+    <script>
+        //btn click
+        var debounce = function (func, delay) {
+            let debounceTimer
+            return function() {
+                clearTimeout(debounceTimer)
+                debounceTimer = setTimeout(() => func.apply(this, arguments), delay)
+            }
+        } 
+
+        var button = document.getElementById("debounce");
+        button.addEventListener('click', debounce(function() {
+            console.log("Hello\nNo matter how many times you click the debounce button, I get executed once every 3 seconds!!")
+        }, 1000)); 
+
+
+        //input text
+        let counter = 0;
+        function fetchData() {
+            const val = document.getElementById("searchBox").value;
+            console.log(++counter, val);
+        }
+
+        function myDebounce(functionToRun, delay) {
+            let timer;
+
+            return function() {
+                clearTimeout(timer);
+                timer = setTimeout(() => functionToRun.apply(this, arguments), delay);
+            }
+        }
+
+        const handleKeyUp = myDebounce(fetchData, 1000);
+
+
+        //throttle
+        const throttle = (fn, limit) => {
+            let flag = true;
+            return function() {
+                let context = this;
+                let args = arguments;
+                if (flag) {
+                    fn.apply(context, args);
+                    flag = false;
+                    setTimeout(() => { flag=true }, limit);
+                }
+            }
+        }
+ 
+        const betterLoggerFunction = throttle(loggerFunc, 1000);
+    </script>
+</body>
+</html>
