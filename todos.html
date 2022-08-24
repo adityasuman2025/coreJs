@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Dos</title>
+    <style>
+        .isDone {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h3>To Do's</h3>
+        <input type="text" onkeyup="handleInputChange(event)" id="toDoInput" />
+
+        <div id="todos"></div>
+    </center>
+
+    <script>
+        let todos = [
+            {
+                text: "eat pizza",
+                isDone: false,
+            },
+            {
+                text: "go bazaar",
+                isDone: true,
+            }
+        ];
+
+        function renderToDos() {
+            let tempHtml = "";
+            todos.forEach((item, index) => {
+                tempHtml += `
+                                <div>
+                                    <input class="${item.isDone ? 'isDone' : ''}" value='${item.text}' onkeyup="handleToDoChange(event, ${index})" />
+                                    <button onclick="handleToDoDone(${index}, ${item.isDone})">${item.isDone ? 'undone' : 'done'}</button>
+                                </div>
+                            `;
+            });
+            document.getElementById('todos').innerHTML = tempHtml
+        }
+        renderToDos();
+
+        function handleInputChange(event) {
+            if (event.keyCode === 13) {
+                todos.push({
+                    text: event.target.value,
+                    isDone: false
+                });
+                document.getElementById('toDoInput').value = ""
+                renderToDos();
+            }
+        }
+
+        function handleToDoChange(event, index) {
+            todos[index].text = event.target.value;
+            console.log("todos", todos)
+        }
+
+        function handleToDoDone(index, isDone) {
+            todos[index].isDone = !isDone;
+            renderToDos();
+        }
+    </script>
+</body>
+
+</html>

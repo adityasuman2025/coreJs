@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ref: https://stackabuse.com/drag-and-drop-in-vanilla-javascript/ -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="tasks.css" rel="stylesheet" />
+    <title>Tasks</title>
+</head>
+
+<body>
+    <center>
+        <h1>Tasks</h1>
+        <form onsubmit="handleAddTaskClick(event)">
+            <input type="text" id="addTaskInput" autofocus />
+            <button onclick="handleAddTaskClick(event)">add task</button>
+        </form>
+    </center>
+    <br />
+
+    <div id="main">
+        <div class="level" ondragover="dragOver(event)" ondrop="dragDrop(event, 'toDo')">
+            <h4><center>toDo</center></h4>
+            <div id="toDo"></div>
+        </div>
+
+        <div class="level" ondragover="dragOver(event)" ondrop="dragDrop(event, 'inProgress')">
+            <h4><center>inProgress</center></h4>
+            <div id="inProgress"></div>
+        </div>
+
+        <div class="level" ondragover="dragOver(event)" ondrop="dragDrop(event, 'devDone')">
+            <h4><center>devDone</center></h4>
+            <div id="devDone"></div>
+        </div>
+
+        <div class="level" ondragover="dragOver(event)" ondrop="dragDrop(event, 'inQa')">
+            <h4><center>inQa</center></h4>
+            <div id="inQa"></div>
+        </div>
+
+        <div class="level" ondragover="dragOver(event)" ondrop="dragDrop(event, 'qaDone')">
+            <h4><center>qaDone</center></h4>
+            <div id="qaDone"></div>
+        </div>
+
+        <div class="level" ondragover="dragOver(event)" ondrop="dragDrop(event, 'done')">
+            <h4><center>done</center></h4>
+            <div id="done"></div>
+        </div>
+    </div>
+
+    <script>
+        let tasks = {
+            toDo: [
+                {
+                    title: "eat pizza"
+                },
+                {
+                    title: "go market"
+                },
+                {
+                    title: "learn mdn"
+                }
+            ],
+            inProgress: [],
+            devDone: [],
+            inQa: [],
+            qaDone: [],
+            done: [],
+        };
+
+        function handleAddTaskClick(event) {
+            event.preventDefault();
+
+            tasks.toDo.push({
+                title: document.getElementById("addTaskInput").value
+            });
+
+            document.getElementById("addTaskInput").value = "";
+            renderTasks()
+        }
+
+        function renderTasks() {
+            console.log("tasks", tasks)
+
+            Object.keys(tasks).forEach(level => {
+                let tempHtml = ""
+
+                tasks[level].forEach((levelTask, index) => {
+                    tempHtml += `
+                        <div class="card" draggable="true" ondragstart="dragStart(event)" ondragend="dragEnd(event)" id="${level}_${index}">${levelTask.title}</div>
+                    `;
+                });
+                document.getElementById(level).innerHTML = tempHtml;
+            });
+        }
+        renderTasks();
+
+        //drag and drop functionality
+        let dragItem = null;
+        function dragStart(e) {
+            console.log('drag started', e.target);
+
+            dragItem = e.target;
+            setTimeout(() => e.target.className = 'invisible', 0)
+        }
+
+        function dragEnd(e) {
+            console.log('drag ended', e.target);
+
+  	        dragItem = null;
+            e.target.className = 'card'
+        }
+
+        function dragOver(e) {
+            // console.log('drag over', e.target);
+
+            e.preventDefault();
+        }
+
+        function dragDrop(e, newLevel) {
+            const dragItemIdArr = (dragItem.id || "").split("_");
+            const oldLevel = dragItemIdArr[0];
+            const oldPosition = dragItemIdArr[1];
+
+            console.log('drag dropped', oldLevel, oldPosition, newLevel);
+
+            if (oldLevel == newLevel) return;
+            tasks[oldLevel].splice(oldPosition, 1);
+            tasks[newLevel].push({ title: dragItem.innerText || "" });
+
+            renderTasks();
+        }
+    </script>
+</body>
+
+</html>
