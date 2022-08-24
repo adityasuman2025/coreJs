@@ -22,11 +22,22 @@
 
 .resturant img {
     width: 100%;
-    height: 200px;
+    height: 70%;
     object-position: center;
     object-fit: cover;
 }
 
 .restruDetails {
     padding: 5px;
+}
+
+.fvrt {
+    border: 2px solid #b69119;
+}
+
+@media screen and (max-width: 500px) {
+    .resturant {
+        width: 150px;
+        height: 210px;
+    }
 }

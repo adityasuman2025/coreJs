@@ -10,7 +10,7 @@
 <body>
     <center>
         <h1>Food Ordering App</h1>
-        <input type="text" id="addTaskInput" onkeyup="handleSearchInput(event)" />
+        <input type="text" id="searchRestru" onkeyup="handleSearchInput(event)" />
         <br /><br />
 
         <div id="sort">
@@ -58,14 +58,15 @@
         })();
 
         function renderResturants(resturants, renderFilters) {
+            const fvrtsRestrus = JSON.parse(localStorage.getItem("fvrts")) || [];
             let tempHtml = ""
 
             let filters = new Set();
-            resturants.forEach(resturant => {
+            resturants.forEach((resturant, index) => {
                 filters = new Set([ ...filters, ...resturant.tags ]); // filters.add(resturant.tags);
 
                 tempHtml += `
-                    <div class="resturant">
+                    <div class="resturant ${ fvrtsRestrus.includes(index) ? 'fvrt': ''}" onclick="toogleFvrt(${index})">
                         <img src="${resturant.img}" />
                         <div class="restruDetails">
                             ${resturant.name}
@@ -85,8 +86,21 @@
                 document.getElementById("filters").innerHTML = tempFilterHtml;
             }
         }
+
+        function toogleFvrt(index) {
+            let fvrtsRestrus = JSON.parse(localStorage.getItem("fvrts")) || [];
+
+            if (fvrtsRestrus.includes(index)) {
+                fvrtsRestrus.splice(fvrtsRestrus.indexOf(index), 1);
+                localStorage.setItem("fvrts", JSON.stringify(fvrtsRestrus));
+            } else {
+                localStorage.setItem("fvrts", JSON.stringify([...fvrtsRestrus, index]));
+            }
+            
+            renderResturants(resturants);
+        }
         
-        function handleSearchInput(event) {
+        const handleSearchInput = debounce(function(event) {
             const val = event.target.value;
 
             if (val == "") {
@@ -98,6 +112,14 @@
             renderResturants(resturants);
 
             console.log(val, resturants)
+        }, 1000);
+
+        function debounce(func, delay) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => { func.apply(this, arguments) }, delay);
+            }
         }
     
         function handleSort(type) {
