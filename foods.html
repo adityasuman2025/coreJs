@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Ordering App</title>
+    <link href="foods.css" rel="stylesheet" />
+</head>
+<body>
+    <center>
+        <h1>Food Ordering App</h1>
+        <input type="text" id="addTaskInput" onkeyup="handleSearchInput(event)" />
+        <br /><br />
+
+        <div id="sort">
+            <button onclick="handleSort('name')">Name</button>
+            <button onclick="handleSort('rating')">Rating</button>
+            <button onclick="handleSort('eta')">ETA</button>
+        </div>
+        <br />
+
+        Filter:
+        <select id="filters" onchange="handleFilterSelect(event)"></select>
+    </center>
+
+    <div id="resturants"></div>
+
+    <script>
+        let resturants = [];
+        let orgResturants = [];
+        (async function(){
+            async function apiCall(url, method, body) {
+                try {
+                    let resp = ""
+                    if (method) {
+                        resp = await fetch(url, {
+                            method,
+                            body: JSON.stringify(body),
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                    } else {
+                        resp = await fetch(url);
+                    }
+                   
+                    return await resp.json();
+                } catch (e) {
+                    console.log("api error", e)
+                }
+            }
+            
+            resturants = await apiCall("http://localhost:3000/foods.json");
+            orgResturants = resturants;
+            renderResturants(resturants, true);
+        })();
+
+        function renderResturants(resturants, renderFilters) {
+            let tempHtml = ""
+
+            let filters = new Set();
+            resturants.forEach(resturant => {
+                filters = new Set([ ...filters, ...resturant.tags ]); // filters.add(resturant.tags);
+
+                tempHtml += `
+                    <div class="resturant">
+                        <img src="${resturant.img}" />
+                        <div class="restruDetails">
+                            ${resturant.name}
+                            <br />
+                            Rating: ${resturant.rating}
+                            <br />
+                            ETA: ${resturant.eta}
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById("resturants").innerHTML = tempHtml;
+
+            if (renderFilters) {
+                let tempFilterHtml = "<option></option>";
+                filters.forEach(filter => tempFilterHtml += `<option value="${filter}">${filter}</option>`);
+                document.getElementById("filters").innerHTML = tempFilterHtml;
+            }
+        }
+        
+        function handleSearchInput(event) {
+            const val = event.target.value;
+
+            if (val == "") {
+                resturants = orgResturants;
+                renderResturants(resturants);
+                return;
+            }
+            resturants = resturants.filter(item => (item.name).toLowerCase().includes(val)) || [];
+            renderResturants(resturants);
+
+            console.log(val, resturants)
+        }
+    
+        function handleSort(type) {
+            resturants = resturants.sort(function (a, b) {
+                if (type === "rating") {
+                    return b[type] - a[type]
+                } else {
+                    return b[type] < a[type]
+                }
+            });
+            renderResturants(resturants);
+
+            console.log(type, resturants)
+        }
+    
+        function handleFilterSelect(event) {
+            const val = event.target.value;
+
+            if (val == "") {
+                resturants = orgResturants;
+                renderResturants(resturants);
+                return;
+            }
+
+            resturants = resturants.filter(item => item.tags.includes(val)) || [];
+            renderResturants(resturants);
+
+            console.log(val, resturants);
+        }
+    </script>
+</body>
+</html>
