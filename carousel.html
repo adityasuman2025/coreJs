@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,7 @@
     <title>Carousel</title>
 
     <style>
-        .container {
+        #container {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -55,7 +56,7 @@
             background-color: #fff;
             font-size: 18px;
         }
-       
+
         .btn-prev {
             top: 45%;
             left: 2%;
@@ -77,76 +78,25 @@
         }
     </style>
 </head>
-<body>
-    <!-- Slider container -->
-    <div class="container">
-        <div class="slider">
-            <!-- slide 1 -->
-            <div class="slide">
-                <img src="https://source.unsplash.com/random?landscape,mountain" alt="" />
-            </div>
-        
-            <!-- slide 2 -->
-            <div class="slide">
-                <img src="https://source.unsplash.com/random?landscape,cars" alt="" />
-            </div>
-        
-            <!-- slide 3 -->
-            <div class="slide">
-                <img src="https://source.unsplash.com/random?landscape,night" alt="" />
-            </div>
-        
-            <!-- slide 4 -->
-            <div class="slide">
-                <img src="https://source.unsplash.com/random?landscape,city" alt="" />
-            </div>
-        
-            <!-- Control buttons -->
-            <button class="btn btn-next" onclick="moveNext()">></button>
-            <button class="btn btn-prev" onclick="movePrev()"><</button>
-        </div>
-    </div>
 
+<body>
+    <div id="container"></div>
     <div id="centerByAbsolute"></div>
 
-    <script>
-        // loop through slides and set each slides translateX
-        const slides = document.querySelectorAll(".slide");
-       
-        let currSlide = 0;
-        let maxSlide = slides.length - 1;
+    <script type="module">
+        import carousel from "./carousel.js";
 
-        transFormSlide(currSlide);
-      
-        // on next click
-        function moveNext() {
-            if (currSlide === maxSlide) {
-                currSlide = 0;
-            } else {
-                currSlide++;
-            }
+        let imgs = [{
+            img: "https://source.unspla.random?landscape,mountain",
+        }, {
+            img: "https://source.unsplash.com/random?landscape,cars",
+        }, {
+            img: "https://source.unsplash.com/random?landscape,night",
+        }, {
+            img: "https://source.unsplash.com/random?landscape,city",
+        }];
 
-            transFormSlide(currSlide);
-        }
-
-        function movePrev() {
-            if (currSlide === 0) {
-                currSlide = maxSlide;
-            } else {
-                currSlide--;
-            }
-
-            transFormSlide(currSlide);
-        }
-
-        function transFormSlide(currSlide) {
-            slides.forEach((slide, index) => {
-                slide.style.transform = `translateX(${ (index - currSlide) * 100 }%)`;
-            });
-        }
-
-        // keep slides moving automatically after 3s
-        setInterval(moveNext, 3000)
+        carousel(imgs, document.getElementById("container"));
     </script>
 </body>
 </html>
