@@ -4,7 +4,7 @@ export default function carousel(images, element) {
     images.forEach((item, index) => {
         tempHtml += `
             <div class="slide">
-                <img src="${item.img}" alt="image_${index}" />
+                <img src="${item.img}" alt="image_${index}" loading="lazy" />
             </div>
         `;
     });
