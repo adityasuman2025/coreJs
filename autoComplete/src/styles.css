@@ -1,0 +1,31 @@
+body {
+  font-family: sans-serif;
+}
+
+#app {
+  margin: auto;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#searchInput {
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+  width: 100%;
+  border: 1px solid grey;
+}
+
+.visible {
+  display: block;
+}
+
+.suggestionItem {
+  margin: 5px;
+  border-bottom: 1px solid grey;
+}
