@@ -1,0 +1,44 @@
+body {
+  font-family: sans-serif;
+  background-color: black;
+}
+
+#app {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 300px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#stars {
+  background: #f1f1f1;
+  color: grey;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.star {
+  float: right;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+
+.filledStar {
+  color: gold;
+}
+
+.unFilledStar {
+  color: grey;
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: gold;
+}
