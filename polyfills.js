@@ -60,9 +60,35 @@ function printName(state, country) {
     console.log(this.firstName + " " + this.lastName + " from " + state + ", " + country);
 }
 
-let name = { firstName: "aditya", lastName: "suman" };
-const printMyName = printName.myBind(name, "delhi");
+let nameObj = { firstName: "aditya", lastName: "suman" };
+const printMyName = printName.myBind(nameObj, "delhi");
 // printMyName("india")
+
+
+//apply
+Function.prototype.myApply = function(thi, args = []) {
+    this.call(thi, ...args)
+}
+Function.prototype.myApply2 = function(obj, args = []) {
+    obj.func = this;
+    obj.func(...args)
+}
+// printName.myApply2(nameObj, ["kathmandu", "nepal"]);
+// console.log("nameObj", nameObj.func);
+// nameObj.func.apply(nameObj, ["bhemu", "ond"])
+
+
+//call
+Function.prototype.myCall = function(thi, ...args) {
+    this.call(thi, ...args)
+}
+Function.prototype.myCall2 = function(obj, ...args) {
+    obj.func = this;
+    obj.func(...args)
+}
+printName.myCall2(nameObj, "thimpu", "bhutan");
+console.log("nameObj", nameObj.func);
+
 
 //find
 Array.prototype.myFind = function(func) {
@@ -112,10 +138,10 @@ Promise.myPromiseAll = function(promiseArr) {
         }
     });
 }
-Promise.myPromiseAll([a, b])
-.then(resp => {
-    console.log("promise all done resp", resp)
-})
-.catch((e) => {
-    console.log("promise all failed", e)
-})
+// Promise.myPromiseAll([a, b])
+// .then(resp => {
+//     console.log("promise all done resp", resp)
+// })
+// .catch((e) => {
+//     console.log("promise all failed", e)
+// })
