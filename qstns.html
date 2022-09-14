@@ -1,39 +1,182 @@
 <html> 
+<head>
+    <style>
+        /* .heading {
+            color: blue;
+        } */
+
+        h1 {
+            color: red;
+        }
+
+        body:first-child {
+            color: yellow;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #center {
+            /* CSS Box Model */
+            background-color: yellow;
+            width: 400px;
+            padding: 20px;
+            border: 5px blue solid;
+            margin: 10px;
+            /* calculated width of this div becomes 400(org width) + 20(left padding) + 20(right padding) + 5(left border) + 5(right border) = 450 */
+
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+
+            /* grid-template-columns: repeat(3, auto); */
+        }
+    </style>
+</head>
 <body>
-    <button onclick="getRandomUser()">Get Random User</button>
-    <div id="randomUser1"></div>
-    <div id="randomUser2"></div>
+    <div id="center">
+        <button onclick="getRandomUser()">Get Random User</button>
+        <div id="randomUser1"></div>
+        <div id="randomUser2"></div>
+
+        <h1 class="heading">my name is khan</h1>
+    </div>
 
     <script>
-        let candidates = ["bhemu", "bhaia", "singh", "aditya", "bhe", "suman", "aditi", "adarsh", "jay", "yash"]
-        let maxLengthAllowed = candidates.length;
-        const candidatesAtATime = 2;
+        // let candidates = ["bhemu", "bhaia", "singh", "aditya", "bhe", "suman", "aditi", "adarsh", "jay", "yash"]
+        // let maxLengthAllowed = candidates.length;
+        // const candidatesAtATime = 2;
 
-        function getRandomUser() {
-            for (let i = 0; i < candidatesAtATime; i++) {
-                let randomIndex = Math.floor(Math.random() * maxLengthAllowed)
-                let selectedCandi = candidates[randomIndex]
+        // function getRandomUser() {
+        //     for (let i = 0; i < candidatesAtATime; i++) {
+        //         let randomIndex = Math.floor(Math.random() * maxLengthAllowed)
+        //         let selectedCandi = candidates[randomIndex]
 
-                if ((randomIndex < 1) && (maxLengthAllowed < 1)) {
-                    document.getElementById("randomUser" + (i + 1)).innerText = "all candidates already selected";
-                    console.log("all candidates already selected", randomIndex, selectedCandi, maxLengthAllowed);
-                    continue;
-                }
+        //         if ((randomIndex < 1) && (maxLengthAllowed < 1)) {
+        //             document.getElementById("randomUser" + (i + 1)).innerText = "all candidates already selected";
+        //             console.log("all candidates already selected", randomIndex, selectedCandi, maxLengthAllowed);
+        //             continue;
+        //         }
                 
-                document.getElementById("randomUser" + (i + 1)).innerText = selectedCandi;
-                console.log("randomIndex", randomIndex, selectedCandi, maxLengthAllowed);
+        //         document.getElementById("randomUser" + (i + 1)).innerText = selectedCandi;
+        //         console.log("randomIndex", randomIndex, selectedCandi, maxLengthAllowed);
 
-                swap(randomIndex, maxLengthAllowed -  1);
-                maxLengthAllowed--;
-            }
-        }
+        //         swap(randomIndex, maxLengthAllowed -  1);
+        //         maxLengthAllowed--;
+        //     }
+        // }
 
-        function swap(fromIndex, toIndex) {
-            let elem = candidates[toIndex];
+        // function swap(fromIndex, toIndex) {
+        //     let elem = candidates[toIndex];
 
-            candidates[toIndex] = candidates[fromIndex];
-            candidates[fromIndex] = elem;
-        }
+        //     candidates[toIndex] = candidates[fromIndex];
+        //     candidates[fromIndex] = elem;
+        // }
+
+
+        //spread operator deep copies the primitive properties of the object but for the nested objects it does shallow copying
+        // let obj1 = {
+        //     name: {
+        //         first: "test1"
+        //     }
+        // };
+
+        // let obj2 = {...obj1};
+        // obj2.name.first = "test2";
+
+        // console.log("obj1", obj1)
+        // console.log("obj2", obj2)
+
+        // let obj11 = {
+        //     name: "test1"
+        // };
+        
+        // let obj21 = {...obj11};
+        // obj21.name = "test2";
+
+        // console.log("obj11", obj11)
+        // console.log("obj21", obj21)
+
+
+        // let calc = { 
+        //     total: 0,
+        //     add: function(a) {
+        //         this.total += a;
+        //         return this;
+        //     },
+        //     subtract: function(a) {
+        //         this.total -= a
+        //         return this;
+        //     },
+        //     multiply: function(a) {
+        //         this.total *= a
+        //         return this;
+        //     }
+        // }
+        // const result = calc.add(10).multiply(5).subtract(30).add(10);
+        // console.log("calc result", result.total)
+
+
+        // let arr = [
+        //     [1, 2],
+        //     [3, 4],
+        //     [5, 6, [7, 8], 9],
+        //     [10, 11, [12, [13, [14, [15, [16]]]]], 17, [18, 19, 20]],
+        // ]
+
+        // function flatten(arr, depth = 1) {
+        //     let newArr = [];
+
+        //     function flat(arr, maxDepth, depth) {
+        //         for (let i=0; i<arr.length; i++) {
+        //             let ele = arr[i];
+        //             if ((typeof ele == 'object' || Array.isArray(ele)) && depth < maxDepth) {
+        //                 flat(ele, maxDepth, depth + 1)
+        //             } else {
+        //                 newArr.push(ele)
+        //             }
+        //         }
+        //     }
+        //     flat(arr, depth, 0)
+
+        //     return newArr;
+        // }
+        
+        // const newArr = flatten(arr, 4);
+        // console.log("old arr", arr);
+        // console.log("newArr", newArr);
+
+
+        // function biro() {
+        //     var a = 10;
+        // }
+        // biro();
+        // console.log("a", a)
+
+
+        // var is function scoped
+        // let, const are block scoped
+        // for (var i = 0; i<3; i++) {
+        //     setTimeout(() => {
+        //         console.log(i)
+        //     }, i * 1000)
+        // }
+        // 3 
+        // 3
+        // 3
+
+        // for (var i = 0; i<3; i++) {
+        //     (function(i) {
+        //         setTimeout(() => {
+        //             console.log(i)
+        //         }, i * 1000)
+        //     })(i)
+        // }
     </script>
 </body>
 </html>
