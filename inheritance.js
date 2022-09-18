@@ -1,0 +1,75 @@
+// a class is blueprint of object
+class Employee {
+    constructor(name, doj) {
+        this.name = name;
+        this.doj = doj;
+        this.__proto__.biro = "kauaa"; // will be added to prototype object of this class
+    }
+
+    getName() {
+        console.log(this.name);
+    }
+
+    getDateOfJoining() {
+        console.log(this.doj);
+    }
+
+    static add(a, b) {
+        return a+b;
+    }
+}
+
+class Programmer extends Employee {
+    constructor(name, doj, team, language) {
+        super(name, doj);
+        this.team = team;
+        this.language = language;
+    }
+
+    getLanguage() {
+        console.log(this.language)
+    }
+}
+
+// const emp = new Employee("aditya", "03 Aug 2020"); //emp is object of Employee class i.e emp is created using blueprint of Employee
+// console.log("emp", emp);
+
+// const sde1 = new Programmer("adarsh", "03 March 2020", "assessment", "javaScript");
+// console.log("sde1", sde1);
+
+
+// function can also be used as blueprint of object
+function EmployeeFunc(name, doj) {
+    this.name = name;
+    this.doj = doj;
+    this.__proto__.biro = "kauaa"; // will be added to prototype object of this class
+    this.getName = function() {
+        console.log(this.name);
+    }
+
+    this.getDateOfJoining = function() {
+        console.log(this.doj);
+    }
+}
+
+function ProgrammerFunc(name, doj, team, language) {
+    EmployeeFunc.call(this, name, doj); //parent function is called in child function to inherit
+
+    this.team = team;
+    this.language = language;
+
+    this.getLang = function() {
+        console.log(this.language);
+    }
+}
+ProgrammerFunc.prototype.hiFrnd = "nice"; //adding hiFrnd key in prototype object of ProgrammerFunc
+
+const empFunc = new EmployeeFunc("MNgoCar", "11 Sept 2021");
+console.log("empFunc", empFunc);
+
+const programmerFunc = new ProgrammerFunc("iphone", "15 Oct 2020", "ios 16", "swift");
+console.log("programmerFunc", programmerFunc);
+console.log("programmerFunc", programmerFunc.doj);
+programmerFunc.getName()
+programmerFunc.getLang()
+console.log(Object.getPrototypeOf(programmerFunc))
