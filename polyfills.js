@@ -128,12 +128,14 @@ const b = Promise.resolve("yo")
 
 Promise.myPromiseAll = function(promiseArr) {
     let resps = [];
-    return new Promise(async function(resolve, reject) {
+    let c = 0;
+    return new Promise(function(resolve, reject) {
         for (let i=0; i<promiseArr.length; i++) {
             promiseArr[i]
             .then(resp => {
-                resps.push(resp);
-                if (resps.length === promiseArr.length) {
+                resps[i] = resp;
+                c++;
+                if (c === promiseArr.length) {
                     resolve(resps)
                 }
             })
