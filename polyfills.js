@@ -83,7 +83,7 @@ Function.prototype.myApply2 = function(obj, args = []) {
 
 //call
 Function.prototype.myCall = function(thi, ...args) {
-    this.call(thi, ...args)
+    this.apply(thi, args)
 }
 Function.prototype.myCall2 = function(obj, ...args) {
     obj.func = this;
