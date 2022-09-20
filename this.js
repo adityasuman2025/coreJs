@@ -1,5 +1,3 @@
-//In Javascript, only function calls establish a new this context. 
-
 //in regular function this represents the object who is calling the function
 // so here obj is calling logRegular so obj will be its this
 
@@ -29,22 +27,32 @@ obj.logRegular();
 obj.logArrow2();
 
 
-/*
-In normal javascript functions, this keyword points to who is calling the function (dynamic binding). Thus, when we invoke a function as obj.foo() the this keyword points to obj.
-Note that, (obj.foo)() is the same as obj.foo() and this again points to obj
-() is a grouping operator and is evaluated before execution. Here the logical OR expression || returns the first truthy value i.e. obj.foo which is a plain function foo({console.log(this.msg)}. Later on, when we execute this function, it's just a function without any connection to obj and hence it points to window and window.msg is undefined
-*/
+//In Javascript, only function calls establish a new this context. 
+function shapeFunc() {
+    this.radius = 10;
+    this.diameter = function() {
+        return this.radius * 2;
+    }
+    this.perimeter = () => {
+        return this.radius * 2 * Math.PI;
+    }
+}
 
-// const obj2 = {
-//     msg: 'BFE',
-//     foo() {
-//       console.log(this.msg)
-//     },
-//     bar() {
-//       console.log('dev')
-//     }
-// }
-  
-// obj2.foo();
-// (obj2.foo)();
-// (obj2.foo || obj2.bar)();
+const run = new shapeFunc();
+console.log(run)
+console.log(run.diameter())
+console.log(run.perimeter()) // it will get called successfully because shapeFunc() is a function so it establish a this for itself and perimeter is defined in shapeFunc()
+
+const shape = {
+    radius: 10,
+    diameter: function() {
+        return this.radius * 2;
+    },
+    perimeter: () => {
+        return this.radius * 2 * Math.PI;
+    }
+}
+
+console.log(shape)
+console.log(shape.diameter())
+console.log(shape.perimeter())
