@@ -33,7 +33,7 @@
 
 
 // promise callback and mutation observar is moved to microTask Queue
-// All Callback functions (except promise callback and mutation observer) are transferred to callback queue or task queue.
+// All Callback functions (except promise callback and mutation observer) are transferred to callback queue or task queue or macroTask queue
 
 // Microtask queue tasks are given priority over callback queue tasks, event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
 // console.log(1)
@@ -90,69 +90,3 @@ Order:
     - Web worker (port/window.eventHander, etc..)
     - all other callbacks e.g. setTimeout
 */
-
-// This is a JavaScript Quiz from BFE.dev
-
-console.log(1)
-
-window.onmessage = () => {
-  console.log(2)
-}
-
-Promise.resolve().then(() => {
-  console.log(3)
-})
-
-setTimeout(() => {
-  console.log(4)
-}, 0)
-
-console.log(5)
-
-window.postMessage('')
-
-console.log(6)
-
-
-//console.log 0 will finish first and will go to task queue first
-//so will be picked by event loop first
-setTimeout(() => {
-  console.log(2)
-}, 2)
-
-setTimeout(() => {
-  console.log(1)
-}, 1)
-
-setTimeout(() => {
-  console.log(0)
-}, 0)
-
-
-//
-Promise.resolve(1)
-.then((val) => {
-  console.log(val) // resolve with value 1
-  return val + 1  //  return 2  
-}).then((val) => {
-  console.log(val) // 2
-  // return undefined
-}).then((val) => {
-  console.log(val)  // undefined   
-  return Promise.resolve(3)
-    .then((val) => {
-      console.log(val) // 3
-      // return undefined
-    })
-}).then((val) => {
-  console.log(val)  // undefined 
-  return Promise.reject(4)  // return 4    
-}).catch((val) => {
-  console.log(val)  // 4
-  // return undefined
-}).finally((val) => {
-  console.log(val)  // undefined: finally has no arguments
-  return 10   // no effect on promise object
-}).then((val) => {
-  console.log(val)  // undefined: because last 'catch()' handled the promise object with 'undefined'
-})

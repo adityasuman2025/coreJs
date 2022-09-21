@@ -1,9 +1,12 @@
-//in regular function this represents the object who is calling the function
+//in regular function this represents the object who calls the function
 // so here obj is calling logRegular so obj will be its this
 
 //in arrow function this keyword represents the object where it is defined
 // amd the obj has the same this as window (because object does not starts a execution context but only function does)
 // so in logArrow this represents window, because it is defined in obj
+
+
+//example 1
 var obj = {
     prefix: 'BFE',
     list: ['1'],
@@ -27,6 +30,7 @@ obj.logRegular();
 obj.logArrow2();
 
 
+//example 2
 //In Javascript, only function calls establish a new this context. 
 function shapeFunc() {
     this.radius = 10;
@@ -56,3 +60,19 @@ const shape = {
 console.log(shape)
 console.log(shape.diameter())
 console.log(shape.perimeter())
+
+
+//example 3
+function y() {
+    console.log("this y", this)
+    console.log(this.length);
+}
+var x = {
+    length: 5,
+    method: function(y) {
+        console.log("this method", this)
+        arguments[0](); //here arguments object is calling function y, as arguments[0] represents y, so this will become arguments object in y
+    }
+}
+
+x.method(y, 1);

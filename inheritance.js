@@ -7,7 +7,11 @@ class Employee {
     }
 
     getName() {
-        console.log(this.name);
+        console.log("name is " + this.name);
+    }
+
+    getName2 = () => {
+        console.log("name is " + this.name);
     }
 
     getDateOfJoining() {
@@ -18,6 +22,7 @@ class Employee {
         return a+b;
     }
 }
+Employee.prototype.biro2 =  "bauaa"
 
 class Programmer extends Employee {
     constructor(name, doj, team, language) {
@@ -31,8 +36,10 @@ class Programmer extends Employee {
     }
 }
 
-// const emp = new Employee("aditya", "03 Aug 2020"); //emp is object of Employee class i.e emp is created using blueprint of Employee
-// console.log("emp", emp);
+const emp = new Employee("aditya", "03 Aug 2020"); //emp is object of Employee class i.e emp is created using blueprint of Employee
+console.log("emp", emp);
+emp.getName()
+emp.getName2()
 
 // const sde1 = new Programmer("adarsh", "03 March 2020", "assessment", "javaScript");
 // console.log("sde1", sde1);
@@ -42,7 +49,6 @@ class Programmer extends Employee {
 function EmployeeFunc(name, doj) {
     this.name = name;
     this.doj = doj;
-    this.__proto__.biro = "kauaa"; // will be added to prototype object of this class
     this.getName = function() {
         console.log(this.name);
     }
@@ -50,6 +56,10 @@ function EmployeeFunc(name, doj) {
     this.getDateOfJoining = function() {
         console.log(this.doj);
     }
+}
+EmployeeFunc.prototype.biro = "kauaa"; // will be added to prototype object of this object
+EmployeeFunc.prototype.setName = function(name) {
+    this.name = name;
 }
 
 function ProgrammerFunc(name, doj, team, language) {
@@ -62,14 +72,16 @@ function ProgrammerFunc(name, doj, team, language) {
         console.log(this.language);
     }
 }
+ProgrammerFunc.prototype = Object.create(EmployeeFunc.prototype); // to inherit parent's prototype in children
 ProgrammerFunc.prototype.hiFrnd = "nice"; //adding hiFrnd key in prototype object of ProgrammerFunc
 
-const empFunc = new EmployeeFunc("MNgoCar", "11 Sept 2021");
-console.log("empFunc", empFunc);
+// const empFunc = new EmployeeFunc("MNgoCar", "11 Sept 2021");
+// console.log("empFunc", empFunc);
 
-const programmerFunc = new ProgrammerFunc("iphone", "15 Oct 2020", "ios 16", "swift");
-console.log("programmerFunc", programmerFunc);
-console.log("programmerFunc", programmerFunc.doj);
-programmerFunc.getName()
-programmerFunc.getLang()
-console.log(Object.getPrototypeOf(programmerFunc))
+// const programmerFunc = new ProgrammerFunc("iphone", "15 Oct 2020", "ios 16", "swift");
+// console.log("programmerFunc", programmerFunc);
+// // console.log("programmerFunc", programmerFunc.doj);
+// // programmerFunc.getName()
+// // programmerFunc.getLang()
+// // console.log(Object.getPrototypeOf(programmerFunc))
+// console.log(programmerFunc.__proto__)
