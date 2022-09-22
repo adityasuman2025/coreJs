@@ -15,19 +15,19 @@ var obj = {
         console.log(this.prefix + this.list);
     },
     logRegular() {
-        console.log("this", this) //logRegular is a regular function so it takes this as obj because it is used by obj
+        console.log("this", this) //logRegular is a regular function so it takes this as obj because it is called by obj
         console.log(this.prefix + this.list);
     },
     logArrow2() {
         console.log("this", this)
-        const hi = () => this.prefix; //hi arrow function is defined in logArrow2, so it borrows this from logArrow2 function i.e. obj
+        const hi = () => this.prefix; //here arrow function is defined in logArrow2, so it borrows this from logArrow2 function i.e. obj
         console.log("hi", hi())
     },
 };
   
-obj.logArrow();
-obj.logRegular();
-obj.logArrow2();
+// obj.logArrow();
+// obj.logRegular();
+// obj.logArrow2();
 
 
 //example 2
@@ -43,9 +43,9 @@ function shapeFunc() {
 }
 
 const run = new shapeFunc();
-console.log(run)
-console.log(run.diameter())
-console.log(run.perimeter()) // it will get called successfully because shapeFunc() is a function so it establish a this for itself and perimeter is defined in shapeFunc()
+// console.log(run)
+// console.log(run.diameter())
+// console.log(run.perimeter()) // it will get called successfully because shapeFunc() is a function so it establish a this for itself and perimeter is defined in shapeFunc()
 
 const shape = {
     radius: 10,
@@ -59,7 +59,7 @@ const shape = {
 
 console.log(shape)
 console.log(shape.diameter())
-console.log(shape.perimeter())
+console.log(shape.perimeter()) // it will give NaN because shape is a class and perimeter is arrow function so this is window for that
 
 
 //example 3
