@@ -31,3 +31,14 @@ function curryAltSum(...args1) {
 
 const ans = curryAltSum(1)(2)(3,4)(5,6,7)(8)(9,10)()
 console.log("ans", ans)
+
+
+// sum(1)(2)(3)....()
+function sum(x) {
+    return function (y) {
+        return y ? sum(x + y) : x
+    }
+}
+
+const sumVal = sum(1)(2)(3)(4)(5)(6)();
+// console.log("sumVal", sumVal);

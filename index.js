@@ -114,17 +114,6 @@ const ansClosure = addClosureThree(5);
 // console.log("function currying using closure", ansClosure);
 
 
-// sum(1)(2)(3)....()
-function sum(x) {
-    return function (y) {
-        return y ? sum(x + y) : x
-    }
-}
-
-const sumVal = sum(1)(2)(3)(4)(5)(6)();
-// console.log("sumVal", sumVal);
-
-
 // event bubbling
 // document.getElementById("parent")
 //     .addEventListener("click", function (event) {

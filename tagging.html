@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagging</title>
+    
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        #box {
+            width: 400px;
+            height: 400px;
+            background: yellow;
+        }
+
+        #tagForm {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="box"></div>
+        <div id="tagsAtPosDiv"></div>
+
+        <form id="tagForm">
+            <input type="text" id="inputTag" autofocus />
+            <input type="submit" id="addTag" />
+        </form>
+    </div>
+
+    <script>
+        const tags = new Map(); //it can have object key
+
+        const box = document.getElementById("box");
+        const tagsAtPosDiv = document.getElementById("tagsAtPosDiv");
+        box.addEventListener("click", handleBoxClick);
+
+        const optimisedHandleBoxHover = debounce(handleBoxHover, 500)
+        box.addEventListener("mousemove", optimisedHandleBoxHover);
+
+        const tagForm = document.getElementById("tagForm");
+        const inputTag = document.getElementById("inputTag");
+        const addTag = document.getElementById("addTag");
+        addTag.addEventListener("click", handleAddTagClick);
+        tagForm.addEventListener("submit", handleAddTagClick);
+
+        let tagPosition = null;
+        function handleBoxClick(e) {
+            const { offsetX: x, offsetY: y } = e;
+            tagPosition = JSON.stringify([x, y]);
+
+            tagForm.style.display = "block";
+            inputTag.focus()
+        }
+
+        function handleBoxHover(e) {
+            const { offsetX: x, offsetY: y } = e;
+            const pos = JSON.stringify([x, y]);
+            const tagsAtPos = tags.get(pos) || [];
+
+            tagsAtPosDiv.innerText = tagsAtPos.join(",")
+        }
+
+        function handleAddTagClick(e) {
+            e.preventDefault();
+
+            const tag = inputTag.value.trim();
+
+            if (tag) {
+                if (tags.has(tagPosition)) {
+                    tags.set(tagPosition, [ ...tags.get(tagPosition), tag ]);
+                } else {
+                    tags.set(tagPosition, [ tag ]);
+                }
+
+                const tagsAtPos = tags.get(tagPosition) || [];
+                tagsAtPosDiv.innerText = tagsAtPos.join(", ");
+
+                tagPosition = null;
+                inputTag.value = "";
+                tagForm.style.display = "none";
+            }
+        }
+   
+        function debounce(func, delay) {
+            let timer;
+            return function(...args) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    func.call(this, ...args)
+                }, delay)
+            }
+        }
+    </script>
+</body>
+</html>
