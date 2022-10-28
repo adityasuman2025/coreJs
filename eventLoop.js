@@ -1,5 +1,5 @@
 // it will print b c a
-// callbacks exists in task Queue and wait for event loop to pick it and then add it in call stack (once the call stack is empty)
+// callbacks exists in callback Queue(macrotask queue) and wait for event loop to pick it and then add it in call stack (once the call stack is empty)
 // setTimeout(() => {
 //     console.log("a");
 // }, 0);
@@ -35,7 +35,7 @@
 // promise callback and mutation observar is moved to microTask Queue
 // All Callback functions (except promise callback and mutation observer) are transferred to callback queue or task queue or macroTask queue
 
-// Microtask queue tasks are given priority over callback queue tasks, event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
+// // Microtask queue tasks are given priority over callback/macrostask queue tasks, event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
 // console.log(1)
 
 // const mc = new MessageChannel()
@@ -60,27 +60,26 @@
 
 
 //Synchronous code (including event listeners) gets executed first in order.
-console.log(1) // 1️⃣
+console.log(1)
 
 document.body.addEventListener('click', () => {
-  console.log(2) // 3️⃣
+  console.log(2)
 })
 
 Promise.resolve().then(() => {
-  console.log(3) // 5️⃣
+  console.log(3)
 })
 
 setTimeout(() => {
-  console.log(4) // 6️⃣
+  console.log(4)
 }, 0)
 
-console.log(5) // 2️⃣
+console.log(5)
 
 document.body.click()
 
-console.log(6) // 4️⃣
+console.log(6)
 
-//1 5 2 6 3 4
 
 
 /* 

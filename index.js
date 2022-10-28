@@ -1,6 +1,5 @@
 hi()
 console.log(x)
-console.log(hi)
 
 var x = 2;
 
@@ -67,11 +66,11 @@ let person1 = {
 }
 
 function printNameAndAddress(address, state) {
-    console.log(this.firstName + " " + this.lastName + "\naddress: " + address + " state: " + state)
+    console.log(this.firstName + " " + this.lastName + " address: " + address + " state: " + state)
 }
 
-person1.printName();
-printNameAndAddress.call(person1, "nalanda", "bihar");
+// person1.printName();
+// printNameAndAddress.call(person1, "nalanda", "bihar");
 
 let person2 = {
     firstName: "sachin",
