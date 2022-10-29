@@ -14,122 +14,186 @@
             background-color: #f1f1f1;
         }
 
+        textarea {
+            margin: 20px;
+            width: calc(100% - 40px);
+            height: 30px;
+            resize: none;
+            margin-top: 5px;
+        }
+
         .comment {
-            padding: 10px;
+            margin: 10px;
+            padding: 5px;
             border: 1px solid grey;
         }
 
-        .replies {
-            margin-left: 10px;
-        }
-
-        textarea {
-            width: 100%;
-            height: 50px;
-            resize: none;
-            margin-top: 5px;
+        .replyContainer {
+            margin: 10px;
         }
     </style>
 </head>
 <body>
     <div id="commentsContainer">
-        <h1><center>Comment Widget</center></h1>
-        <textarea id="_"></textarea>
-        <button onclick="modifyComment('_', 'add')">comment</button>
-        <br /><hr /><br />
+        <center>
+            <h1>Comment Widget</h1>
+            <textarea id="createCommentText"></textarea>
+            <button id="createCommentBtn">comment</button>
+        </center>
+        <br /><br /><hr /><br />
 
         <div id="comments">comments</div>
     </div>
 
     <script>
+        const ACTN_BTN_CLASS = "actnBtn";
+        
         let comments = [
             {
-                comment: "0",
+                id: "3regf",
+                text: "0",
                 reply: [
                     {
-                        comment: "00",
+                        id: "wedfvcx",
+                        text: "00",
                         reply: [
                             {
-                                comment: "000",
-                                reply: [],
-                            }
+                                id: "sdzxcx",
+                                text: "000",
+                            },
+                            {
+                                id: "wedf",
+                                text: "001",
+                                reply: [
+                                    { 
+                                        id: "daimklkld",
+                                        text: "0010",
+                                    }
+                                ]
+                            },
                         ]
                     },
                     {
-                        comment: "01",
-                        reply: [ ]
-                    }
+                        id: "dad",
+                        text: "01",
+                    },
                 ]
             },
             {
-                comment: "1",
+                id: "refgc",
+                text: "1",
             }
         ];
+       
+        const commentsEle = document.getElementById("comments");
+        commentsEle.addEventListener("click", handleCommentsClick);
 
-        function renderComments(comments, id = 0) {
-            let tempHtml = "";
-            comments.forEach((item, index) => {
-                thisCommentReplyHtml = renderComments(item.reply || [], id + "_" + index);
-                tempHtml += `<div class="comment">
-                                <div>
-                                    ${item.comment}
-                                    <button onclick="modifyComment('${id}', 'delete')">delete</button>
-                                </div>
-                                
-                                <div class="replies">${thisCommentReplyHtml}</div>
-
-                                <textarea id="${id}"></textarea>
-                                <button onclick="modifyComment('${id}', 'add')">reply</button>
-                            </div>`;
+        function handleCommentsClick(event) {
+            const target = event.target;
+            if (target.matches("button") && target.classList.contains(ACTN_BTN_CLASS)) {
+                const key = target.dataset.key;
+                const btnType = target.innerText;
+                if (btnType === "delete") {
+                    deleteComment(comments, key.split("_"));
+                } else if (btnType === "reply") {
+                    const replyText = document.getElementById(key + "_textarea").value.trim();
+                    if (replyText) addComment(comments, key.split("_"), replyText);
+                }
                 
-            })
-
-            return tempHtml;
+                renderComments();
+            }
         }
-        document.getElementById("comments").innerHTML = renderComments(comments);
 
-        function modifyComment(position, task) {
-            let comment = document.getElementById(position).value;
+        document.getElementById("createCommentBtn").addEventListener("click", createComment);
+        function createComment(event) {
+            const createCommentText = document.getElementById("createCommentText").value.trim();
+            if (createCommentText) {
+                comments.push({
+                    id: "dafas",
+                    text: createCommentText,
+                });
+                renderComments();
+            }
+        }
 
-            if (position === "_") {
-                comments.push({ id: (comments.length).toString(), comment });
+        function addComment(comments, indices, replyText) {
+            let firstIndex = indices.shift();
+            if (indices.length == 0) {
+                //we have reached at destination
+                comments[firstIndex].reply = [
+                    ...(comments[firstIndex].reply ? comments[firstIndex].reply : []),
+                    {
+                        id: "dafas",
+                        text: replyText,
+                    }
+                ]
             } else {
-                let posArr = position.split("_");
-
-                modifyInArrayPath(comments, posArr, 0, comment, task)
+                return addComment(comments[firstIndex].reply, indices || [], replyText)
             }
-            
-            document.getElementById("comments").innerHTML = renderComments(comments);
-            console.log("comments", position, comments)
         }
 
-        function modifyInArrayPath(arr, path, pathIndex, commentToPush, task) {
-            let nextNestedArr = arr[parseInt(path[pathIndex])];
-
-            if ((path.length - 1) == pathIndex) {
-                if (task === "delete") {
-                    arr.splice(parseInt(path[pathIndex]), 1);
-                    return;
-                }
-
-                if (nextNestedArr.reply) {
-                    nextNestedArr.reply.push({
-                        id: path.join("_") + "_" + nextNestedArr.reply.length,
-                        comment: commentToPush
-                    })
-                } else {
-                    arr[parseInt(path[pathIndex])].reply = [{
-                        id: path.join("_") + "_0",
-                        comment: commentToPush
-                    }]
-                }
-                return;
+        function deleteComment(comments, indices) {
+            let firstIndex = indices.shift();
+            if (indices.length == 0) {
+                //we have reached at destination
+                comments.splice(firstIndex, 1);
+            } else {
+                return deleteComment(comments[firstIndex].reply, indices || [])
             }
-
-            modifyInArrayPath(nextNestedArr.reply, path, pathIndex + 1, commentToPush, task)
         }
 
-        // const getValueUsingPath = (record, path) => path.reduce((record, item) => record[item], record);
+        function renderComments() {
+            function createCommentHtml(comments, parentId) {
+                const frag = document.createDocumentFragment();
+                (comments || []).forEach((comment, i) => {
+                    const uniqueId = parentId === "" ? i : (parentId + "_" + i);
+
+                    const commentEle = document.createElement("div");
+                    commentEle.classList.add('comment');
+
+                    const commentText = document.createElement("div");
+                    commentText.innerText = comment.text;
+                    commentEle.append(commentText);
+
+                    //rendering reply if any
+                    if (comment.reply) {
+                        const repliesFrag = createCommentHtml(comment.reply, uniqueId);
+
+                        const replyContEle = document.createElement("div");
+                        replyContEle.classList.add('replyContainer');
+                        replyContEle.append(repliesFrag);
+
+                        commentEle.append(replyContEle);
+                    }
+                    
+                    //reply textarea
+                    const replyArea = document.createElement("textarea");
+                    replyArea.id = uniqueId + "_textarea";
+                    commentEle.append(replyArea);
+
+                    //adding delete/reply btn
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.innerText = "delete";
+                    deleteBtn.dataset.key = uniqueId;
+                    deleteBtn.classList.add(ACTN_BTN_CLASS);
+                    const replyBtn = document.createElement("button");
+                    replyBtn.innerText = "reply";
+                    replyBtn.dataset.key = uniqueId;
+                    replyBtn.classList.add(ACTN_BTN_CLASS);
+                    commentEle.append(deleteBtn);
+                    commentEle.append(replyBtn);
+
+                    frag.appendChild(commentEle);
+                });
+
+                return frag;
+            }
+            const commentHtml = createCommentHtml(comments, "");
+
+            commentsEle.innerHTML = "";
+            commentsEle.appendChild(commentHtml)
+        }
+        renderComments();
     </script>
 </body>
 </html>
