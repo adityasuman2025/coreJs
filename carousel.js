@@ -1,57 +1,83 @@
 export default function carousel(images, element) {
-    //rendering images
-    let tempHtml = `<div class="slider">`;
-    images.forEach((item, index) => {
-        tempHtml += `
-            <div class="slide">
-                <img src="${item.img}" alt="image_${index}" loading="lazy" />
-            </div>
-        `;
-    });
-    tempHtml += `
-            <button class="btn btn-next" id="btn-next">></button>
-            <button class="btn btn-prev" id="btn-prev"><</button>
-        </div>
-    `;
-    element.innerHTML = tempHtml;
+    const WIDTH = 800;
 
-    // loop through slides and set each slides translateX
-    const slides = document.querySelectorAll(".slide");
-    document.getElementById("btn-next").addEventListener("click", moveNext);
-    document.getElementById("btn-prev").addEventListener("click", movePrev);
-        
-    let currSlide = 0;
-    let maxSlide = slides.length - 1;
+    (function renderSlider() {
+        const slider = document.createElement("div");
+        slider.classList.add("slider");
+        slider.id = "slider";
 
-    transFormSlide(currSlide);
+        //rendering images
+        images.forEach((item, index) => {
+            const slide = document.createElement("div");
+            slide.classList.add("slide");
 
-    // on next click
+            const imgHtml = document.createElement("img");
+            imgHtml.src = item.img;
+            imgHtml.alt = "image_" + index;
+            imgHtml.loading = "lazy";
+            slide.append(imgHtml);
+
+            const imgTitle = document.createElement("div");
+            imgTitle.innerText = item.title;
+            imgTitle.classList.add("imgTitle");
+            slide.style.left = index * WIDTH + "px"
+            slide.append(imgTitle);
+            
+            slider.append(slide);
+        });
+
+        //rendering control buttons
+        const buttonNext = document.createElement("button");
+        buttonNext.classList.add("btn");
+        buttonNext.classList.add("btn-next");
+        buttonNext.id = "btn-next";
+        buttonNext.innerText = ">";
+
+        const buttonPrev = document.createElement("button");
+        buttonPrev.classList.add("btn");
+        buttonPrev.classList.add("btn-prev");
+        buttonPrev.id = "btn-prev";
+        buttonPrev.innerText = "<";
+
+        slider.append(buttonNext);
+        slider.append(buttonPrev);
+        element.append(slider);
+    })();
+
+
+    //carousel logic
+    const slides = document.getElementsByClassName("slide");
+    const totalSlides = slides.length;
+
+    document.getElementById("btn-prev").addEventListener("click", movePrev);   
+    document.getElementById("btn-next").addEventListener("click", moveNext)
+    
+    let active = 0;
     function moveNext() {
-        if (currSlide === maxSlide) {
-            currSlide = 0;
-        } else {
-            currSlide++;
-        }
-
-        transFormSlide(currSlide);
+        active = (active == totalSlides - 1) ? 0 : active + 1;
+        moveSlides()
     }
 
     function movePrev() {
-        if (currSlide === 0) {
-            currSlide = maxSlide;
-        } else {
-            currSlide--;
+        active = (active == 0) ? totalSlides - 1 : active - 1;
+        moveSlides()
+    }
+
+    function moveSlides() {
+        for (let i=0; i<totalSlides; i++) {
+            slides[i].style.left = (i-active) * WIDTH + "px";
         }
-
-        transFormSlide(currSlide);
     }
 
-    function transFormSlide(currSlide) {
-        slides.forEach((slide, index) => {
-            slide.style.transform = `translateX(${ (index - currSlide) * 100 }%)`;
-        });
-    }
+    let interval = setInterval(moveNext, 2000);
 
-    // keep slides moving automatically after 3s
-    setInterval(moveNext, 3000)
+
+    //stopping slider on mouseover and resuming on mouseleave
+    const slider = document.getElementById("slider");
+    slider.addEventListener("mouseover", function() {
+        clearInterval(interval);
+    });
+    slider.addEventListener("mouseleave", function() {
+        interval = setInterval(moveNext, 2000);
+    });
 }

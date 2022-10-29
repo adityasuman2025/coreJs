@@ -35,13 +35,24 @@
             max-width: 100%;
             max-height: 100%;
             position: absolute;
-            transition: all 0.5s;
+            transition-duration: 0.5s;
         }
 
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .imgTitle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
         }
 
         .btn {
@@ -66,34 +77,27 @@
             top: 45%;
             right: 2%;
         }
-
-        #centerByAbsolute {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: red;
-            height: 200px;
-            width: 200px;
-        }
     </style>
 </head>
 
 <body>
     <div id="container"></div>
-    <div id="centerByAbsolute"></div>
 
     <script type="module">
         import carousel from "./carousel.js";
 
         let imgs = [{
-            img: "https://source.unspla.random?landscape,mountain",
+            img: "https://source.unsplash.com/random?landscape,mountain",
+            title: "mountain"
         }, {
             img: "https://source.unsplash.com/random?landscape,cars",
+            title: "cars"
         }, {
             img: "https://source.unsplash.com/random?landscape,night",
+            title: "night"
         }, {
             img: "https://source.unsplash.com/random?landscape,city",
+            title: "city"
         }];
 
         carousel(imgs, document.getElementById("container"));
