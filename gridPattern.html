@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Pattern</title>
+    <style>
+        #patternWrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .boxWrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .box {
+            margin: 10px;
+            border: 1px solid grey;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+
+        .invisible {
+            border: none;
+        }
+
+        .colored {
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <h2>Grid Pattern</h2>
+
+    <div id="patternWrapper"></div>
+
+    <script>
+        const pattern = [
+            [1,1,1],
+            [0,1,0],
+            [1,1,1,0,1],
+        ];
+        let clickedBoxes = [];
+
+        const patternWrapper = document.getElementById("patternWrapper");
+        patternWrapper.addEventListener("click", handlePatternClick);
+        renderPattern(pattern, clickedBoxes);
+
+        function renderPattern(pattern, clickedBoxes) {
+            const patternFrag = document.createDocumentFragment();
+
+            pattern.forEach((boxGroup, patternIdx) => {
+                const boxWrapper = document.createElement("div");
+                boxWrapper.classList.add("boxWrapper");
+
+                boxGroup.forEach((item, boxIdx) => {
+                    const key = patternIdx + "_" + boxIdx;
+                    const box = document.createElement("div");
+                    box.classList = (item == 1) ? clickedBoxes.includes(key) ? "box colored" : "box" : "box invisible";
+                    box.dataset.key = (item == 1) ? key : "";
+                    boxWrapper.append(box);
+                });
+
+                patternFrag.append(boxWrapper);
+            });
+
+            patternWrapper.innerHTML = "";
+            patternWrapper.append(patternFrag);
+        }
+
+        function handlePatternClick(event) {
+            const key = event.target.dataset.key;
+            if (key) {
+                if (clickedBoxes.includes(key)) {
+                    clickedBoxes = clickedBoxes.filter(item => item != key);
+                } else {
+                    clickedBoxes.push(key);
+                }
+
+                renderPattern(pattern, clickedBoxes);
+            }
+        }
+    </script>
+</body>
+</html>
