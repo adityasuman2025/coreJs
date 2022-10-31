@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Creation</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <div id="dashboard">
+            <div id="filersComp">
+                <h2>Filter By</h2>
+
+                <div id="filters">
+                    <div id="colorFilter">
+                        <b>color:</b>
+                        <div id="colors"></div>
+                    </div>
+
+                    <div id="textFilter">
+                        <b>title / subtitle:</b><br />
+                        <input placeholder="search across title and subtitle" type="text" id="textFilterInput" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="progressbarComp">
+                <div id="progress">
+                    <div id="bar"></div>
+                </div>
+
+                <div id="status">0 \ 5 Creatives</div>
+            </div>
+            
+            <button id="addCreativeBtn">+ Add Creative</button>
+            <br />
+
+            <div id="creativesComp"></div>
+        </div>
+
+        <div id="dialog">
+            <div id="dialogHeader"> 
+                <h2>Creative Creation</h2>
+                <div id="closeBtn">x</div>
+            </div>
+            
+            <div id="createCreativeForm">
+                <label>
+                    title <br/>
+                    <input type="text" placeholder="title" name="titleInput" />
+                </label>
+                <br/><br/>
+
+                <label>
+                    subtitle <br/>
+                    <input type="text" placeholder="subtitle" name="subtitleInput" />
+                </label>
+                <br/><br/>
+
+                <div>
+                    background color
+                    <div id="colorInput"></div>
+                </div>
+                <br/><br/><br/><br/>
+
+                <button id="createCreativeBtn" class="disabledBtn">Done</button>
+            </div>
+        </div>
+    </div>
+   
+    <script src="script.js"></script>
+</body>
+</html>
