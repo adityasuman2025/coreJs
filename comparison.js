@@ -83,12 +83,3 @@ function hello() {
 hello()
 console.log("hi", hi)
 
-
-let num;
-for (let i = 0; i < 5; i++) {
-  num = i;
-  setTimeout(() => {
-    console.log(num); // 4 => five times (it is same as using var because here `num` has global scope)
-  }, 100);
-}
-
