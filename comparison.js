@@ -31,10 +31,10 @@ console.log(Math.max("any string", 1)) // NaN
 
 
 //The instanceof operator tests to see if the prototype property of a constructor appears anywhere in the prototype chain of an object. The return value is a boolean value.
-console.log(Function instanceof Object)
-console.log(Object instanceof Function)
-console.log(Function instanceof Function)
-console.log(Object instanceof Object)
+console.log("Function instanceof Object", Function instanceof Object)
+console.log("Object instanceof Function", Object instanceof Function)
+console.log("Function instanceof Function", Function instanceof Function)
+console.log("Object instanceof Object", Object instanceof Object)
 
 //array index can go from 0 to 2^32 - 2
 

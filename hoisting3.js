@@ -10,7 +10,7 @@ console.log("zzz", zzz)
 // zzz() // will print "zzz"
 
 /*
-fn is a Conditionally Created Function whose behavior differs across browsers. In chrome, fn gets hoisted but since its undefined the if evaluates to true adn fn() gets defined printing "2" later
+fn is a Conditionally Created Function whose behavior differs across browsers. In chrome, fn gets hoisted but since its undefined the if evaluates to true and fn() gets defined printing "2" later
 
 fn1 is declared twice (both outside and inside IIFE). However, inside the IIFE because of Hoisting fn1 is actually undefined hence if evaluates to true and fn1 gets redeclared 👉🏻 prints "4"
 
