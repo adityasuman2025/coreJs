@@ -13,7 +13,7 @@ function printNameAndAddress(address, state) {
 }
 
 // person1.printName();
-// printNameAndAddress.call(person1, "nalanda", "bihar");
+printNameAndAddress.call(person1, "nalanda", "bihar");
 
 let person2 = {
     firstName: "sachin",

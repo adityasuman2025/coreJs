@@ -14,20 +14,41 @@ const ansArrowSyntax = arrowSyntax(3);
 
 // 2. this binding
 /*
+this is a property of the execution context
+
 In regular functions the this keyword represented the object that called the function, which could be the window, the document, a button or whatever.
 In arrow functions the this keyword represents the this(context) of the object where it is defined
 */
+
+// this.name = "ka";
 const obj = {
     name: "Bhemu",
-    regGetName: function() {
-        console.log("regGetName", this.name);
+    regGetName: function () {
+        console.log("obj regGetName", this.name);
     },
     arrowGetName: () => {
-        console.log("arrowGetName", this.name);
+        console.log("obj arrowGetName", this.name);
     }
 }
-// obj.regGetName();
-// obj.arrowGetName();
+obj.regGetName(); // here this is obj
+obj.arrowGetName(); // here this is window because it is defined in (Global Execution Context) GEC's this // beacuse obj is not a function, it is an object, so it does not have its own Execution Context, so it will look for its parent's Execution Context which is GEC and GEC's this is window
+
+
+function objConstructor() {
+    this.name = "Bhemu";
+
+    this.regGetName = function () {
+        console.log("obj2 regGetName", this.name);
+    }
+
+    this.arrowGetName = () => {
+        console.log("obj2 arrowGetName", this.name);
+    }
+}
+
+const obj2 = new objConstructor();
+obj2.regGetName(); // here this is obj2
+obj2.arrowGetName(); // here this is obj2 because arrow function's this, is this of the object where it is defined and here it is defined in objConstructor function which has its own Execution Context and its own this
 
 
 
@@ -54,9 +75,9 @@ hence new keyword can’t be used with arrow function
 function regConstr1(color) {
     this.color = color;
 }
-const regConstr2 = function(color) {
+const regConstr2 = function (color) {
     this.color = color;
-} 
+}
 const regObj = new regConstr2('blue');
 console.log("regObj", regObj)
 
