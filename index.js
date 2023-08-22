@@ -1,16 +1,3 @@
-hi()
-console.log(x)
-
-var x = 2;
-
-function hi() {
-    console.log("hi frnd")
-}
-
-var hi2 = () => {
-    console.log("hi frnd 2")
-}
-
 const users = [
     {
         firstName: "akshay",
@@ -53,64 +40,6 @@ const output = users.reduce((acc, item) => {
 
 const filter = users.filter(item => item.age < 30).map(item => item.firstName)
 // console.log("filter", filter)
-
-
-//call 
-//the call() method calls the function with a given this value and arguments provided individually
-let person1 = {
-    firstName: "aditya",
-    lastName: "suman",
-    printName: function () {
-        console.log(this.firstName + " " + this.lastName)
-    }
-}
-
-function printNameAndAddress(address, state) {
-    console.log(this.firstName + " " + this.lastName + " address: " + address + " state: " + state)
-}
-
-// person1.printName();
-// printNameAndAddress.call(person1, "nalanda", "bihar");
-
-let person2 = {
-    firstName: "sachin",
-    lastName: "jee"
-}
-person1.printName.call(person2)
-
-//apply
-//in apply we pass agruments in array
-printNameAndAddress.apply(person2, ["noida", "UP"]);
-
-//bind
-//bind is same as call() but instead of calling the method, its just create clone of the method, which we can invoke/call later
-let newPrintNameAndAddress = printNameAndAddress.bind(person2, "bangalore", "karnataka");
-newPrintNameAndAddress();
-
-
-//currying
-//it is a technique in functional programming in which a function with multiple arguments is transformed into serveral function with single argument in sequence
-//it can be done in 2 ways
-//1: bind
-const add = (x, y) => {
-    return x + y;
-}
-
-const addTwo = add.bind(this, 2);
-const ans = addTwo(10);
-// console.log("function currying using bind", ans);
-
-
-//2: closure
-function addClosure(x) {
-    return function (y) {
-        return x + y
-    }
-}
-
-const addClosureThree = addClosure(3);
-const ansClosure = addClosureThree(5);
-// console.log("function currying using closure", ansClosure);
 
 
 // event bubbling
