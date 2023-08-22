@@ -51,7 +51,7 @@ function curryAltSum(...args1) {
             isSum = !isSum
         });
 
-        return args2.length ? currySum(sum) : sum
+        return args2.length ? curryAltSum(sum) : sum
     }
 }
 

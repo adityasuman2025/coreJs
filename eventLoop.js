@@ -22,7 +22,7 @@
 //     console.log("b");
 //     console.log("c");
 // });
-    
+
 //// way - 2
 // (async function() {
 //     await printA;

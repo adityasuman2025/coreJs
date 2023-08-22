@@ -76,9 +76,9 @@ console.log('a' + + 'b') // "a" + (+'b') = a + "NaN" = "aNaN"
 
 var hi = 10;
 function hello() {
-    // hi = 20
-    var hi = 20;
-    hi = 40;
+  // hi = 20
+  var hi = 20;
+  hi = 40;
 }
 hello()
 console.log("hi", hi)
