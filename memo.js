@@ -1,29 +1,30 @@
 //Memoization is a programming technique which attempts to increase a function’s performance by caching its previously computed results. 
 //Because JavaScript objects behave like associative arrays, they are ideal candidates to act as caches.
 
-const fibonnaci = (function() {
-    let memo = {};
+// fibonnaci series: // 0 1 1 2 3 5 8 13 21 34 ...
+function fibonnaci(n) {
+    let cache = { 0: 0, 1: 1 };
 
-    function fibb(n) {
-        if (n in memo) return memo[n]
-        else {
-            if (n < 2) return n;
-            else {
-                memo[n] = fibb(n-1) + fibb(n-2);
-                return memo[n];
-            }
-        }
+    function fibUtil(n) {
+        if (n < 2) return n;
+
+        const fibbAtN = (cache.hasOwnProperty(n - 1) ? cache[n - 1] : fibUtil(n - 1)) + (cache.hasOwnProperty(n - 2) ? cache[n - 2] : fibUtil(n - 2))
+        cache[n] = fibbAtN;
+
+        return fibbAtN;
     }
 
-    return fibb;
-})()
-// let ans = fibonnaci(10);
-// console.log("ans", ans);
+    return fibUtil(n);
+}
+
+// const ans = fibonnaci(50);
+// console.log("ans", ans)
+
 
 function memoizeIt(func) {
     let res = {};
 
-    return function(...args) {
+    return function (...args) {
         let key = JSON.stringify(args);
         if (!(key in res)) {
             res[key] = func.call(this, ...args)
@@ -34,8 +35,8 @@ function memoizeIt(func) {
 }
 
 function heavyFunc(a, b) {
-    for (let i=0; i<=1000000000; i++) {}
-    return a+b;
+    for (let i = 0; i <= 1000000000; i++) { }
+    return a + b;
 }
 
 const memoizedHeavyFunc = memoizeIt(heavyFunc);

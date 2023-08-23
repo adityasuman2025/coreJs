@@ -1,26 +1,23 @@
 const obj = {
-    // a: {
-    // //   b: {
-    // //     // c: [1,2,3]
-    // //   }
-    // }
-}
+    a: {
+        b: {
+            c: [1, 2, 3]
+        }
+    }
+};
 
 
 //get
-function get(source, path, defaultValue = undefined) {
-    const keys = Array.isArray(path) ? path : (path.replace("[", '.').replace("]", '')).split(".");
-    const key = keys[0];
+function get(source, path, defaultVal = undefined) {
+    let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
-    if (keys.length === 1) {
-        return source[key] || defaultValue;
+    let thisKey = pathArr[0];
+    if (pathArr.length === 1) {
+        if (source.hasOwnProperty(thisKey)) return source[thisKey]
+        return defaultVal;
     } else {
-        if (key in source) {
-            keys.shift(); //removing the first element from the path string
-            return get(source[key], keys.join("."), defaultValue)
-        } else {
-            return defaultValue;
-        }
+        if (source.hasOwnProperty(thisKey)) return get(source[thisKey], pathArr.slice(1), defaultVal); // pathArr.slice(1), removing first element from the path array as it has already been proccessed
+        return defaultVal;
     }
 }
 
@@ -36,18 +33,21 @@ function get(source, path, defaultValue = undefined) {
 
 //set
 function set(obj, path, value) {
-    const keys = Array.isArray(path) ? path : (path.replace('[', '.').replace(']', '')).split(".");
-    const key = keys[0]; //Number(keys[0]) || keys[0];
+    let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
-    if (keys.length == 1) {
-        obj[key] = value;
-    } else {
-        if (!(key in obj)) obj[key] = String(Number(keys[1])) === keys[1] ? [] : {}
+    let thisKey = pathArr[0], nextKey = pathArr[1];
+    const thisKeyAsNumberOrStr = Number(thisKey) || thisKey; // if thisKey is a number then key should go as number, otherwise as string
 
-        keys.shift(); //removing the first element from the path string
-        set(obj[key], keys.join("."), value);
+    if (pathArr.length === 1) obj[thisKeyAsNumberOrStr] = value;
+    else {
+        if (!obj.hasOwnProperty(thisKey)) {
+            obj[thisKeyAsNumberOrStr] = (Object.is(Number(nextKey), NaN)) ? {} : [] // if nextKey is a number then making that key's value array otherwise object
+        }
+
+        set(obj[thisKeyAsNumberOrStr], pathArr.slice(1), value) // pathArr.slice(1), removing first element from the path array as it has already been proccessed
     }
 }
 
-set(obj, 'a.c.d.01', 'BFE')
-console.log("obj", JSON.stringify(obj)) // "BFE"
+set(obj, 'a.c.d.01.e.0.f', 'BFE')
+set(obj, 'a.b.c.4', 'BFE')
+console.log("obj", JSON.stringify(obj))

@@ -21,10 +21,10 @@ const plusStr = +"yo";
 const plusarr = +[];
 const plusObj = +{};
 
-console.log("plusStrNo", plusStrNo)
-console.log("plusStr", plusStr)
-console.log("plusarr", plusarr)
-console.log("plusObj", plusObj)
+// console.log("plusStrNo", plusStrNo)
+// console.log("plusStr", plusStr)
+// console.log("plusarr", plusarr)
+// console.log("plusObj", plusObj)
 
 
 
@@ -34,10 +34,10 @@ const strPlusNo = "yo" + 1;
 const strNoPlusStrNo = "100" + "99";
 const strPlusStr = "yo" + "biro";
 
-console.log("noPlusNo", noPlusNo)
-console.log("strPlusNo", strPlusNo)
-console.log("strNoPlusStrNo", strNoPlusStrNo)
-console.log("strPlusStr", strPlusStr)
+// console.log("noPlusNo", noPlusNo)
+// console.log("strPlusNo", strPlusNo)
+// console.log("strNoPlusStrNo", strNoPlusStrNo)
+// console.log("strPlusStr", strPlusStr)
 
 
 
