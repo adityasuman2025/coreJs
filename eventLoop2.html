@@ -2,30 +2,31 @@
 <button id="btn2">Do you want a bonus?</button>
 <script>
     function listener1() {
-        setTimeout(() => console. log('#1 Hello from timeout 1'), 0)
-        Promise.resolve().then(() => console. log ('#1 Hello from promise 1'))
+        setTimeout(() => console.log('#1 Hello from timeout 1'), 0)
+        Promise.resolve().then(() => console.log('#1 Hello from promise 1'))
         const promise = Promise.resolve()
-        setTimeout(() => console. log('#1 Hello from timeout 2'), 0)
-        console. log('#1 Hello from main thread')
-        setTimeout (() => promise. then(() => console. log('#1 Hello from promise 2')), 0)
+        setTimeout(() => console.log('#1 Hello from timeout 2'), 0)
+        console.log('#1 Hello from main thread')
+        setTimeout(() => promise.then(() => console.log('#1 Hello from promise 2')), 0)
     }
 
     function listener2() {
-        setTimeout(() => console. log('#2 Hello from timeout 1'), 0)
-        Promise.resolve(). then(() => console. log('#2 Hello from promise 1'))
-        const promise = Promise. resolve()
-        setTimeout(() => console. log ('#2 Hello from timeout 2'), 0)
-        console. log ('#2 Hello from main thread')
-        setTimeout ( () => promise. then(() => console. log ('#2 Hello from promise 2')), 0)
+        setTimeout(() => console.log('#2 Hello from timeout 1'), 0)
+        Promise.resolve().then(() => console.log('#2 Hello from promise 1'))
+        const promise = Promise.resolve()
+        setTimeout(() => console.log('#2 Hello from timeout 2'), 0)
+        console.log('#2 Hello from main thread')
+        setTimeout(() => promise.then(() => console.log('#2 Hello from promise 2')), 0)
     }
 
     const btn = document.getElementById('btn1');
     btn.addEventListener('click', listener1, false); //listener1 is callback function of addEventListener function so it will go in callback queue
     btn.addEventListener('click', listener2, false); //listener2 is callback function of addEventListener function so it will go in callback queue
 
-    const btn2 = document.getElementById('btn2' );
+    const btn2 = document.getElementById('btn2');
     btn2.addEventListener('click', () => btn.click(), false)
-   
+
+
     /*
         "#1 Hello from main thread"
         "#1 Hello from promise 1"
@@ -39,5 +40,5 @@
         "#2 Hello from settimeout 1"
         "#2 Hello from settimeout 2"
         "#2 Hello from promise 2"
-        */
+    */
 </script>

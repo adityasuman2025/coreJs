@@ -42,27 +42,27 @@ const filter = users.filter(item => item.age < 30).map(item => item.firstName)
 // console.log("filter", filter)
 
 
-// event bubbling
-// document.getElementById("parent")
-//     .addEventListener("click", function (event) {
-//         console.log("parent is clicked", event);
-//     }); //3rd argument, by default it is false i.e. event bubbling
-
-// document.getElementById("child")
-//     .addEventListener("click", function (event) {
-//         // event.stopPropagation() // to prevent event bubbling
-//         console.log("child is clicked", event);
-//     });
-
-// event capturing
+// // event bubbling
 document.getElementById("parent")
     .addEventListener("click", function (event) {
-        // event.stopPropagation() // to prevent event bubbling
         console.log("parent is clicked", event);
-    }, true); //this third argument as true, enables event capturing // by default it is false i.e. event bubbling
+    }); //3rd argument, by default it is false i.e. event bubbling
 
 document.getElementById("child")
     .addEventListener("click", function (event) {
+        // event.stopPropagation() // to prevent event bubbling
         console.log("child is clicked", event);
     });
 
+
+// // event capturing
+// document.getElementById("parent")
+//     .addEventListener("click", function (event) {
+//         // event.stopPropagation() // to prevent event bubbling
+//         console.log("parent is clicked", event);
+//     }, true); //this third argument as true, enables event capturing // by default it is false i.e. event bubbling
+
+// document.getElementById("child")
+//     .addEventListener("click", function (event) {
+//         console.log("child is clicked", event);
+//     });

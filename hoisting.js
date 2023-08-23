@@ -17,19 +17,19 @@ var a = 1;
 let b = 2;
 
 function c() {
-    console.log("c")
+  console.log("c")
 }
 
-var d = function() {
-    console.log("d")
+var d = function () {
+  console.log("d")
 }
 
-let e = function() {
-    console.log("e")
+let e = function () {
+  console.log("e")
 }
 
 class f {
-    f = "f"
+  f = "f"
 }
 
 console.log("a", a, b, c, d, e, f)

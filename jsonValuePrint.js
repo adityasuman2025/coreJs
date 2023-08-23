@@ -9,12 +9,12 @@
 function printJSON(json) {
     if (Array.isArray(json)) {
         json.forEach(item => printJSON(item));
-    } else if(typeof json === 'object') {
+    } else if (typeof json === 'object') {
         Object.values(json).forEach(item => printJSON(item));
     } else {
         console.log(json);
     }
 }
 
-const json = [ [[[ { a: {b: { c : 1 }}} ]]], 2, 3 ]; // {a : 1, b: {c: 2}, d:[1, 2]};
+const json = [[[[{ a: { b: { c: 1 } } }]]], 2, 3]; // {a : 1, b: {c: 2}, d:[1, 2]};
 printJSON(json)

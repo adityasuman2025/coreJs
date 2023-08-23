@@ -9,7 +9,7 @@ const obj = {
 
 //get
 function get(source, path, defaultValue = undefined) {
-    const keys = Array.isArray(path) ? path: (path.replace("[",'.').replace("]",'')).split(".");  
+    const keys = Array.isArray(path) ? path : (path.replace("[", '.').replace("]", '')).split(".");
     const key = keys[0];
 
     if (keys.length === 1) {
@@ -36,14 +36,14 @@ function get(source, path, defaultValue = undefined) {
 
 //set
 function set(obj, path, value) {
-    const keys = Array.isArray(path) ? path: (path.replace('[', '.').replace(']','')).split(".");  
+    const keys = Array.isArray(path) ? path : (path.replace('[', '.').replace(']', '')).split(".");
     const key = keys[0]; //Number(keys[0]) || keys[0];
-  
+
     if (keys.length == 1) {
         obj[key] = value;
     } else {
         if (!(key in obj)) obj[key] = String(Number(keys[1])) === keys[1] ? [] : {}
-        
+
         keys.shift(); //removing the first element from the path string
         set(obj[key], keys.join("."), value);
     }

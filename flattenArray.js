@@ -9,7 +9,7 @@ function flatten(arr, depth = 1) {
     let newArr = [];
 
     function flat(arr, maxDepth, depth) {
-        for (let i=0; i<arr.length; i++) {
+        for (let i = 0; i < arr.length; i++) {
             let ele = arr[i];
             if ((typeof ele == 'object' || Array.isArray(ele)) && depth < maxDepth) {
                 flat(ele, maxDepth, depth + 1)

@@ -8,7 +8,7 @@
 // console.log("c");
 
 
-// so print a b c we need to put this setTimeout in promise
+// so to print a b c we need to put this setTimeout in promise
 // and do other stuffs after the promise is resolved/done
 // const printA = new Promise(function(resolve, reject) {
 //     setTimeout(() => {
@@ -57,6 +57,7 @@
 // mc.port2.postMessage('')
 
 // console.log(6)
+
 
 
 //Synchronous code (including event listeners) gets executed first in order.
