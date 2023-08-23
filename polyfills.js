@@ -1,38 +1,46 @@
-//map
+/*----------------------------------------map--------------------------------*/
 Array.prototype.myMap = function (func) {
-    let resp = [];
-    this.forEach((item, index) => resp.push(func(item, index)));
+    let resp = [], arr = this;
+
+    for (let i = 0; i < arr.length; i++) {
+        resp[i] = func(arr[i], i);
+    }
 
     return resp;
 }
 
 const arr = [...Array(10).keys()];
-// console.log("org arr", arr)
-
 const myMapResp = arr.myMap((item) => item * 2);
+// console.log("org arr", arr)
 // console.log("myMapResp", myMapResp)
 
 
-//filter
-Array.prototype.myFilter = function (func) {
-    let resp = [];
-    this.forEach((item, index) => {
-        if (func(item, index)) resp.push(item);
-    });
 
-    return resp;
+
+/*----------------------------------------filter--------------------------------*/
+Array.prototype.myFilter = function (func) {
+    let resp = [], arr = this;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i], i)) resp.push(arr[i])
+    }
+
+    return resp
 }
 
 const myFilterResp = arr.myFilter((item) => item % 2 == 0);
 // console.log("myFilterResp", myFilterResp)
 
 
-//reduce
-Array.prototype.myReduce = function (func, emptyVal) {
-    let resp = emptyVal;
-    this.forEach((item, index) => {
-        resp = func(emptyVal, item, index)
-    });
+
+
+/*----------------------------------------reduce--------------------------------*/
+Array.prototype.myReduce = function (func, initialVal) {
+    let resp = initialVal, arr = this;
+
+    for (let i = 0; i < arr.length; i++) {
+        resp = func(resp, arr[i], i);
+    }
 
     return resp;
 }
@@ -44,14 +52,18 @@ const myReduceResp = arr.myReduce((acc, item, index) => {
 // console.log("myReduceResp", myReduceResp)
 
 
-//forEach
+
+
+/*----------------------------------------forEach--------------------------------*/
 Array.prototype.myForEach = function (func) {
     for (let i = 0; i < this.length; i++) func(this[i], i);
 }
 // arr.forEach((item, index) => console.log(index, item));
 
 
-//bind
+
+
+/*----------------------------------------bind--------------------------------*/
 Function.prototype.myBind = function (thi, ...args) {
     let func = this;
     return function (...args2) {
@@ -64,11 +76,13 @@ function printName(state, country) {
 }
 
 let nameObj = { firstName: "aditya", lastName: "suman" };
-const printMyName = printName.myBind(nameObj, "delhi");
-// printMyName("india")
+const printMyName = printName.myBind(nameObj, "delhi", "india");
+printMyName()
 
 
-//apply
+
+
+/*----------------------------------------apply--------------------------------*/
 Function.prototype.myApply = function (thi, args = []) {
     this.call(thi, ...args)
 }
@@ -81,7 +95,9 @@ Function.prototype.myApply2 = function (obj, args = []) {
 // nameObj.func.apply(nameObj, ["bhemu", "ond"])
 
 
-//call
+
+
+/*----------------------------------------call--------------------------------*/
 Function.prototype.myCall = function (thi, ...args) {
     this.apply(thi, args)
 }
@@ -93,7 +109,9 @@ printName.myCall2(nameObj, "thimpu", "bhutan");
 // console.log("nameObj", nameObj.func);
 
 
-//find
+
+
+/*----------------------------------------find--------------------------------*/
 Array.prototype.myFind = function (func) {
     for (let i = 0; i < this.length; i++) {
         let item = this[i]
@@ -106,7 +124,9 @@ const newArrByFind = arr.myFind((item, index) => (item % 2 == 1) && (item > 3));
 // console.log("newArrByFind", newArrByFind);
 
 
-//findIndex
+
+
+/*----------------------------------------findIndex--------------------------------*/
 Array.prototype.myfindIndex = function (func) {
     for (let i = 0; i < this.length; i++) {
         let item = this[i]
@@ -119,11 +139,12 @@ const newArrByfindIndex = arr.myfindIndex((item, index) => (item % 2 == 1) && (i
 // console.log("newArrByfindIndex", newArrByfindIndex);
 
 
-//promiseAll
+
+
+/*----------------------------------------promise All--------------------------------*/
 const a = new Promise(function (resolve, reject) {
     setTimeout(() => { resolve("biro") }, 2000)
 })
-
 const b = Promise.resolve("yo")
 
 Promise.myPromiseAll = function (promiseArr) {

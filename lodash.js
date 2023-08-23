@@ -41,7 +41,7 @@ function set(obj, path, value) {
     if (pathArr.length === 1) obj[thisKeyAsNumberOrStr] = value;
     else {
         if (!obj.hasOwnProperty(thisKey)) {
-            obj[thisKeyAsNumberOrStr] = (Object.is(Number(nextKey), NaN)) ? {} : [] // if nextKey is a number then making that key's value array otherwise object
+            obj[thisKeyAsNumberOrStr] = isNaN(Number(nextKey)) ? {} : [] // if nextKey is a number then making that key's value array otherwise object
         }
 
         set(obj[thisKeyAsNumberOrStr], pathArr.slice(1), value) // pathArr.slice(1), removing first element from the path array as it has already been proccessed

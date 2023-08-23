@@ -1,5 +1,6 @@
 function changeAgeAndName(person) {
     person.age = 25;
+    // person.name = "adarsh"
     person = {
         age: 50,
         name: "bhemu"
@@ -22,7 +23,7 @@ const person2 = changeAgeAndName(person1);
 var john = {
     name: 'John Doe',
     balance: 1500,
-    deduct: function(amount) {
+    deduct: function (amount) {
         this.balance = this.balance - amount;
         return this.name + " has a balance of " + this.balance;
     }
@@ -58,4 +59,4 @@ function lengthOfArgs() {
     return arguments.length;
 }
 
-console.log(lengthOfArgs(1,2,3,4,5));
+// console.log(lengthOfArgs(1, 2, 3, 4, 5));

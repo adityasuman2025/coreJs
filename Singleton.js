@@ -1,8 +1,8 @@
-class Singleton {
+class Single {
     constructor() {
-        // Singleton.instance is already created then returning that and not creating any new instance
-        if (Singleton.instance instanceof Singleton) {
-            return Singleton.instance;
+        // Single.instance is already created then returning that and not creating any new instance
+        if (Single.instance instanceof Single) {
+            return Single.instance;
         }
 
         this.settingsObj = {
@@ -11,7 +11,7 @@ class Singleton {
         }
 
         Object.freeze(this); //freeze prevents new properties from being added to it; prevents existing properties from being removed; and prevents existing properties, or their enumerability, configurability, or writability, from being changed
-        Singleton.instance = this; //storing first instance of this Singleton obj in Singleton.instance
+        Single.instance = this; //storing first instance of this Singleton obj in Singleton.instance
     }
 
     get(key) {
@@ -19,7 +19,7 @@ class Singleton {
     }
 }
 
-let a = new Singleton();
-let b = new Singleton();
+let a = new Single();
+let b = new Single();
 console.log("a", a)
 console.log("b", b)
