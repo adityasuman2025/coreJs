@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Kauua is bird</h1>
+
+    <div id="parent">outside parent
+        <button id="child">inside child</button>
+    </div>
+
+    <script src="index.js">
+        // // event bubbling
+        document.getElementById("parent")
+            .addEventListener("click", function (event) {
+                console.log("parent is clicked", event);
+            }); //3rd argument, by default it is false i.e. event bubbling
+
+        document.getElementById("child")
+            .addEventListener("click", function (event) {
+                // event.stopPropagation() // to prevent event bubbling
+                console.log("child is clicked", event);
+            });
+
+
+        // // event capturing
+        // document.getElementById("parent")
+        //     .addEventListener("click", function (event) {
+        //         // event.stopPropagation() // to prevent event bubbling
+        //         console.log("parent is clicked", event);
+        //     }, true); //this third argument as true, enables event capturing // by default it is false i.e. event bubbling
+
+        // document.getElementById("child")
+        //     .addEventListener("click", function (event) {
+        //         console.log("child is clicked", event);
+        //     });
+
+    </script>
+</body>
+
+</html>
