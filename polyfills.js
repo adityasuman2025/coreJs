@@ -63,6 +63,61 @@ Array.prototype.myForEach = function (func) {
 
 
 
+/*----------------------------------------chunk--------------------------------*/
+// https://leetcode.com/problems/chunk-array/description/?envType=study-plan-v2&envId=30-days-of-javascript
+Array.prototype.chunk = function (size) {
+    const arr = this;
+
+    let accIdx = 0, tempSize = 0;
+    return arr.reduce((acc, item, idx) => {
+        acc[accIdx] = [...(acc[accIdx] || []), item];
+
+        tempSize++;
+        if (tempSize === size) {
+            tempSize = 0;
+            accIdx++;
+        }
+
+        return acc;
+    }, []);
+};
+let arr2 = [1, 2, 3, 4, 5], size = 3;
+const chunkArr = arr2.chunk(size);
+// console.log("chunkArr", chunkArr);
+
+
+
+
+/*----------------------------------------find--------------------------------*/
+Array.prototype.myFind = function (func) {
+    for (let i = 0; i < this.length; i++) {
+        let item = this[i]
+        if (func(item, i)) return item
+    };
+
+    return -1;
+}
+const newArrByFind = arr.myFind((item, index) => (item % 2 == 1) && (item > 3));
+// console.log("newArrByFind", newArrByFind);
+
+
+
+
+/*----------------------------------------findIndex--------------------------------*/
+Array.prototype.myfindIndex = function (func) {
+    for (let i = 0; i < this.length; i++) {
+        let item = this[i]
+        if (func(item, i)) return i
+    };
+
+    return -1;
+}
+const newArrByfindIndex = arr.myfindIndex((item, index) => (item % 2 == 1) && (item > 3));
+// console.log("newArrByfindIndex", newArrByfindIndex);
+
+
+
+
 /*----------------------------------------bind--------------------------------*/
 Function.prototype.myBind = function (thi, ...args) {
     let func = this;
@@ -111,36 +166,6 @@ printName.myCall2(nameObj, "thimpu", "bhutan");
 
 
 
-/*----------------------------------------find--------------------------------*/
-Array.prototype.myFind = function (func) {
-    for (let i = 0; i < this.length; i++) {
-        let item = this[i]
-        if (func(item, i)) return item
-    };
-
-    return -1;
-}
-const newArrByFind = arr.myFind((item, index) => (item % 2 == 1) && (item > 3));
-// console.log("newArrByFind", newArrByFind);
-
-
-
-
-/*----------------------------------------findIndex--------------------------------*/
-Array.prototype.myfindIndex = function (func) {
-    for (let i = 0; i < this.length; i++) {
-        let item = this[i]
-        if (func(item, i)) return i
-    };
-
-    return -1;
-}
-const newArrByfindIndex = arr.myfindIndex((item, index) => (item % 2 == 1) && (item > 3));
-// console.log("newArrByfindIndex", newArrByfindIndex);
-
-
-
-
 /*----------------------------------------promise All--------------------------------*/
 const a = new Promise(function (resolve, reject) {
     setTimeout(() => { resolve("biro") }, 2000)
@@ -167,10 +192,10 @@ Promise.myPromiseAll = function (promiseArr) {
     });
 }
 
-Promise.myPromiseAll([a, b])
-    .then(resp => {
-        console.log("promise all done resp", resp)
-    })
-    .catch((e) => {
-        console.log("promise all failed", e)
-    })
+// Promise.myPromiseAll([a, b])
+//     .then(resp => {
+//         console.log("promise all done resp", resp)
+//     })
+//     .catch((e) => {
+//         console.log("promise all failed", e)
+//     })
