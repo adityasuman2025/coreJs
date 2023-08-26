@@ -1,199 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment Widget</title>
+    <title>Comment</title>
+
     <style>
-        #commentsContainer {
-            padding: 10px;
-            margin: auto;
-            width: 80%;
-            overflow-y: scroll;
-            background-color: #f1f1f1;
-        }
-
-        textarea {
-            margin: 20px;
-            width: calc(100% - 40px);
-            height: 30px;
-            resize: none;
-            margin-top: 5px;
-        }
-
-        .comment {
-            margin: 10px;
-            padding: 5px;
+        .commentBox {
             border: 1px solid grey;
+            padding: 5px;
         }
 
-        .replyContainer {
-            margin: 10px;
+        .commentBox textarea {
+            margin-left: 10px;
+        }
+
+        .replies {
+            margin-left: 10px;
         }
     </style>
 </head>
-<body>
-    <div id="commentsContainer">
-        <center>
-            <h1>Comment Widget</h1>
-            <textarea id="createCommentText"></textarea>
-            <button id="createCommentBtn">comment</button>
-        </center>
-        <br /><br /><hr /><br />
 
-        <div id="comments">comments</div>
-    </div>
+<body>
+    <div id="commentsContainer"></div>
+    <textarea id="comment"></textarea>
+    <button onclick="handleCommentClick(event)">comment</button>
 
     <script>
-        const ACTN_BTN_CLASS = "actnBtn";
-        
         let comments = [
             {
-                id: "3regf",
-                text: "0",
-                reply: [
+                comment: "0",
+                replies: [
                     {
-                        id: "wedfvcx",
-                        text: "00",
-                        reply: [
-                            {
-                                id: "sdzxcx",
-                                text: "000",
-                            },
-                            {
-                                id: "wedf",
-                                text: "001",
-                                reply: [
-                                    { 
-                                        id: "daimklkld",
-                                        text: "0010",
-                                    }
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        id: "dad",
-                        text: "01",
-                    },
-                ]
+                        comment: "0.0",
+                        replies: [{ comment: "0.0.0", replies: [], }],
+                    }
+                ],
             },
-            {
-                id: "refgc",
-                text: "1",
-            }
+            { comment: "1", replies: [], }
         ];
-       
-        const commentsEle = document.getElementById("comments");
-        commentsEle.addEventListener("click", handleCommentsClick);
 
-        function handleCommentsClick(event) {
-            const target = event.target;
-            if (target.matches("button") && target.classList.contains(ACTN_BTN_CLASS)) {
-                const key = target.dataset.key;
-                const btnType = target.innerText;
-                if (btnType === "delete") {
-                    deleteComment(comments, key.split("_"));
-                } else if (btnType === "reply") {
-                    const replyText = document.getElementById(key + "_textarea").value.trim();
-                    if (replyText) addComment(comments, key.split("_"), replyText);
-                }
-                
-                renderComments();
+        const commentsContainerEle = document.getElementById("commentsContainer");
+        commentsContainerEle.addEventListener("click", handleContainerClick);
+        function handleContainerClick(event) {
+            const target = event.target || {};
+            const { type, id, replycount } = target.dataset || {}
+
+            if (type === "reply") {
+                handleReplyClick(event, id, replycount);
+            } else if (type === "delete") {
+                handleDeleteClick(event, id);
             }
         }
 
-        document.getElementById("createCommentBtn").addEventListener("click", createComment);
-        function createComment(event) {
-            const createCommentText = document.getElementById("createCommentText").value.trim();
-            if (createCommentText) {
-                comments.push({
-                    id: "dafas",
-                    text: createCommentText,
-                });
-                renderComments();
+        function viewRenderer(comments, idPath = "") {
+            return comments.reduce((acc, { comment, replies } = {}, idx) => {
+                const id = (idPath ? idPath + "." : "") + idx;
+                // let thisCommentHtml = `
+                //     <div class="commentBox">
+                //         <div>
+                //             ${comment}
+                //             <button data-id="${id}" data-type="delete">delete</button>
+                //         </div>
+
+                //         <textarea id="${id}"></textarea>
+                //         <button data-id="${id}" data-type="reply" data-replycount="${replies.length}">reply</button>
+                //         <div class="replies">${viewRenderer(replies, id)}</div>
+                //     </div>
+                // `;
+
+                const commentBox = document.createElement("div");
+                commentBox.classList.add("commentBox");
+
+                const commentText = document.createElement("div");
+                commentText.innerText = (comment)
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "delete";
+                deleteBtn.dataset.id = id;
+                deleteBtn.dataset.type = "delete";
+                commentText.appendChild(deleteBtn);
+
+                const textEle = document.createElement("textarea");
+                textEle.id = id;
+
+                const replyBtn = document.createElement("button");
+                replyBtn.innerText = "reply";
+                replyBtn.dataset.id = id;
+                replyBtn.dataset.type = "reply";
+                replyBtn.dataset.replycount = replies.length
+
+                const repliesDiv = document.createElement("div");
+                repliesDiv.classList.add("replies");
+                repliesDiv.innerHTML = viewRenderer(replies, id)
+
+                commentBox.appendChild(commentText);
+                commentBox.appendChild(textEle);
+                commentBox.appendChild(replyBtn);
+                commentBox.appendChild(repliesDiv);
+
+                const temp = document.createElement("div");
+                temp.appendChild(commentBox);
+
+                return acc + temp.innerHTML;
+            }, "");
+        }
+
+        function render() {
+            console.log("comments", comments)
+            const html = viewRenderer(comments);
+            commentsContainerEle.innerHTML = html;
+        }
+        render();
+
+        function handleCommentClick(event) {
+            const thistextAreaEle = document.getElementById("comment");
+            comments.push({ comment: thistextAreaEle.value, replies: [] });
+
+            render();
+            thistextAreaEle.value = ""
+        }
+
+        function handleReplyClick(event, commentBoxId, repliesCount) {
+            const replyId = commentBoxId + "." + repliesCount; // id of this reply
+
+            const thistextAreaEle = document.getElementById(commentBoxId);
+
+            const replyIdArr = replyId.split(".").reduce((acc, i, idx) => {
+                if (idx > 0) acc.push('replies'); // comment will go in replies array of the given comment
+                acc.push(i);
+
+                return acc;
+            }, []);
+
+            set(comments, replyIdArr, { comment: thistextAreaEle.value, replies: [] });
+            render();
+        }
+
+        function handleDeleteClick(event, commentBoxId) {
+            const replyIdArr = commentBoxId.split(".").reduce((acc, i, idx) => {
+                if (idx > 0) acc.push('replies'); // comment will go in replies array of the given comment
+                acc.push(i);
+
+                return acc;
+            }, []);
+
+            omit(comments, replyIdArr);
+            render();
+        }
+
+
+        // lodash functions
+        function set(obj, key, value) {
+            let keyArr = Array.isArray(key) ? key : key.split(".");
+
+            const thisKey = Number(keyArr[0]) || keyArr[0];
+            const nextKey = keyArr[1];
+            if (keyArr.length === 1) obj[thisKey] = value;
+            else {
+                if (!obj.hasOwnProperty(thisKey)) obj[thisKey] = isNaN(Number(nextKey)) ? {} : [];
+
+                set(obj[thisKey], keyArr.slice(1), value);
             }
         }
 
-        function addComment(comments, indices, replyText) {
-            let firstIndex = indices.shift();
-            if (indices.length == 0) {
-                //we have reached at destination
-                comments[firstIndex].reply = [
-                    ...(comments[firstIndex].reply ? comments[firstIndex].reply : []),
-                    {
-                        id: "dafas",
-                        text: replyText,
-                    }
-                ]
+        function omit(obj, path) {
+            let pathArr = Array.isArray(path) ? path : path.split(".");
+
+            const thisKey = Number(pathArr[0]) || pathArr[0];
+            if (pathArr.length === 1) {
+                if (Array.isArray(obj)) obj.splice(thisKey, 1);
+                else delete obj[thisKey];
             } else {
-                return addComment(comments[firstIndex].reply, indices || [], replyText)
+                omit(obj[thisKey], pathArr.slice(1));
             }
         }
-
-        function deleteComment(comments, indices) {
-            let firstIndex = indices.shift();
-            if (indices.length == 0) {
-                //we have reached at destination
-                comments.splice(firstIndex, 1);
-            } else {
-                return deleteComment(comments[firstIndex].reply, indices || [])
-            }
-        }
-
-        function renderComments() {
-            function createCommentHtml(comments, parentId) {
-                const frag = document.createDocumentFragment();
-                (comments || []).forEach((comment, i) => {
-                    const uniqueId = parentId === "" ? i : (parentId + "_" + i);
-
-                    const commentEle = document.createElement("div");
-                    commentEle.classList.add('comment');
-
-                    const commentText = document.createElement("div");
-                    commentText.innerText = comment.text;
-                    commentEle.append(commentText);
-
-                    //rendering reply if any
-                    if (comment.reply) {
-                        const repliesFrag = createCommentHtml(comment.reply, uniqueId);
-
-                        const replyContEle = document.createElement("div");
-                        replyContEle.classList.add('replyContainer');
-                        replyContEle.append(repliesFrag);
-
-                        commentEle.append(replyContEle);
-                    }
-                    
-                    //reply textarea
-                    const replyArea = document.createElement("textarea");
-                    replyArea.id = uniqueId + "_textarea";
-                    commentEle.append(replyArea);
-
-                    //adding delete/reply btn
-                    const deleteBtn = document.createElement("button");
-                    deleteBtn.innerText = "delete";
-                    deleteBtn.dataset.key = uniqueId;
-                    deleteBtn.classList.add(ACTN_BTN_CLASS);
-                    const replyBtn = document.createElement("button");
-                    replyBtn.innerText = "reply";
-                    replyBtn.dataset.key = uniqueId;
-                    replyBtn.classList.add(ACTN_BTN_CLASS);
-                    commentEle.append(deleteBtn);
-                    commentEle.append(replyBtn);
-
-                    frag.appendChild(commentEle);
-                });
-
-                return frag;
-            }
-            const commentHtml = createCommentHtml(comments, "");
-
-            commentsEle.innerHTML = "";
-            commentsEle.appendChild(commentHtml)
-        }
-        renderComments();
     </script>
 </body>
+
 </html>
