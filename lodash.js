@@ -7,7 +7,7 @@ const obj = {
 };
 
 
-//get
+// get
 function get(source, path, defaultVal = undefined) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -21,17 +21,17 @@ function get(source, path, defaultVal = undefined) {
     }
 }
 
-// get(obj, 'a.b.c') // [1,2,3]
-// get(obj, 'a.b.c.0') // 1
-// get(obj, 'a.b.c[1]') // 2
-// get(obj, ['a', 'b', 'c', '2']) // 3
-// get(obj, 'a.b.c[3]') // undefined
-// get(obj, 'a.c', 'bfe') // 'bfe
-// const ans = get(obj, ['a', 'b', 'c', '2']) // 3
-// console.log("ans", ans)
+// get(obj, 'a.b.c'); // [1,2,3]
+// get(obj, 'a.b.c.0'); // 1
+// get(obj, 'a.b.c[1]'); // 2
+// get(obj, ['a', 'b', 'c', '2']); // 3
+// get(obj, 'a.b.c[3]'); // undefined
+// get(obj, 'a.c', 'bfe'); // 'bfe'
+// const ans = get(obj, ['a', 'b', 'c', '2']); // 3
+// console.log("ans", ans);
 
 
-//set
+// set
 function set(obj, path, value) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -48,6 +48,23 @@ function set(obj, path, value) {
     }
 }
 
-set(obj, 'a.c.d.01.e.0.f', 'BFE')
-set(obj, 'a.b.c.4', 'BFE')
-console.log("obj", JSON.stringify(obj))
+// set(obj, 'a.c.d.01.e.0.f', 'BFE');
+// set(obj, 'a.b.c.4', 'BFE');
+// console.log("obj", JSON.stringify(obj));
+
+
+// omit
+function omit(obj, path) {
+    let pathArr = Array.isArray(path) ? path : path.split(".");
+
+    const thisKey = Number(pathArr[0]) || pathArr[0];
+    if (pathArr.length === 1) {
+        if (Array.isArray(obj)) obj.splice(thisKey, 1);
+        else delete obj[thisKey];
+    } else {
+        omit(obj[thisKey], pathArr.slice(1));
+    }
+}
+
+omit(obj, "a.b.c.1");
+console.log("obj", JSON.stringify(obj));
