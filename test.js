@@ -1,83 +1,67 @@
-const winningPatterns = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
+const imgs = [{
+    img: "https://source.unsplash.com/random?landscape,mountain",
+    title: "mountain"
+}, {
+    img: "https://source.unsplash.com/random?landscape,cars",
+    title: "cars"
+}, {
+    img: "https://source.unsplash.com/random?landscape,night",
+    title: "night"
+}, {
+    img: "https://source.unsplash.com/random?landscape,city",
+    title: "city"
+}];
+const slidesLength = imgs.length, width = 1000;
+let active = 1;
 
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
+const carouselEle = document.getElementById("carousel");
+const carouselContainerEle = document.getElementById("content");
+carouselContainerEle.addEventListener("click", handleDrctnBtnClick);
 
-    [0, 4, 8],
-    [2, 4, 6],
-];
+function handleDrctnBtnClick({ target } = {}) {
+    const { type } = target.dataset || {};
 
-const turnEle = document.getElementById("turn");
-const winTextEle = document.getElementById("winText");
-const resetBtnEle = document.getElementById("resetBtn");
-const boxesEle = document.getElementById("boxes");
-boxesEle.addEventListener("click", handleBoxesClick);
-resetBtnEle.addEventListener("click", handleResetClick);
-
-let turn = "x", game = ["", "", "", "", "", "", "", ""];
-
-function handleBoxesClick({ target } = {}) {
-    const { id } = target.dataset || {};
-
-    if (id) {
-        if (!game[id]) {
-            game[id] = turn;
-            renderBox();
-
-            const winner = checkWinner();
-            if (winner) {
-                handleWinner(winner, winner === "draw");
-                return;
-            }
-
-            turn = turn === "x" ? "o" : "x";
-            renderTurn();
-        }
-    }
+    if (type === "left") movePrev();
+    else if (type === "right") moveNext();
 }
 
-function checkWinner() {
-    for (let i = 0; i < winningPatterns.length; i++) {
-        const [x, y, z] = winningPatterns[i];
-        if (game[x] && (game[x] === game[y]) && (game[y] === game[z])) return game[x];
-    }
+function renderImages(imgs) {
+    const imagesEle = document.createElement("div");
+    imgs.forEach(({ img }, idx) => {
+        const imageEle = document.createElement("img");
+        imageEle.style.left = idx * width + "px";
+        imageEle.alt = "image_" + idx;
+        imageEle.loading = "lazy";
+        imageEle.src = img;
 
-    if (!game.includes("")) return "draw";
+        imagesEle.appendChild(imageEle);
+    });
 
-    return false;
+    carouselEle.innerHTML = imagesEle.innerHTML;
+}
+renderImages(imgs);
+
+function moveNext() {
+    active = active === slidesLength ? 1 : active + 1;
+    moveSlide();
 }
 
-function handleWinner(winner, isDraw) {
-    if (isDraw) winTextEle.innerText = `its a draw`;
-    else winTextEle.innerText = `${winner} wins`;
-
-    boxesEle.removeEventListener("click", handleBoxesClick);
+function movePrev() {
+    active = active === 1 ? slidesLength : active - 1;
+    moveSlide();
 }
 
-function renderBox() {
-    let boxEle;
-    for (let i = 0; i < 9; i++) {
-        boxEle = document.getElementById("box_" + i);
-        boxEle.innerHTML = game[i] || ""
-    }
+function moveSlide() {
+    const nodes = carouselEle.childNodes || [];
+    nodes.forEach((imageEle, idx) => {
+        imageEle.style.left = ((active - (idx + 1)) * width) + "px"; // goal is to make active idx's style.left = 0
+    })
 }
 
-function renderTurn() {
-    turnEle.innerText = `${turn} turn`;
-}
-renderTurn();
-
-function handleResetClick() {
-    turn = "x"; //reset turn
-    for (let i = 0; i < game.length; i++) game[i] = ""; //reset game data
-    winTextEle.innerText = ``; //reset winner
-
-    renderBox();
-    renderTurn();
-
-    boxesEle.addEventListener("click", handleBoxesClick);
-}
+let interval = setInterval(moveNext, 2000);
+carouselContainerEle.addEventListener("mouseover", function () {
+    clearInterval(interval);
+});
+carouselContainerEle.addEventListener("mouseleave", function () {
+    interval = setInterval(moveNext, 2000);
+});
