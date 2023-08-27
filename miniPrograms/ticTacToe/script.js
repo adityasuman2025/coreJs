@@ -1,80 +1,80 @@
-const winningConditions = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6],
+const winningPatterns = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
 ];
 
-let filledBoxes = [ "", "", "", "", "", "", "", "", "" ];
-let activeUser = "X";
-renderActiveUser();
+const turnEle = document.getElementById("turn");
+const winTextEle = document.getElementById("winText");
+const resetBtnEle = document.getElementById("resetBtn");
+const boxesEle = document.getElementById("boxes");
+boxesEle.addEventListener("click", handleBoxesClick);
+resetBtnEle.addEventListener("click", handleResetClick);
 
-const boxes = document.getElementById("boxes");
-boxes.addEventListener("click", handleBoxClick);
+let turn = "x", game = ["", "", "", "", "", "", "", ""];
 
-function handleBoxClick(event) {
-    const { key } = event.target.dataset || {};
+function handleBoxesClick({ target } = {}) {
+    const { id } = target.dataset || {};
 
-    if (filledBoxes[key] != "") return; //if already filled
+    if (id) {
+        if (!game[id]) {
+            game[id] = turn;
+            renderBox();
 
-    filledBoxes[key] = activeUser;
+            const winner = checkWinner();
+            if (winner) {
+                handleWinner(winner, winner === "draw");
+                return;
+            }
 
-    renderBox();
-    checkWinner();
+            turn = turn === "x" ? "o" : "x";
+            renderTurn();
+        }
+    }
 }
 
 function checkWinner() {
-    for (let i = 0; i<winningConditions.length; i++) {
-        let a = filledBoxes[winningConditions[i][0]];
-        let b = filledBoxes[winningConditions[i][1]];
-        let c = filledBoxes[winningConditions[i][2]];
-
-        if (!a || !b || !c) continue;
-
-        if ((a === b) && (b === c)) {
-            renderWinnerUser();
-            return;
-        }
+    for (let i = 0; i < winningPatterns.length; i++) {
+        const [x, y, z] = winningPatterns[i];
+        if (game[x] && (game[x] === game[y]) && (game[y] === game[z])) return game[x];
     }
 
-    // checking draw
-    if (!filledBoxes.includes("")) {
-        renderWinnerUser(true);
-        return;
-    }
+    if (!game.includes("")) return "draw";
 
-    activeUser = activeUser === "X" ? "O" : "X";
-    renderActiveUser();
+    return false;
+}
+
+function handleWinner(winner, isDraw) {
+    if (isDraw) winTextEle.innerText = `its a draw`;
+    else winTextEle.innerText = `${winner} wins`;
+    boxesEle.removeEventListener("click", handleBoxesClick);
 }
 
 function renderBox() {
-    const { children } = boxes || {};
-
-    for (let i=0; i<children.length; i++) {
-        const node = children[i]
-        node.innerText = filledBoxes[i] || "";
+    let boxEle;
+    for (let i = 0; i < 9; i++) {
+        boxEle = document.getElementById("box_" + i);
+        boxEle.innerHTML = game[i] || ""
     }
 }
 
-function renderActiveUser() {
-    document.getElementById("turn").innerHTML = activeUser + " turn";
+function renderTurn() {
+    turnEle.innerText = `${turn} turn`;
 }
+renderTurn();
 
-function renderWinnerUser(draw = false) {
-    document.getElementById("winner").innerHTML = draw ? "match draw" : activeUser + " wins";
-    boxes.removeEventListener("click", handleBoxClick); //remove click event listener
-}
+function handleResetClick() {
+    turn = "x"; //reset turn
+    for (let i = 0; i < game.length; i++) game[i] = ""; //reset game data
+    winTextEle.innerText = ``; //reset winner
 
-function handleRestartClick() {
-    filledBoxes = [ "", "", "", "", "", "", "", "", "" ];
-    activeUser = "X";
-    renderBox(); //reset filled boxes
-    renderActiveUser(); //reset active user to default
-    document.getElementById("winner").innerHTML = "";
+    renderBox();
+    renderTurn();
 
-    boxes.addEventListener("click", handleBoxClick);
+    boxesEle.addEventListener("click", handleBoxesClick);
 }

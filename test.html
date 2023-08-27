@@ -14,42 +14,49 @@
             justify-content: center;
         }
 
-        #ratings {
-            border: 1px solid grey;
-            background: yellow;
-            font-size: 50px;
+        #boxes {
+            margin: 10px 0;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            border: 1px solid black;
         }
 
-        .star {
+        .box {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
             cursor: pointer;
-            float: right;
         }
 
-        .star:hover {
-            color: red
-        }
-
-        .star:hover~.star {
-            /* all elements with start class preceded by hovered start */
-            color: red
-        }
-
-        .selected {
-            color: red
+        #winText {
+            font-size: 30px;
         }
     </style>
 </head>
 
 <body>
     <div class="content">
-        <div id="ratings">
-            <span class="star" id="start_1" data-id="1">#</span>
-            <span class="star" id="start_2" data-id="2">#</span>
-            <span class="star" id="start_3" data-id="3">#</span>
-            <span class="star" id="start_4" data-id="4">#</span>
-            <span class="star" id="start_5" data-id="5">#</span>
+        <div id="turn"></div>
+
+        <div id="boxes">
+            <div class="box" id="box_0" data-id="0"></div>
+            <div class="box" id="box_1" data-id="1"></div>
+            <div class="box" id="box_2" data-id="2"></div>
+            <div class="box" id="box_3" data-id="3"></div>
+            <div class="box" id="box_4" data-id="4"></div>
+            <div class="box" id="box_5" data-id="5"></div>
+            <div class="box" id="box_6" data-id="6"></div>
+            <div class="box" id="box_7" data-id="7"></div>
+            <div class="box" id="box_8" data-id="8"></div>
         </div>
-        <div id="ratingText"></div>
+
+        <div id="winText"></div>
+
+        <button id="resetBtn">reset</button>
     </div>
 
     <script type="text/javascript" src="test.js"> </script>
