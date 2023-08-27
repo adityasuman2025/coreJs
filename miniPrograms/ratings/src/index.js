@@ -1,23 +1,21 @@
-const starsWrapper = document.getElementById("stars");
-const stars = document.querySelectorAll(".star");
-const rating = document.getElementById("rating");
-starsWrapper.addEventListener("click", handleStarsClick);
+const ratingTextEle = document.getElementById("ratingText");
 
-function handleStarsClick(event) {
-  const { value } = event.target.dataset || {};
-  console.log("value", value)
-  if (value) {
-    rating.innerText = "You have rated " + value;
+const ratingsEle = document.getElementById("ratings");
+ratingsEle.addEventListener("click", handleRatingsClick);
 
-    for (let i=0; i < stars.length; i++) {
-      let star = stars[i];
-      if (i >= stars.length-value) {
-        star.classList.add("filledStar");
-        console.log("add star", star)
-      } else {
-        star.classList.remove("filledStar");
-        console.log("remove star", star)
-      } 
+function handleRatingsClick({ target }) {
+    const { id } = target.dataset || {};
+    if (id) {
+        const rating = 5 - id + 1;
+        ratingTextEle.innerText = `You rated ${rating}`;
+
+        for (let i = 5; i >= 0; i--) {
+            const starEle = document.getElementById("start_" + i);
+            if (i >= id) {
+                starEle.classList.add("selected")
+            } else {
+                starEle.classList.remove("selected")
+            }
+        }
     }
-  }
 }

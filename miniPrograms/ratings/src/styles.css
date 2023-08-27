@@ -1,44 +1,30 @@
-body {
-  font-family: sans-serif;
-  background-color: black;
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#app {
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  width: 300px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-#stars {
-  background: #f1f1f1;
-  color: grey;
-  font-size: 30px;
-  padding: 10px;
-  border-radius: 5px;
+#ratings {
+    border: 1px solid grey;
+    background: yellow;
+    font-size: 50px;
 }
 
 .star {
-  float: right;
-  transition: all 500ms ease;
-  cursor: pointer;
+    cursor: pointer;
+    float: right;
 }
 
-.filledStar {
-  color: gold;
+.star:hover {
+    color: red
 }
 
-.unFilledStar {
-  color: grey;
+.star:hover~.star {
+    /* all elements with start class preceded by hovered start */
+    color: red
 }
 
-.star:hover,
-.star:hover ~ .star {
-  color: gold;
+.selected {
+    color: red
 }
