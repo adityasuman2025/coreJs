@@ -1,43 +1,42 @@
-let barCounter = 1;
-let counter = 0;
+const content = document.getElementById("content");
+let barId = 1;
 
-startProgress();
-function startProgress() {
-  const bar = document.getElementById("bar" + barCounter);
-  let interval = setInterval(() => {
-    if (counter == -1 && barCounter < 10) {
-      clearInterval(interval);
-      createProgressBar();
-    }
+function renderBar() {
+    const barEle = document.getElementById("bar_" + barId);
 
-    let width = (10 * counter) % 100;
-    if (parseInt((10 * counter) / 100)) {
-      width = 100;
-      counter = -2;
-    }
-    console.log("width", width);
-    bar.style.width = width.toString() + "%";
-    bar.style.backgroundColor = getColor(width);
-    counter++;
-  }, 500);
+    let meter = 0;
+    const interval = setInterval(() => {
+        meter += 2;
+
+        barEle.style.width = meter * 10 + "%";
+        barEle.style.backgroundColor = getColor(meter)
+        if (meter === 10) {
+            clearInterval(interval);
+
+            barId++;
+            addProgressBar();
+        }
+    }, 1000);
+}
+renderBar();
+
+function addProgressBar() {
+    const progressEle = document.createElement("div");
+    progressEle.classList.add("progress");
+
+    const barEle = document.createElement("div");
+    barEle.classList.add("bar");
+    barEle.id = "bar_" + barId
+    progressEle.appendChild(barEle);
+
+    content.appendChild(progressEle)
+    renderBar();
 }
 
-function createProgressBar() {
-  const progressEle = document.createElement("div");
-  progressEle.classList.add("progress");
-
-  const barEle = document.createElement("div");
-  barEle.classList.add("bar");
-  barEle.id = "bar" + ++barCounter;
-  progressEle.appendChild(barEle);
-
-  document.getElementById("app").appendChild(progressEle);
-  startProgress();
-}
-
-function getColor(width) {
-  if (width < 25) return "red";
-  else if (width < 50) return "orange";
-  else if (width < 75) return "yellow";
-  else return "greenyellow";
+function getColor(value) {
+    if (value <= 2) return "red"
+    else if (value <= 4) return "orange"
+    else if (value <= 6) return "yellow"
+    else if (value <= 8) return "lime"
+    else return "green"
 }
