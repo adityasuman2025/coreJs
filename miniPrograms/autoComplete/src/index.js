@@ -1,84 +1,83 @@
-import { FRUITS } from "./data.js";
+let fruits;
 
-const searchInput = document.getElementById("searchInput");
-searchInput.addEventListener("keyup", debounce(handleTyping, 1000));
+const inputEle = document.getElementById("input");
+const suggestionsEle = document.getElementById("suggestions");
+suggestionsEle.addEventListener("click", handleSuggestionClick);
+inputEle.addEventListener("keyup", debounce(handleOnInputChange, 150));
 
-const suggestionsWrapper = document.getElementById("suggestionsWrapper");
-suggestionsWrapper.addEventListener("click", handleSelectItem);
+function handleSuggestionClick({ target } = {}) {
+    const { id } = target.dataset || {};
 
-function handleSelectItem(event) {
-  const { key } = event.target.dataset || {};
-  if (key) {
-    searchInput.value = key;
-    resetSuggestions();
-  }
-}
-
-function getSuggestions(keyword) {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
-      resolve(
-        FRUITS.filter((item) =>
-          item.toLowerCase().includes(keyword.toLowerCase())
-        )
-      );
-    }, 100);
-  });
-}
-
-async function handleTyping(event) {
-  resetSuggestions();
-
-  const text = event.target.value.trim();
-  if (text) {
-    const resp = await getSuggestions(text);
-    if (resp.length) {
-      suggestionsWrapper.classList.add("visible");
-      renderSuggestions(resp);
+    if (id) {
+        inputEle.value = id;
+        suggestionsEle.classList.add("hidden"); // hiding suggestion container
     }
-  }
 }
 
-function renderSuggestions(list) {
-  let suggestionItems = document.createDocumentFragment();
-  list.forEach((item) => {
-    const divEle = document.createElement("div");
-    divEle.classList.add("suggestionItem");
-    divEle.innerText = item;
-    divEle.setAttribute("data-key", item);
-    suggestionItems.appendChild(divEle);
-  });
+const memoisedGetSuggestions = memoiseIt(getSuggestions);
+async function getSuggestions(query) {
+    if (!fruits) fruits = await apiCall("https://jsonblob.com/api/1145157285227388928"); //api call will happen only once
 
-  suggestionsWrapper.appendChild(suggestionItems);
+    return fruits.filter(i => i.toLowerCase().includes(query.toLowerCase()));
 }
 
-function resetSuggestions() {
-  suggestionsWrapper.classList.remove("visible");
-  suggestionsWrapper.innerText = "";
-}
+async function handleOnInputChange(e) {
+    const target = e.target;
+    const { value } = target || {};
 
-function debounce(func, delay = 500) {
-  let timer;
+    if (value.trim()) {
+        const suggestions = await memoisedGetSuggestions(value);
+        renderSuggestion(suggestions);
 
-  return function () {
-    const self = this;
-    const args = arguments;
-    clearTimeout(timer);
-    timer = setTimeout(() => func.apply(self, args), delay);
-  };
-}
-
-function throttle(func, delay) {
-  let flag = true;
-  return function () {
-    const self = this,
-      args = arguments;
-    if (flag) {
-      func.apply(this, args);
-      flag = false;
-      setTimeout(() => {
-        flag = true;
-      }, delay);
+        suggestionsEle.classList.remove("hidden"); // displaying suggestion container
+    } else {
+        suggestionsEle.classList.add("hidden"); // hiding suggestion container
     }
-  };
+}
+
+function renderSuggestion(suggestions) {
+    const suggItemsEle = document.createElement("div");
+    suggestions.forEach(i => {
+        const suggItemEle = document.createElement("div");
+        suggItemEle.classList.add("suggestion")
+        suggItemEle.innerText = i;
+        suggItemEle.dataset.id = i;
+
+        suggItemsEle.appendChild(suggItemEle);
+    });
+
+    suggestionsEle.innerHTML = suggItemsEle.innerHTML;
+}
+
+
+// utils
+function memoiseIt(func) {
+    let cache = {};
+
+    return async function (...args) {
+        const key = JSON.stringify(args);
+
+        if (!cache.hasOwnProperty(key)) cache[key] = await func.call(this, ...args)
+
+        return cache[key];
+    }
+}
+
+function debounce(func, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.call(this, ...args)
+        }, delay);
+    }
+}
+
+async function apiCall(url, method = "get", body) {
+    const resp = await fetch(url, {
+        method,
+        ...(method === "post" ? { body: JSON.stringify(body) } : {})
+    });
+
+    return await resp.json();
 }

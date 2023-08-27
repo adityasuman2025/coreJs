@@ -26,9 +26,8 @@ function memoizeIt(func) {
 
     return function (...args) {
         let key = JSON.stringify(args);
-        if (!(key in res)) {
-            res[key] = func.call(this, ...args)
-        }
+
+        if (!res.hasOwnProperty(key)) res[key] = func.call(this, ...args)
 
         return res[key];
     }

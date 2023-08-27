@@ -1,147 +1,83 @@
-let comments = [
-    {
-        comment: "0",
-        replies: [
-            {
-                comment: "0.0",
-                replies: [{ comment: "0.0.0", replies: [], }],
-            }
-        ],
-    },
-    { comment: "1", replies: [], }
-];
+let fruits;
 
-const commentsContainerEle = document.getElementById("commentsContainer");
-commentsContainerEle.addEventListener("click", handleContainerClick);
-function handleContainerClick(event) {
-    const target = event.target || {};
-    const { type, id, replycount } = target.dataset || {}
+const inputEle = document.getElementById("input");
+const suggestionsEle = document.getElementById("suggestions");
+suggestionsEle.addEventListener("click", handleSuggestionClick);
+inputEle.addEventListener("keyup", debounce(handleOnInputChange, 150));
 
-    if (type === "reply") {
-        handleReplyClick(event, id, replycount);
-    } else if (type === "delete") {
-        handleDeleteClick(event, id);
+function handleSuggestionClick({ target } = {}) {
+    const { id } = target.dataset || {};
+
+    if (id) {
+        inputEle.value = id;
+        suggestionsEle.classList.add("hidden"); // hiding suggestion container
     }
 }
 
-function viewRenderer(comments, idPath = "") {
-    return comments.reduce((acc, { comment, replies } = {}, idx) => {
-        const id = (idPath ? idPath + "." : "") + idx;
-        // let thisCommentHtml = `
-        //     <div class="commentBox">
-        //         <div>
-        //             ${comment}
-        //             <button data-id="${id}" data-type="delete">delete</button>
-        //         </div>
+const memoisedGetSuggestions = memoiseIt(getSuggestions);
+async function getSuggestions(query) {
+    if (!fruits) fruits = await apiCall("https://jsonblob.com/api/1145157285227388928"); //api call will happen only once
 
-        //         <textarea id="${id}"></textarea>
-        //         <button data-id="${id}" data-type="reply" data-replycount="${replies.length}">reply</button>
-        //         <div class="replies">${viewRenderer(replies, id)}</div>
-        //     </div>
-        // `;
-
-        const commentBox = document.createElement("div");
-        commentBox.classList.add("commentBox");
-
-        const commentText = document.createElement("div");
-        commentText.innerText = (comment)
-        const deleteBtn = document.createElement("button");
-        deleteBtn.innerText = "delete";
-        deleteBtn.dataset.id = id;
-        deleteBtn.dataset.type = "delete";
-        commentText.appendChild(deleteBtn);
-
-        const textEle = document.createElement("textarea");
-        textEle.id = id;
-
-        const replyBtn = document.createElement("button");
-        replyBtn.innerText = "reply";
-        replyBtn.dataset.id = id;
-        replyBtn.dataset.type = "reply";
-        replyBtn.dataset.replycount = replies.length
-
-        const repliesDiv = document.createElement("div");
-        repliesDiv.classList.add("replies");
-        repliesDiv.innerHTML = viewRenderer(replies, id)
-
-        commentBox.appendChild(commentText);
-        commentBox.appendChild(textEle);
-        commentBox.appendChild(replyBtn);
-        commentBox.appendChild(repliesDiv);
-
-        const temp = document.createElement("div");
-        temp.appendChild(commentBox);
-
-        return acc + temp.innerHTML;
-    }, "");
+    return fruits.filter(i => i.toLowerCase().includes(query.toLowerCase()));
 }
 
-function render() {
-    console.log("comments", comments)
-    const html = viewRenderer(comments);
-    commentsContainerEle.innerHTML = html;
-}
-render();
+async function handleOnInputChange(e) {
+    const target = e.target;
+    const { value } = target || {};
 
-function handleCommentClick(event) {
-    const thistextAreaEle = document.getElementById("comment");
-    comments.push({ comment: thistextAreaEle.value, replies: [] });
+    if (value.trim()) {
+        const suggestions = await memoisedGetSuggestions(value);
+        renderSuggestion(suggestions);
 
-    render();
-    thistextAreaEle.value = ""
-}
-
-function handleReplyClick(event, commentBoxId, repliesCount) {
-    const replyId = commentBoxId + "." + repliesCount; // id of this reply
-
-    const thistextAreaEle = document.getElementById(commentBoxId);
-
-    const replyIdArr = replyId.split(".").reduce((acc, i, idx) => {
-        if (idx > 0) acc.push('replies'); // comment will go in replies array of the given comment
-        acc.push(i);
-
-        return acc;
-    }, []);
-
-    set(comments, replyIdArr, { comment: thistextAreaEle.value, replies: [] });
-    render();
-}
-
-function handleDeleteClick(event, commentBoxId) {
-    const replyIdArr = commentBoxId.split(".").reduce((acc, i, idx) => {
-        if (idx > 0) acc.push('replies'); // comment will go in replies array of the given comment
-        acc.push(i);
-
-        return acc;
-    }, []);
-
-    omit(comments, replyIdArr);
-    render();
-}
-
-
-// lodash functions
-function set(obj, key, value) {
-    let keyArr = Array.isArray(key) ? key : key.split(".");
-
-    const thisKey = Number(keyArr[0]) || keyArr[0];
-    const nextKey = keyArr[1];
-    if (keyArr.length === 1) obj[thisKey] = value;
-    else {
-        if (!obj.hasOwnProperty(thisKey)) obj[thisKey] = isNaN(Number(nextKey)) ? {} : [];
-
-        set(obj[thisKey], keyArr.slice(1), value);
-    }
-}
-
-function omit(obj, path) {
-    let pathArr = Array.isArray(path) ? path : path.split(".");
-
-    const thisKey = Number(pathArr[0]) || pathArr[0];
-    if (pathArr.length === 1) {
-        if (Array.isArray(obj)) obj.splice(thisKey, 1);
-        else delete obj[thisKey];
+        suggestionsEle.classList.remove("hidden"); // displaying suggestion container
     } else {
-        omit(obj[thisKey], pathArr.slice(1));
+        suggestionsEle.classList.add("hidden"); // hiding suggestion container
     }
+}
+
+function renderSuggestion(suggestions) {
+    const suggItemsEle = document.createElement("div");
+    suggestions.forEach(i => {
+        const suggItemEle = document.createElement("div");
+        suggItemEle.classList.add("suggestion")
+        suggItemEle.innerText = i;
+        suggItemEle.dataset.id = i;
+
+        suggItemsEle.appendChild(suggItemEle);
+    });
+
+    suggestionsEle.innerHTML = suggItemsEle.innerHTML;
+}
+
+
+// utils
+function memoiseIt(func) {
+    let cache = {};
+
+    return async function (...args) {
+        const key = JSON.stringify(args);
+
+        if (!cache.hasOwnProperty(key)) cache[key] = await func.call(this, ...args)
+
+        return cache[key];
+    }
+}
+
+function debounce(func, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.call(this, ...args)
+        }, delay);
+    }
+}
+
+async function apiCall(url, method = "get", body) {
+    const resp = await fetch(url, {
+        method,
+        ...(method === "post" ? { body: JSON.stringify(body) } : {})
+    });
+
+    return await resp.json();
 }
