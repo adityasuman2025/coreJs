@@ -55,14 +55,14 @@ function set(obj, path, value) {
 
 // omit
 function omit(obj, path) {
-    let pathArr = Array.isArray(path) ? path : path.split(".");
+    let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
     const thisKey = Number(pathArr[0]) || pathArr[0];
     if (pathArr.length === 1) {
         if (Array.isArray(obj)) obj.splice(thisKey, 1);
         else delete obj[thisKey];
     } else {
-        omit(obj[thisKey], pathArr.slice(1));
+        if (obj.hasOwnProperty(thisKey)) omit(obj[thisKey], pathArr.slice(1));
     }
 }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +16,7 @@
             justify-content: center;
             flex-direction: column;
         }
+
         #chess {
             margin: 10px;
             display: grid;
@@ -27,13 +29,20 @@
             height: 80px;
         }
 
-        .black { background-color: black }
+        .black {
+            background-color: black
+        }
 
-        .white { background-color: white }
+        .white {
+            background-color: white
+        }
 
-        .highlighted { background-color: yellowgreen }
+        .highlighted {
+            background-color: yellowgreen
+        }
     </style>
 </head>
+
 <body>
     <h2>Chess Bishop Movement Highlight</h2>
 
@@ -46,7 +55,7 @@
         chessEle.addEventListener("mousemove", debounce(handleChessMouse, 200));
         renderChess();
 
-        let activeCell = undefined;
+        var activeCell = undefined;
         function handleChessMouse(event) {
             const key = event.target.dataset.key;
             if (key) {
@@ -55,20 +64,20 @@
             }
         }
 
-        let isBlack = true;
+        var isBlack = true;
         function renderChess() {
             const chessFrag = document.createDocumentFragment();
-            for (let i=0; i<CHESS_ROW_COUNT; i++) {
-                for (let j=0; j<CHESS_COLUMN_COUNT; j++) {
+            for (let i = 0; i < CHESS_ROW_COUNT; i++) {
+                for (let j = 0; j < CHESS_COLUMN_COUNT; j++) {
                     const cell = document.createElement("div");
                     cell.classList = isBlack ? "black" : "white";
                     cell.classList.add("cell");
                     cell.dataset.key = i + "_" + j;
 
                     if (activeCell) {
-                        let [ iA, jA ] = activeCell;
+                        let [iA, jA] = activeCell;
 
-                        if (Math.abs(i-iA) == Math.abs(j-jA)) {
+                        if (Math.abs(i - iA) == Math.abs(j - jA)) {
                             cell.classList.add("highlighted");
                         } else {
                             cell.classList.remove("highlighted");
@@ -77,7 +86,7 @@
 
                     chessFrag.append(cell);
 
-                    if (j != CHESS_COLUMN_COUNT-1) isBlack = !isBlack; //not changing color in last cell of each row
+                    if (j != CHESS_COLUMN_COUNT - 1) isBlack = !isBlack; //not changing color in last cell of each row
                 }
             }
 
@@ -89,11 +98,12 @@
         function debounce(func, delay) {
             let timer;
 
-            return function(...args) {
+            return function (...args) {
                 clearTimeout(timer);
                 timer = setTimeout(() => { func.call(this, ...args) }, delay);
             }
         }
     </script>
 </body>
+
 </html>
