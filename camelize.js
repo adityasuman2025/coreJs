@@ -1,33 +1,68 @@
+let str0 = "The gods have yet to make a man who lacks the patience for absolute power"; // normal string
+let str1 = "Half       BLOOD   pRINCE"; // normal string with extra spaces
+
+let str2 = "i_AM_IRON_man"; // snake case
+let str3 = "tom-------mARVolo-------Riddle"; // hyphen
+let str4 = "Spiderman---FAR    frOM______home"; // mix of all
+
+let str5 = "AManHasNoName"; // somewhat camelCase
+let str6 = "godOfThunder "; // already camelCase
+
+let str7 = "undefined null NaN "; // string contains unexpected words
+let str8 = 123; // not a string
+let str9 = "123 456 str a987BOY"; // string with numbers
+let str10 = "--a__b      c"; // string starting with symbols
+
+// Half       BLOOD   pRINCE  ->  halfBloodPrince
+// tom-------mARVolo-------Riddle  -> tomMarvoloRiddle
+function camelCase(str) {
+    if (!str || Number(str)) return str;
+
+    const strSymbolsRemoved = str.replace(/-/g, " ").replace(/_/g, " ");
+    const strSplittedBySpace = strSymbolsRemoved.split(" ");
+    const extraSpaceRemoved = strSplittedBySpace.filter(item => item !== "");
+
+    if (extraSpaceRemoved.length === 1) {
+        const item = extraSpaceRemoved[0];
+        return item[0].toLowerCase() + item.slice(1);
+    } else {
+        const res = extraSpaceRemoved.reduce((acc, item, idx) => {
+            const ans = (idx === 0 ? item[0].toLowerCase() : item[0].toUpperCase()) + item.slice(1).toLowerCase();
+            return acc + ans;
+        }, "");
+
+        return res;
+    }
+}
+
+// const ans = camelCase(str4);
+// console.log("ans", ans)
+
+
+
+
 let obj = {
-    first_name: "aditya",
-    second_name: "suman",
-    cl_as_s: [
-        { i_d: 1 },
-        { i_d: 2 },
-        { i_d: 3 },
-        "yo",
+    [str0]: "1",
+    [str1]: [
+        { [str2]: 2 },
+        3,
         {
-            o_ne: "1",
-            t_wo: "2",
-            th_ree: [
-                { i_d: 1 },
-                { i_d: 2 },
+            [str3]: "4",
+            [str4]: [
+                { [str5]: 5 }
             ]
         },
-        ["sa", "a"]
+        ["6", 7]
     ],
-    stud_details: {
-        contact_no: "32456",
-        add_ress: {
-            ci_ty: "noida",
-            st_ate: "up",
-            mo_re: {
-                coun_try: "india",
-                plan_et: "earth"
+    [str6]: {
+        [str7]: {
+            [str8]: 8,
+            [str9]: {
+                [str10]: "9"
             }
         }
     },
-    5: "yo biro"
+    5: "10"
 };
 
 const obj2 = [
@@ -46,86 +81,37 @@ const obj2 = [
     ["sa", "a"]
 ]
 
+let obj3 = [1, 2, 3];
 
-// let newObj = {};
-// function camelize(obj, newObj) {
-//     Object.keys(obj).forEach(key => {
-//         const value = obj[key];
-
-//         const newKey = key.split("_")
-//             .map((item, index) => {
-//                 if (index !== 0) {
-//                     item = item[0].toUpperCase() + item.substring(1, item.length);
-//                 }
-//                 return item;
-//             })
-//             .join("");
-
-//         if (value && typeof value === "object") {
-//             if (Array.isArray(value)) {
-//                 newObj[newKey] = []
-//             } else {
-//                 newObj[newKey] = {};
-//             }
-
-//             camelize(value, newObj[newKey]);
-//         } else {
-//             newObj[newKey] = value;
-//         }
-//     });
-// }
-
-// camelize(obj, newObj);
-// console.log("newObj", newObj)
-
-
-function camelize(object) {
-    function camelizeArray(arr) {
-        return arr.map(i => {
-            if (typeof i === "object") {
-                if (Array.isArray(i)) return camelizeArray(i)
-                return camelizeObject(i);
-            } else {
-                return i;
-            }
-        });
-    }
-
-    function camelizeObject(obj) {
-        let thisObj = {};
-        Object.keys(obj).forEach(key => {
-            const value = obj[key];
-
-            const camelKey = key.split("_").reduce((acc, i, idx) => {
-                if (idx === 0) {
-                    return i;
-                } else {
-                    return (acc + (i.charAt(0).toUpperCase() + i.substring(1)))
-                }
-            }, "");
-
-            if (typeof value === "object") {
-                if (Array.isArray(value)) {
-                    thisObj[camelKey] = camelizeArray(value);
-                } else {
-                    thisObj[camelKey] = camelizeObject(value)
-                }
-            } else {
-                thisObj[camelKey] = value;
-            }
-        });
-
-        return thisObj;
-    }
-
-
-    if (typeof object === "object") {
-        if (Array.isArray(object)) return camelizeArray(object);
-        return camelizeObject(object);
-    } else {
-        return object;
-    }
+let obj4 = {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3
 }
 
-const res = camelize(obj2)
-console.log(res)
+function camelizeObject(obj) {
+    let newObj;
+    if (typeof obj === "object") {
+        newObj = {};
+        if (Array.isArray(obj)) newObj = [];
+    } else {
+        return obj;
+    }
+
+    Object.keys(obj).forEach((key) => {
+        const val = obj[key];
+        const camelKey = camelCase(key);
+        if (typeof val === "object") {
+            newObj[camelKey] = camelizeObject(val);
+        } else {
+            newObj[camelKey] = val;
+        }
+    });
+
+    return newObj;
+}
+
+const res = camelizeObject(obj4);
+console.log("obj", (obj4))
+console.log("res", (res))
