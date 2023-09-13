@@ -22,14 +22,14 @@ function fibonnaci(n) {
 
 
 function memoizeIt(func) {
-    let res = {};
+    let memo = {};
 
-    return function (...args) {
-        let key = JSON.stringify(args);
+    return function(...args) {
+        const key = JSON.stringify(args);
 
-        if (!res.hasOwnProperty(key)) res[key] = func.call(this, ...args)
+        if (!memo.hasOwnProperty(key)) memo[key] = func.call(this, ...args);
 
-        return res[key];
+        return memo[key];
     }
 }
 
