@@ -54,7 +54,7 @@ function renderSuggestion(suggestions) {
 function memoiseIt(func) {
     let cache = {};
 
-    return async function (...args) {
+    return async function(...args) {
         const key = JSON.stringify(args);
 
         if (!cache.hasOwnProperty(key)) cache[key] = await func.call(this, ...args)
@@ -65,7 +65,7 @@ function memoiseIt(func) {
 
 function debounce(func, delay) {
     let timer;
-    return function (...args) {
+    return function(...args) {
         clearTimeout(timer);
         timer = setTimeout(() => {
             func.call(this, ...args)
@@ -73,11 +73,18 @@ function debounce(func, delay) {
     }
 }
 
-async function apiCall(url, method = "get", body) {
-    const resp = await fetch(url, {
-        method,
-        ...(method === "post" ? { body: JSON.stringify(body) } : {})
-    });
+function apiCall(apiUrl, method = "get", body) {
+    return new Promise(async function(resolve, reject) {
+        try {
+            const resp = await fetch(apiUrl, {
+                method,
+                ...(method !== "get" ? { body: JSON.stringify(body) } : {})
+            })
 
-    return await resp.json();
+            const jsonResp = await resp.json();
+            resolve(jsonResp)
+        } catch (error) {
+            reject(error);
+        }
+    });
 }
