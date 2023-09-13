@@ -50,11 +50,11 @@ rideSearchForm.addEventListener("submit", handleRideSearched);
 function handleRideSearched(event) {
     event.preventDefault();
 
-   const startTime = document.getElementsByName("startTime")[0].value;
-   const startLocation = document.getElementsByName("startLocation")[0].value;
-   const endLocation = document.getElementsByName("endLocation")[0].value;
-   
-   searchRidesSuggs(startTime, startLocation, endLocation);
+    const startTime = document.getElementsByName("startTime")[0].value;
+    const startLocation = document.getElementsByName("startLocation")[0].value;
+    const endLocation = document.getElementsByName("endLocation")[0].value;
+
+    searchRidesSuggs(startTime, startLocation, endLocation);
 }
 
 function searchRidesSuggs(startTime, startLocation, endLocation) {
@@ -66,7 +66,7 @@ function searchRidesSuggs(startTime, startLocation, endLocation) {
 
     const foundRides = rides.filter(({ userName, startTime, startLocation, endLocation }) => {
         const startTimeTS = new Date(DATE + startTime).getTime();
-        const diffInMins = Math.abs(startTimeTS - inStartTimeTS)/1000/60;
+        const diffInMins = Math.abs(startTimeTS - inStartTimeTS) / 1000 / 60;
 
         // time diff is within BUFFER_TIME and start/end location are exactly matching
         if ((diffInMins <= BUFFER_TIME) && (startLocation.toLowerCase() == inStartLoc) && (endLocation.toLowerCase() == inEndLoc)) return true;
@@ -83,7 +83,7 @@ function searchRidesSuggs(startTime, startLocation, endLocation) {
         // here only intersecting/within rides will reach
         // if the time difference of ride is within BUFFER_TIME, then they can share ride
         if (diffInMins <= BUFFER_TIME) return true;
-        
+
         return false;
     });
     renderRidesSuggs(foundRides);
@@ -94,7 +94,7 @@ function renderRidesSuggs(foundRides) {
     const frag = document.createDocumentFragment();
     foundRides.forEach(({ userName, startTime, startLocation, endLocation }) => {
         const rideEle = document.createElement("li");
-        
+
         const userNameEle = document.createElement("div");
         userNameEle.innerText = userName;
         userNameEle.classList.add("rideUser");
