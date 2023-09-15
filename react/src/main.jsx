@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 
 import ToDos from "./ToDos";
-import Context from "./Context";
+import ContextComp from "./ContextComp";
 
 function expensiveCalculation(toDos) {
     console.log("expensiveCalculation");
@@ -26,25 +26,27 @@ export default class App extends React.Component {
     };
 
     handleAddToDo = function() {
-        //in case of normal function .bind(this) is added at the end of the onClick event handler
-        //because for normal function context/this is the object/element in which it is used
-        //but for arrow function context/this is the object where it is defined, here App class
-        this.setState({ todos: [...this.state.todos, "new todo"] });
+        //in case of regular function .bind(this) is added at the end of the onClick event handler
+        //because for regular function execution context/this is the object/element which calls this function
+        //and for arrow function execution context/this is the object where it is defined, here App class
+        this.setState({ todos: [...this.state.todos, "new todo " + this.state.todos.length] });
     };
 
     render() {
         return (
             <div className="App">
+                <h1>Counter</h1>
                 {this.state.count}
                 <br />
                 <button onClick={this.handleClick}>increase count</button>
                 <br /><br />
 
+                <h1>To Do's</h1>
                 <button onClick={this.handleAddToDo.bind(this)}>add to do</button>
                 <ToDos todos={this.state.todos} />
                 <br /><br />
 
-                <Context />
+                <ContextComp />
             </div>
         );
     }
