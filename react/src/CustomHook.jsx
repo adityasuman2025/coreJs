@@ -1,5 +1,5 @@
+import React from 'react';
 import usePagination from "./usePagination";
-
 
 export default function CustomHook() {
     const itemsPerPage = 10, totalItems = 35; //35

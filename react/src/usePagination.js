@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function usePagination({ itemsPerPage, totalItems }) {
     const [currentPageIdx, setCurrentPageIdx] = useState(0);
