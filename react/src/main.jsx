@@ -4,6 +4,7 @@ import './index.css'
 
 import ToDos from "./ToDos";
 import ContextComp from "./ContextComp";
+import CustomHook from "./CustomHook";
 
 function expensiveCalculation(toDos) {
     console.log("expensiveCalculation");
@@ -36,17 +37,27 @@ export default class App extends React.Component {
         return (
             <div className="App">
                 <h1>Counter</h1>
-                {this.state.count}
-                <br />
+                {this.state.count}<br />
                 <button onClick={this.handleClick}>increase count</button>
                 <br /><br />
 
                 <h1>To Do's</h1>
-                <button onClick={this.handleAddToDo.bind(this)}>add to do</button>
-                <ToDos todos={this.state.todos} />
+
+                {
+                    this.state.todos.length <= 5 ?
+                        <>
+                            <button onClick={this.handleAddToDo.bind(this)}>add to do</button>
+                            <ToDos todos={this.state.todos} />
+                        </>
+                        : null // will console unmounted from componentWillUnmount of ToDos component after 5 todos
+                }
+
                 <br /><br />
 
                 <ContextComp />
+                <br /><br />
+
+                <CustomHook />
             </div>
         );
     }
