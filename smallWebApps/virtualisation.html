@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,27 +39,28 @@
         }
     </style>
 </head>
+
 <body>
     <div id="container">
         <div id="content"></div>
     </div>
-    
+
     <script>
         const container = document.getElementById("container");
         const content = document.getElementById("content");
 
         const totalElements = 300;
         const eleHeight = 20;
-        const elements = Array(totalElements).fill(0).map((_, i) => ({ title: (i+1) + "th element" }));
+        const elements = Array(totalElements).fill(0).map((_, i) => ({ title: (i + 1) + "th element" }));
         const contentHeight = totalElements * eleHeight;
         content.style.height = contentHeight + "px"; //setting height of the content div as per total no of elements
 
         const containerHeight = container.clientHeight;
-        const countOfElementsFit = Math.round(containerHeight/eleHeight); //no of elements that can fit in the viewport
+        const countOfElementsFit = Math.round(containerHeight / eleHeight); //no of elements that can fit in the viewport
 
         container.addEventListener("scroll", function(e) {
             const scrollTopPos = container.scrollTop; //scroll postion from the top of the container div
-            const elementsHiddenAtTop = Math.round(scrollTopPos/eleHeight); // elements hidden at the top in the content
+            const elementsHiddenAtTop = Math.round(scrollTopPos / eleHeight); // elements hidden at the top in the content
 
             renderElements(scrollTopPos, elementsHiddenAtTop); // rendering elements in the content div
         });
@@ -67,13 +69,13 @@
             content.innerText = ""; //removing the old content inside the content div
 
             const fragment = document.createDocumentFragment();
-            for (let i=0; i<countOfElementsFit; i++) {
+            for (let i = 0; i < countOfElementsFit; i++) {
                 const elementPosIndex = elementsHiddenAtTop + i; // index of the elements which are visible in the viewport
-                if (elementPosIndex >=0 && elementPosIndex < totalElements) {
+                if (elementPosIndex >= 0 && elementPosIndex < totalElements) {
                     const divEle = document.createElement("div");
                     divEle.style.top = scrollTopPos + (i * eleHeight) + "px"; //top position of the element is scrollTopPos + height of a element * its index
                     divEle.classList.add("element");
-                    
+
                     divEle.innerText = elements[elementPosIndex].title;
                     fragment.append(divEle);
                 }
@@ -82,4 +84,5 @@
         }
     </script>
 </body>
+
 </html>
