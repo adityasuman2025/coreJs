@@ -35,8 +35,17 @@ function camelCase(str) {
     }
 }
 
-// const ans = camelCase(str4);
-// console.log("ans", ans)
+// console.log("str0", camelCase(str0));
+// console.log("str1", camelCase(str1));
+// console.log("str2", camelCase(str2));
+// console.log("str3", camelCase(str3));
+// console.log("str4", camelCase(str4));
+// console.log("str5", camelCase(str5));
+// console.log("str6", camelCase(str6));
+// console.log("str7", camelCase(str7));
+// console.log("str8", camelCase(str8));
+// console.log("str9", camelCase(str9));
+// console.log("str10", camelCase(str10));
 
 
 
