@@ -7,7 +7,7 @@ const obj = {
 };
 
 
-// get
+/*----- get -----*/
 function get(source, path, defaultVal = undefined) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -31,7 +31,7 @@ function get(source, path, defaultVal = undefined) {
 // console.log("ans", ans);
 
 
-// set
+/*----- set -----*/
 function set(obj, path, value) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -53,7 +53,7 @@ function set(obj, path, value) {
 // console.log("obj", JSON.stringify(obj));
 
 
-// omit
+/*----- omit -----*/
 function omit(obj, path) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -66,5 +66,33 @@ function omit(obj, path) {
     }
 }
 
-omit(obj, "a.b.c.1");
-console.log("obj", JSON.stringify(obj));
+// omit(obj, "a.b.c.1");
+// console.log("obj", JSON.stringify(obj));
+
+
+/*----- flatten -----*/
+let arr = [
+    [1, 2],
+    [3, 4],
+    [5, 6, [7, 8], 9],
+    [10, 11, [12, [13, [14, [15, [16]]]]], 17, [18, 19, 20]],
+    [[[{ name: "hi" }]], { roll: 1 }]
+]
+let arr2 = [[], [[[]]], [[]], []];
+
+function flatten(arr, depth = 0) {
+    if (depth === 0) return arr;
+
+    let newArr = [];
+    arr.forEach(element => {
+        if (Array.isArray(element)) {
+            newArr.push(...flatten(element, depth - 1));
+        } else {
+            newArr.push(element);
+        }
+    });
+
+    return newArr;
+}
+const ans = flatten(arr2, 1);
+console.log("fltten", ans)
