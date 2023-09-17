@@ -1,203 +1,237 @@
-(async function app() {
-    const TOTAL_ALLOWED_CREATIVES = 5;
-    
-    const colors = await getColors() || [];
-    
+const TOTAL_ALLOWED_CREATIVES = 5;
 
-    let creatives = [];
+let colors = [
+    // "red", "green", "orange", "blue", "lime", "yellow", "grey"
+];
+let creatives = [
+    // { title: "1", subtitle: "one", color: "red" }, { title: "2", subtitle: "two", color: "green" }, { title: "3", subtitle: "three", color: "blue" }, { title: "4", subtitle: "four", color: "lime" }, { title: "5", subtitle: "five", color: "yellow" }, { title: "6", subtitle: "six", color: "orange" }, { title: "7", subtitle: "seven", color: "grey" },
+];
 
-    const colorsEle = document.getElementById("colors");
-    colorsEle.append(renderColors(colors));
+let selectedFilterColor = "", selectedFormColor = "";
 
-    function renderColors(colors) {
-        const frag = document.createDocumentFragment();
-        colors.forEach(color => {
-            const colorEle = document.createElement("div");
-            colorEle.classList.add("colorBtn");
-            colorEle.dataset.type = color;
-            colorEle.style.backgroundColor = color;
+const pageContentEle = document.getElementById("pageContent");
+pageContentEle.addEventListener("click", handlePageContentClick);
+pageContentEle.addEventListener("keyup", filterByText);
 
-            frag.append(colorEle);
-        });
-        return frag;
+const modalEle = document.getElementById("modal");
+const addCreativeBtnEle = document.getElementById("addCreativeBtn");
+
+function handlePageContentClick(e) {
+    const type = e?.target?.dataset?.type;
+
+    if (type === "addCreativeBtn") handleAddBtnClick(e);
+    else if (type === "colorCircle") {
+        const color = e?.target?.dataset?.color;
+        filterByColor(color);
     }
+}
 
-    function renderProgressBar(creatives) {
-        const status = document.getElementById("status");
-        const bar = document.getElementById("bar");
-
-        const length = creatives.length;
-        const width = length/TOTAL_ALLOWED_CREATIVES * 100;
-        bar.style.width = width.toString() + "%";
-        bar.style.backgroundColor = getProgressColor(width);
-
-        status.innerText = `${length} / ${TOTAL_ALLOWED_CREATIVES} Creatives`;
-    }
-    
-    
-    //dialog stuffs
-    const titleInput = document.getElementsByName("titleInput")[0];
-    titleInput.addEventListener("keyup", (event) => handleInputChange(event, "title"))
-    const subtitleInput = document.getElementsByName("subtitleInput")[0];
-    subtitleInput.addEventListener("keyup", (event) => handleInputChange(event, "subtitle"));
-
-    const colorInputEle = document.getElementById("colorInput");
-    colorInputEle.append(renderColors(colors));
-    colorInputEle.addEventListener("click", handleFormColorClick);
-
-
-    const dialogEle = document.getElementById("dialog");
-    const addCreativeBtn = document.getElementById("addCreativeBtn");
-    addCreativeBtn.addEventListener("click", handleCreativeBtnClick);
-    const closeBtnEle = document.getElementById("closeBtn");
-    closeBtnEle.addEventListener("click", handleCloseDialog);
-
-    function handleCreativeBtnClick(event) {
-        event.target.classList.add("disabledBtn");
-        dialogEle.classList.add("showDialog");
-
-        titleInput.value = "";
-        subtitleInput.value = "";
-    }
-
-    function handleCloseDialog() {
-        addCreativeBtn.classList.remove("disabledBtn");
-        dialogEle.classList.remove("showDialog");
-    }
-
-    //dialog form stuffs
-    let dialogInput = {
-        title: "",
-        subtitle: "",
-        color: "",
-    }
-    const createCreativeBtn = document.getElementById("createCreativeBtn");
-    createCreativeBtn.addEventListener("click", handleCreateCreativeFormSubmit);
-
-
-    function handleInputChange(event, type) {
-        dialogInput[type] = (event.target.value).trim();
-
-        checkShouldEnableDoneBtn()
-    }
-
-    
-    function handleFormColorClick(event) {
-        const color = event.target.dataset.type || "";
-        dialogInput["color"] = color;
-
-        checkShouldEnableDoneBtn()
-    }
-
-    function checkShouldEnableDoneBtn() {
-        console.log("dialogInput", dialogInput)
-
-        const values = Object.values(dialogInput);
-
-        let goodValueCount = 0;
-        values.forEach(item => { if (item) goodValueCount++ });
-
-        console.log("values goodValueCount",values,  goodValueCount);
-        if (values.length === 3 && goodValueCount === 3) {
-            createCreativeBtn.classList.remove("disabledBtn");
-        } else {
-            createCreativeBtn.classList.add("disabledBtn");
-        }
-    }
-
-    function handleCreateCreativeFormSubmit(event) {
-        creatives.push(dialogInput);
-        dialogInput =  {
-            title: "",
-            subtitle: "",
-            color: "",
-        };
-
-        dialogEle.classList.remove("showDialog");
-        addCreativeBtn.classList.remove("disabledBtn");
-        createCreativeBtn.classList.add("disabledBtn");
-
-        renderProgressBar(creatives);
+function filterByColor(color) {
+    if (selectedFilterColor === color) { // clearing color filter
+        selectedFilterColor = "";
         renderCreatives(creatives);
-
-        console.log("creatives", creatives, dialogInput);
+    } else {
+        selectedFilterColor = color;
+        const filteredCreatives = creatives.filter(item => item.color === color);
+        renderCreatives(filteredCreatives);
     }
 
-    //creative rendering part
-    function renderCreatives(creatives) {
-        const creativesComp = document.getElementById("creativesComp");
+    renderFilterColors(); // updating filter color view
+}
 
-        const frag = document.createDocumentFragment();
-        creatives.forEach(({title, subtitle, color}) => {
-            const colorEle = document.createElement("div");
-            colorEle.classList.add("creative");
-            colorEle.append(title);
-            colorEle.append(document.createElement("br"));
-            colorEle.append(subtitle);
-            colorEle.style.backgroundColor = color;
-
-            frag.append(colorEle);
+function filterByText(e) {
+    const val = e.target.value;
+    if (val) {
+        const filteredCreatives = creatives.filter(item => {
+            return (item.title.toLowerCase().includes(val.toLowerCase()) || item.subtitle.toLowerCase().includes(val.toLowerCase()))
         });
-        
-        creativesComp.innerHTML = "";
-        creativesComp.append(frag);
+        renderCreatives(filteredCreatives);
+    } else {
+        renderCreatives(creatives);
     }
+}
 
-    //filteriing stuffs
-    const textFilter = document.getElementById("textFilter");
-    textFilter.addEventListener("keyup", handleTextFilterInput);
+function handleAddBtnClick(e) {
+    modalEle.style.display = "block";
+    addCreativeBtnEle.classList.add("disabledBtn");
+}
 
-    function handleTextFilterInput(event) {
-        const value = (event.target.value).trim().toLowerCase();
-        if (value) {
-            const filteredItems = creatives.filter(({ title, subtitle }) => {
-                if (title.toLowerCase().includes(value) || subtitle.toLowerCase().includes(value)) return true;
-            });
-            console.log("filteredItems", filteredItems);
-            renderCreatives(filteredItems);
+getColors();
+function getColors() {
+    apiCall("https://random-flat-colors.vercel.app/api/random?count=10")
+        .then(resp => {
+            colors.push(...resp.colors);
+            renderFilterColors();
+            renderBackgrndColors();
+        });
+}
+
+function renderFilterColors() {
+    const filterColorsEle = document.getElementById("filterColors");
+    filterColorsEle.innerHTML = getColorsHtml().innerHTML;
+}
+
+function renderProgressBar(items, totalItems) {
+    const progressbarContainer = document.getElementById("progressbarContainer");
+
+    progressbarContainer.innerHTML = getProgressBarHtml(items, totalItems).innerHTML;
+}
+renderProgressBar(creatives.length, TOTAL_ALLOWED_CREATIVES);
+renderCreatives(creatives);
+
+
+function renderCreatives(creatives) {
+    const creativesEle = document.getElementById("creatives");
+
+    let tempEle = document.createElement("div");
+    creatives.forEach(({ title = "", subtitle = "", color = "" }) => {
+        let creativeEle = document.createElement("div");
+        creativeEle.classList.add("creative");
+        creativeEle.style.backgroundColor = color;
+
+        const titleEle = document.createElement("div");
+        titleEle.innerText = title;
+
+        const subTitleEle = document.createElement("div");
+        subTitleEle.innerText = subtitle;
+        subTitleEle.classList.add("creativeSubTitle");
+
+        creativeEle.append(titleEle);
+        creativeEle.append(subTitleEle);
+
+        tempEle.append(creativeEle);
+    });
+
+    creativesEle.innerHTML = tempEle.innerHTML;
+
+    renderProgressBar(creatives.length, TOTAL_ALLOWED_CREATIVES);
+}
+
+
+// modal part
+let formData = { title: "", subtitle: "", color: "" };
+modalEle.addEventListener("keyup", handleFormChange);
+modalEle.addEventListener("click", handleFormClick);
+
+function renderBackgrndColors() {
+    const backgrndColorsEle = document.getElementById("backgrndColors");
+    backgrndColorsEle.innerHTML = getColorsHtml().innerHTML;
+}
+
+function handleFormChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    if (name) {
+        formData[name] = value;
+        checkDoneBtnVisiblity();
+    }
+}
+
+function handleFormClick(e) {
+    const type = e?.target?.dataset?.type;
+
+    if (type === "colorCircle") {
+        const color = e?.target?.dataset?.color;
+        formData["color"] = color;
+
+        checkDoneBtnVisiblity();
+
+        selectedFormColor = color;
+        renderBackgrndColors()
+    } else if (type === "createCreativeBtn") {
+        creatives.push(formData);
+
+        handleModalClose(); // closing form modal
+
+        renderCreatives(creatives); // re-rendering the creative list
+    } else if (type === "modalCloseBtn") {
+        handleModalClose();
+    }
+}
+
+function checkDoneBtnVisiblity() {
+    const createCreativeBtnEle = document.getElementById("createCreativeBtn");
+
+    const { title, subtitle, color } = formData || {};
+    if (title && subtitle && color) {
+        createCreativeBtnEle.classList.remove("disabledBtn");
+    } else {
+        createCreativeBtnEle.classList.add("disabledBtn");
+    }
+}
+
+function handleModalClose() {
+    modalEle.style.display = "none";
+    addCreativeBtnEle.classList.remove("disabledBtn");
+
+    formData = { title: "", subtitle: "", color: "" }; // resetting form
+    checkDoneBtnVisiblity(); // resetting done btn visibility
+
+    // resetting form input field value
+    selectedFormColor = "";
+    const formInputEles = modalEle.querySelectorAll("input");
+    formInputEles.forEach(formInputEle => {
+        formInputEle.value = "";
+    });
+}
+
+
+// helpers
+function getProgressBarHtml(items, totalItems) {
+    let tempEle = document.createElement("div");
+
+    const progressbarEle = document.createElement("div");
+    progressbarEle.classList.add("progressbar");
+
+    const progressEle = document.createElement("div");
+    progressEle.classList.add("progress");
+
+    const barEle = document.createElement("div");
+    barEle.classList.add("bar");
+    barEle.style.width = (items / totalItems) * 100 + "%";
+    progressEle.append(barEle);
+
+    const stausEle = document.createElement("div");
+    stausEle.innerText = `${items} / ${totalItems} Creatives`;
+
+    progressbarEle.append(progressEle);
+    progressbarEle.append(stausEle);
+    tempEle.append(progressbarEle);
+
+    return tempEle;
+}
+
+function getColorsHtml() {
+    let tempEle = document.createElement("div");
+    colors.forEach(color => {
+        const colorEle = document.createElement("div");
+        colorEle.classList.add("colorCircle");
+        colorEle.dataset.color = color;
+        colorEle.dataset.type = "colorCircle";
+        colorEle.style.background = color;
+
+        if ([selectedFilterColor, selectedFormColor].includes(color)) {
+            colorEle.classList.add("selectedColorCircle");
         } else {
-            renderCreatives(creatives);
-        }
-    }
-
-    const filteredColor = [];
-    colorsEle.addEventListener("click", handleColorFilter);
-    function handleColorFilter(event) {
-        const selectedColor = event.target.dataset.type;
-
-        if (filteredColor.includes(selectedColor)) {
-            const colorIdx = selectedColor.indexOf(selectedColor);
-            filteredColor.splice(colorIdx, 1);
-        } else {
-            filteredColor.push(selectedColor);
+            colorEle.classList.remove("selectedColorCircle");
         }
 
-        if (filteredColor.length) {
-            const filteredItems = creatives.filter(({ color }) => filteredColor.includes(color));
-            console.log("filteredItems", filteredColor, filteredItems, selectedColor);
-            renderCreatives(filteredItems);
-        } else {
-            renderCreatives(creatives);
-        }
-    }
- 
+        tempEle.append(colorEle);
+    });
 
+    return tempEle;
+}
 
-    //utils
-    function getProgressColor(width) {
-        if (width < 25) return "red";
-        else if (width < 50) return "orange";
-        else if (width < 75) return "yellow";
-        else return "greenyellow";
-    }
-
-    async function getColors() {
+//utils
+function apiCall(url) {
+    return new Promise(async function(resolve, reject) {
         try {
-            const resp = await fetch("https://random-flat-colors.vercel.app/api/random?count=10");
-            return (await resp.json()).colors;
-        } catch(e) {
-            console.log("api failed");
-            return {};
+            const resp = await fetch(url);
+            const jsonResp = await resp.json();
+            resolve(jsonResp);
+        } catch (error) {
+            reject({ error });
         }
-    }
-})()
+    })
+}
