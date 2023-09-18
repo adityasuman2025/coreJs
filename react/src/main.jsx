@@ -5,14 +5,10 @@ import './index.css'
 import ToDos from "./ToDos";
 import ContextComp from "./ContextComp";
 import CustomHook from "./CustomHook";
+import hoc from "./hoc";
+import Content from "./Content.jsx";
 
-function expensiveCalculation(toDos) {
-    console.log("expensiveCalculation");
-    for (let i = 0; i < 10000; i++) { }
-
-    return toDos.length;
-}
-
+const AuthenticatedContent = hoc(Content);
 export default class App extends React.Component {
     constructor() {
         super();
@@ -36,6 +32,8 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <AuthenticatedContent name="Aditya" />
+
                 <h1>Counter</h1>
                 {this.state.count}<br />
                 <button onClick={this.handleClick}>increase count</button>
@@ -61,6 +59,14 @@ export default class App extends React.Component {
             </div>
         );
     }
+}
+
+
+function expensiveCalculation(toDos) {
+    console.log("expensiveCalculation");
+    for (let i = 0; i < 10000; i++) { }
+
+    return toDos.length;
 }
 
 // export default function App() {
