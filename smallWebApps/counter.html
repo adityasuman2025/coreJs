@@ -36,8 +36,8 @@
 
         const contentEle = document.getElementById("content");
         contentEle.addEventListener("click", handleContentClick);
-        contentEle.addEventListener("keyup", handleContentKeyup);
-        contentEle.addEventListener("change", handleContentKeyup);
+        contentEle.addEventListener("keyup", handleContentChange);
+        contentEle.addEventListener("change", handleContentChange);
 
         let counter = 0;
         let changeBy = 1;
@@ -47,7 +47,7 @@
             counterEle.innerText = counter;
         }
 
-        function handleContentKeyup(e) {
+        function handleContentChange(e) {
             const type = e?.target?.dataset?.type;
             const val = e?.target?.value
 
