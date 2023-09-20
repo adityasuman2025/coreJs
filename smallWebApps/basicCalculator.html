@@ -61,7 +61,8 @@
         }
 
         /*----- to show clicked animation color change when the key is clicked -----*/
-        .key:active {
+        .key:active,
+        .highlighted {
             background-color: burlywood;
         }
 
@@ -96,63 +97,87 @@
                 <div class="key" data-key="4">4</div>
                 <div class="key" data-key="5">5</div>
                 <div class="key" data-key="6">6</div>
-                <div class="key" data-key="+">+</div>
+                <div class="key operator" data-key="+">+</div>
 
                 <div class="key" data-key="7">7</div>
                 <div class="key" data-key="8">8</div>
                 <div class="key" data-key="9">9</div>
-                <div class="key" data-key="-">-</div>
+                <div class="key operator" data-key="-">-</div>
 
                 <div class="key" data-key=".">.</div>
                 <div class="key medium" data-key="0">0</div>
-                <div class="key" data-key="x">x</div>
+                <div class="key operator" data-key="x">x</div>
 
                 <div class="key large" data-key="=">=</div>
-                <div class="key" data-key="/">/</div>
+                <div class="key operator" data-key="/">/</div>
             </div>
         </div>
     </div>
 
     <script type="text/javascript">
+        const OPERATORS = ["+", "-", "/", "x"];
+
         const displayEle = document.getElementById("display");
         const keysEle = document.getElementById("keys");
         keysEle.addEventListener("click", handleKeyClick);
+        renderScreen(0);
 
-        const actions = ["+", "-", "/", "x"];
-
-        let ans = 0, input = 0, action;
+        let prevVal, currVal = "", operator, isAnsCalculated = false;
         function handleKeyClick(e) {
             const key = e?.target?.dataset.key;
             if (!key) return;
-            console.log("key", key);
 
             if (key === "C") {
-                input = 0;
-                ans = 0;
-            } else if (actions.includes(key)) {
-                // if (action) handleEqualClick();
-                // else {
-                action = key;
-                ans = input;
-                input = 0;
-                // }
+                prevVal = "";
+                currVal = "";
+                operator = "";
+                isAnsCalculated = false;
 
-            } else if (key === "=") {
-                handleEqualClick();
-            } else {
-                if (action) {
+                renderScreen(0);
+            } else if (OPERATORS.includes(key)) {
+                if (prevVal) {
+                    if (operator) currVal = doCalculation(operator, prevVal, currVal);
+                    else currVal = doCalculation(key, prevVal, currVal);
 
+                    prevVal = "";
+                    operator = key;
+                    renderScreen(currVal);
+
+                    isAnsCalculated = true;
+                } else {
+                    prevVal = currVal;
+                    currVal = "";
+                    operator = key;
+
+                    isAnsCalculated = false;
                 }
-                if (input === 0) input = key;
-                else input += key
-            }
-            renderScreen();
-        }
+            } else if (key === "=") {
+                if (prevVal && operator) {
+                    currVal = doCalculation(operator, prevVal, currVal);
+                    prevVal = "";
+                    operator = "";
+                    renderScreen(currVal);
 
-        function handleEqualClick() {
-            input = doCalculation(action, ans, input);
-            ans = input;
-            action = undefined;
+                    isAnsCalculated = true;
+                } else {
+                    prevVal = currVal;
+                    currVal = "";
+
+                    isAnsCalculated = false;
+                }
+            } else {
+                if (isAnsCalculated) {
+                    prevVal = currVal;
+                    currVal = key;
+                } else {
+                    currVal += key;
+                }
+
+                isAnsCalculated = false;
+                renderScreen(currVal);
+            }
+
+            highlightOperator(operator);
         }
 
         function doCalculation(action, first, second) {
@@ -164,9 +189,18 @@
             else if (action === "/") return Number(first) / Number(second);
         }
 
-        renderScreen();
-        function renderScreen() {
-            displayEle.innerText = input;
+        function highlightOperator(operator) {
+            const operators = document.getElementsByClassName("operator") || [];
+            for (let i = 0; i < operators.length; i++) {
+                const key = operators[i].dataset.key;
+
+                if (key === operator) operators[i].classList.add("highlighted");
+                else operators[i].classList.remove("highlighted");
+            }
+        }
+
+        function renderScreen(val) {
+            displayEle.innerText = val;
         }
     </script>
 </body>
