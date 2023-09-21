@@ -26,7 +26,7 @@ function handleContentChange(e) {
             return;
         }
 
-        e.target.value = key
+        e.target.value = key;
 
         // focusing on next input element
         const thisInputEleIdx = TIMER_INPUT_TYPES.indexOf(type);
@@ -52,10 +52,9 @@ function handleStartBtnClick() {
     stopBtnEle.removeAttribute("disabled");
 
     let timerObj = {};
-    const func = getTimeValue(); // closure
     for (let i = 0; i < inputEles.length; i++) {
-        const type = inputEles[i].dataset.type, val = inputEles[i].value;
-        timerObj = func(type, val);
+        const type = inputEles?.[i]?.dataset?.type, val = inputEles?.[i]?.value;
+        timerObj[type] = val;
 
         inputEles[i].classList.add("disabled"); // disabling timer input fields
     }
@@ -66,7 +65,7 @@ function handleStartBtnClick() {
         timeInSeconds--;
 
         const timeObj = getMMSSFromSeconds(timeInSeconds);
-        renderTimer(timeObj); // re-rednering timer with updated value
+        renderTimer(timeObj); // re-rendering timer with updated value
 
         if (timeInSeconds === 0) clearInterval(interval); // if time is 0 then stopping interval
     }, 1000);
@@ -103,17 +102,4 @@ function getMMSSFromSeconds(seconds) {
     second = second.length < 2 ? "0" + second : second; // adding 0 (extra padding) if length is less than 2
 
     return { tensMin: minute[0] || "0", min: minute[1] || "0", tensSec: second[0] || "0", sec: second[1] || "0" };
-}
-
-// closure
-function getTimeValue() {
-    let tensMin = 0, min = 0, tensSec = 0, sec = 0;
-    return function(type, value) {
-        if (type === "tensMin") tensMin = value;
-        else if (type === "min") min = value;
-        else if (type === "tensSec") tensSec = value;
-        else if (type === "sec") sec = value;
-
-        return { tensMin, min, tensSec, sec };
-    }
 }
