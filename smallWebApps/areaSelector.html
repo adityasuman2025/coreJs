@@ -87,7 +87,6 @@
             }
         }
 
-
         renderBoard();
         function renderBoard() {
             const startCellX = Math.ceil(startCursorPosInBoardX / (CELL_DIMN + 2 * CELL_BORDER_WIDTH)) - 1;
@@ -115,17 +114,6 @@
             }
 
             boardEle.innerHTML = tempEle.innerHTML;
-        }
-
-        function debounce(func, delay) {
-            let timer;
-
-            return function(...args) {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    func.call(this, ...args);
-                }, delay);
-            }
         }
     </script>
 </body>
