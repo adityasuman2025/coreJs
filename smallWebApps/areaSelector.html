@@ -17,7 +17,7 @@
 
         #board {
             width: fit-content;
-            border: 1px solid black;
+            border: 0.5px solid black;
         }
 
         .row {
@@ -28,7 +28,7 @@
         .cell {
             width: 40px;
             height: 40px;
-            border: 1px solid black;
+            border: 0.5px solid black;
         }
 
         .filled {
@@ -40,7 +40,6 @@
 <body>
     <div id="content">
         <h3>Click & hold on a box and drag to select multiple boxes</h3>
-
         <div id="board"></div>
     </div>
 
@@ -48,9 +47,9 @@
         const boardEle = document.getElementById("board");
 
         const WINDOW_WIDTH = window.innerWidth - 100, WINDOW_HEIGHT = window.innerHeight - 150;
-        const CELL_DIMN = 40;
-        const BOARD_DIMN_HEIGHT = Math.floor(WINDOW_HEIGHT / CELL_DIMN);
-        const BOARD_DIMN_WIDTH = Math.floor(WINDOW_WIDTH / CELL_DIMN);
+        const CELL_DIMN = 40, CELL_BORDER_WIDTH = 0.5;
+        const VERTICAL_CELL_COUNT = Math.floor(WINDOW_HEIGHT / CELL_DIMN);
+        const HORIZONTAL_CELL_COUNT = Math.floor(WINDOW_WIDTH / CELL_DIMN);
         const BOARD_OFFSET_LEFT = boardEle.offsetLeft, BOARD_OFFSET_TOP = boardEle.offsetTop;
 
         let isHolding = false;
@@ -91,21 +90,23 @@
 
         renderBoard();
         function renderBoard() {
-            const tempEle = document.createElement("div");
+            const startCellX = Math.ceil(startCursorPosInBoardX / (CELL_DIMN + 2 * CELL_BORDER_WIDTH)) - 1;
+            const startCellY = Math.ceil(startCursorPosInBoardY / (CELL_DIMN + 2 * CELL_BORDER_WIDTH)) - 1;
 
-            for (let i = 0; i < BOARD_DIMN_HEIGHT; i++) {
+            const endCellX = Math.ceil(currCursorPosInBoardX / (CELL_DIMN + 2 * CELL_BORDER_WIDTH)) - 1;
+            const endCellY = Math.ceil(currCursorPosInBoardY / (CELL_DIMN + 2 * CELL_BORDER_WIDTH)) - 1;
+
+            const tempEle = document.createElement("div");
+            for (let i = 0; i < VERTICAL_CELL_COUNT; i++) {
                 const rowEle = document.createElement("div");
                 rowEle.classList.add("row");
 
-                for (let j = 0; j < BOARD_DIMN_WIDTH; j++) {
+                for (let j = 0; j < HORIZONTAL_CELL_COUNT; j++) {
                     const cellEle = document.createElement("div");
                     cellEle.classList.add("cell");
 
-                    const thisCellPosX = ((j + 1) * CELL_DIMN), thisCellPosY = ((i + 1) * CELL_DIMN);
-                    if (
-                        (thisCellPosX >= startCursorPosInBoardX && thisCellPosX <= currCursorPosInBoardX) &&
-                        (thisCellPosY >= startCursorPosInBoardY && thisCellPosY <= currCursorPosInBoardY)
-                    ) cellEle.classList.add("filled");
+                    if ((j >= startCellX && j <= endCellX) && (i >= startCellY && i <= endCellY)) cellEle.classList.add("filled"); // if mouse moved down-right (clockwise)
+                    if ((j >= endCellX && j <= startCellX) && (i >= endCellY && i <= startCellY)) cellEle.classList.add("filled"); // if mouse moved top-left (anti-clockwise)
 
                     rowEle.append(cellEle);
                 }
