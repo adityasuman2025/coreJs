@@ -106,7 +106,7 @@ function startTimer() {
 
             toggleDurationType();
         }
-    }, 10);
+    }, 1000);
 }
 
 function toggleDurationType() {
