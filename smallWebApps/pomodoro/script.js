@@ -13,14 +13,14 @@ contentEle.addEventListener("click", handleContentClick);
 let durationType = DURATION_INPUT_TYPE_SESSION; // by default session will run
 renderDurationType(durationType);
 
-const durationValues = { [DURATION_INPUT_TYPE_SESSION]: 2, [DURATION_INPUT_TYPE_BREAK]: 1 }; // in mins
+const durationValues = { [DURATION_INPUT_TYPE_SESSION]: 25, [DURATION_INPUT_TYPE_BREAK]: 5 }; // in mins
 renderDurationInput(durationValues, DURATION_INPUT_TYPE_SESSION); // rendering duration input field by default value
 renderDurationInput(durationValues, DURATION_INPUT_TYPE_BREAK); // rendering duration input field by default value
 
 let interval;
 let timeInSeconds = durationValues[durationType] * 60;
 renderTimer(getMMSSFromSeconds(timeInSeconds)); // rendering default session duration
-
+let hasTimerStarted = false;
 
 function handleDurationChange(e) {
     const { type, field } = e?.target?.dataset || {};
@@ -38,6 +38,12 @@ function handleDurationChange(e) {
         e.target.value = maxValue;
         durationValues[field] = maxValue;
     }
+
+
+    if (!hasTimerStarted && field === DURATION_INPUT_TYPE_SESSION) { // timer duration can be changed if timer has not been started yet
+        timeInSeconds = durationValues[field] * 60;
+        renderTimer(getMMSSFromSeconds(timeInSeconds));
+    }
 }
 
 function handleContentClick(e) {
@@ -47,7 +53,7 @@ function handleContentClick(e) {
     if (!type) return;
 
     if (type === "minusActnBtn") {
-        if (durationValues[field] - 1 >= 0) durationValues[field] = durationValues[field] - 1;
+        if (durationValues[field] - 1 >= 1) durationValues[field] = durationValues[field] - 1;
 
         renderDurationInput(durationValues, field);
     } else if (type === "plusActnBtn") {
@@ -58,9 +64,17 @@ function handleContentClick(e) {
         if (status === "play") handlePlayBtnClick();
         else if (status === "pause") handlePauseBtnClick();
     }
+
+
+    if (!hasTimerStarted && field === DURATION_INPUT_TYPE_SESSION) { // timer duration can be changed if timer has not been started yet
+        timeInSeconds = durationValues[field] * 60;
+        renderTimer(getMMSSFromSeconds(timeInSeconds));
+    }
 }
 
 function handlePlayBtnClick() {
+    hasTimerStarted = true;
+
     startTimer();
 
     playPauseBtnEle.dataset.status = "pause";
@@ -79,9 +93,10 @@ function handlePauseBtnClick() {
 }
 
 function startTimer() {
-    clearInterval(interval);
     timeInSeconds = timeInSeconds === undefined ? durationValues[durationType] * 60 : timeInSeconds;
+    if (timeInSeconds <= 0) return;
 
+    clearInterval(interval);
     interval = setInterval(() => {
         timeInSeconds--;
         renderTimer(getMMSSFromSeconds(timeInSeconds));
