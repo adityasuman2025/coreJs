@@ -13,7 +13,7 @@ const res = addTwo(10);
 
 //2: closure
 function addClosure(x) {
-    return function (y) {
+    return function(y) {
         return x + y
     }
 }
@@ -29,7 +29,7 @@ const ansClosure = addClosureThree(5);
 
 let isSum = true;
 function curryAltSum(...args1) {
-    return function (...args2) {
+    return function(...args2) {
         let sum = args1[0];
         args1.forEach((item, index) => {
             if (index != 0) {
@@ -61,7 +61,7 @@ console.log("ans", ans)
 
 // sum(1)(2)(3)....()
 function sum(x) {
-    return function (y) {
+    return function(y) {
         return y ? sum(x + y) : x
     }
 }
