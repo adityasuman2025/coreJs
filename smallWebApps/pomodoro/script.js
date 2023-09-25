@@ -96,6 +96,10 @@ function startTimer() {
     timeInSeconds = timeInSeconds === undefined ? durationValues[durationType] * 60 : timeInSeconds;
     if (timeInSeconds <= 0) return;
 
+    const durationTypeStr = durationType[0].toUpperCase() + durationType.substring(1).toLowerCase();
+    showNotification({ msg: durationTypeStr + " has started of " + durationValues[durationType] + " mins" });
+
+
     clearInterval(interval);
     interval = setInterval(() => {
         timeInSeconds--;
@@ -146,3 +150,30 @@ function getMMSSFromSeconds(seconds) {
 
     return { tensMin: minute[0] || "0", min: minute[1] || "0", tensSec: second[0] || "0", sec: second[1] || "0" };
 }
+
+function showNotification({ msg }) {
+    const notification = new Notification("MNgo Pomodoro", {
+        body: msg,
+        // icon: "img.jpg"
+    });
+}
+
+
+// initializing notification
+document.addEventListener("mousemove", handleMouseMove);
+function handleMouseMove() {
+    if (Notification.permission === "granted") {
+        showNotification({ msg: "Welcome to MNgo Pomodoro App" });
+    } else if (Notification.permission != "denied") {
+        Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+                showNotification({ msg: "Welcome to MNgo Pomodoro App" });
+            }
+        });
+    }
+
+    document.removeEventListener("mousemove", handleMouseMove);
+}
+
+
+// https://www.reddit.com/r/reactjs/comments/useyq8/setinterval_not_working_in_the_inactive_tab/?rdt=39245
