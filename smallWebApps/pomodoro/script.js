@@ -1,3 +1,5 @@
+const ticker = new Worker('timerWorker.js');
+
 const DURATION_INPUT_TYPE_SESSION = "session", DURATION_INPUT_TYPE_BREAK = "break";
 const MAX_DURATION = { [DURATION_INPUT_TYPE_SESSION]: 60, [DURATION_INPUT_TYPE_BREAK]: 20 };
 const BCKGRND_COLOR = { [DURATION_INPUT_TYPE_SESSION]: "rgb(56, 133, 138)", [DURATION_INPUT_TYPE_BREAK]: "rgb(186, 73, 73)" };
@@ -84,7 +86,8 @@ function handlePlayBtnClick() {
 }
 
 function handlePauseBtnClick() {
-    clearInterval(interval);
+    ticker.postMessage('stop');
+    // clearInterval(interval);
 
     playPauseBtnEle.dataset.status = "play";
     playPauseBtnEle.innerText = "Play";
@@ -99,19 +102,41 @@ function startTimer() {
     const durationTypeStr = durationType[0].toUpperCase() + durationType.substring(1).toLowerCase();
     showNotification({ msg: durationTypeStr + " has started of " + durationValues[durationType] + " mins" });
 
+    ticker.postMessage('stop');
 
-    clearInterval(interval);
-    interval = setInterval(() => {
+    /*
+        we are using web worker for timer setInterval instead of direct setInterval because when browser is inactive/minimise/tab inactive
+        direct setInterval stop working
+    */
+
+    // clearInterval(interval);
+    // interval = setInterval(() => {
+    //     timeInSeconds--;
+    //     renderTimer(getMMSSFromSeconds(timeInSeconds));
+
+    //     if (timeInSeconds === 0) {
+    //         clearInterval(interval);
+
+    //         toggleDurationType();
+    //     }
+    // }, 10);
+
+    ticker.postMessage('start'); // starting web-worker timer setInterval
+}
+
+ticker.addEventListener('message', async (e) => {
+    if (e.data === "tick") {
         timeInSeconds--;
         renderTimer(getMMSSFromSeconds(timeInSeconds));
 
         if (timeInSeconds === 0) {
-            clearInterval(interval);
+            // clearInterval(interval);
+            ticker.postMessage('stop');
 
             toggleDurationType();
         }
-    }, 1000);
-}
+    }
+});
 
 function toggleDurationType() {
     durationType = durationType === DURATION_INPUT_TYPE_SESSION ? DURATION_INPUT_TYPE_BREAK : DURATION_INPUT_TYPE_SESSION;
@@ -160,7 +185,7 @@ function showNotification({ msg }) {
 
 
 // initializing notification
-document.addEventListener("mousemove", handleMouseMove);
+document.addEventListener("click", handleMouseMove);
 function handleMouseMove() {
     if (Notification.permission === "granted") {
         showNotification({ msg: "Welcome to MNgo Pomodoro App" });
@@ -172,7 +197,7 @@ function handleMouseMove() {
         });
     }
 
-    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("click", handleMouseMove);
 }
 
 
