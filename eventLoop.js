@@ -35,21 +35,21 @@
 // promise callback and mutation observar is moved to microTask Queue
 // All Callback functions (except promise callback and mutation observer) are transferred to callback queue or task queue or macroTask queue
 
-// // Microtask queue tasks are given priority over callback/macrostask queue tasks, event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
+// Microtask queue tasks are given priority over callback/macrostask queue tasks, event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
 // console.log(1)
 
 // const mc = new MessageChannel()
 
 // mc.port1.onmessage = () => {
-//   console.log(2)
+//     console.log(2)
 // }
 
 // Promise.resolve().then(() => {
-//   console.log(3)
+//     console.log(3)
 // })
 
 // setTimeout(() => {
-//   console.log(4)
+//     console.log(4)
 // }, 0)
 
 // console.log(5)
@@ -59,30 +59,29 @@
 // console.log(6)
 
 
+// another
+// console.log(1)
 
-//Synchronous code (including event listeners) gets executed first in order.
-console.log(1)
+// document.body.addEventListener('click', () => {
+//     console.log(2)
+// })
 
-document.body.addEventListener('click', () => {
-  console.log(2)
-})
+// Promise.resolve().then(() => {
+//     console.log(3)
+// })
 
-Promise.resolve().then(() => {
-  console.log(3)
-})
+// setTimeout(() => {
+//     console.log(4)
+// }, 0)
 
-setTimeout(() => {
-  console.log(4)
-}, 0)
+// console.log(5)
 
-console.log(5)
+// document.body.click()
 
-document.body.click()
-
-console.log(6)
-
+// console.log(6)
 
 
+// Synchronous code (including event listeners) gets executed first in order.
 /* 
 Order:
     - Statement
