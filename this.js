@@ -35,7 +35,7 @@ var obj = {
 //In Javascript, only function calls establish a new this context. 
 function shapeFunc() {
     this.radius = 10;
-    this.diameter = function () {
+    this.diameter = function() {
         return this.radius * 2;
     }
     this.perimeter = () => {
@@ -51,7 +51,7 @@ const run = new shapeFunc(); // here shapeFunc() is a function so it has its own
 
 const shape = {
     radius: 10,
-    diameter: function () {
+    diameter: function() {
         return this.radius * 2;
     },
     perimeter: () => {
@@ -72,7 +72,7 @@ function y() {
 }
 var x = {
     length: 5,
-    method: function (y) {
+    method: function(y) {
         console.log("this method", this)
         arguments[0](); //here arguments object is calling function y, as arguments[0] represents y, so this will become arguments object in y
     }
