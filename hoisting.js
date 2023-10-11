@@ -35,14 +35,14 @@ class f {
 // console.log("a", a, b, c, d, e, f)
 // console.log("a", b)
 
-
+// in node.js this behaves slighly different than in browser. therefore result may differ. so better to test in browser
 var a = 1;
 (function() {
     // 'var a = 2' is hoisted here -> var a = undefined
     // 'this.a' is number -> this.a = 1 (undefined + number -> NaN)
-    var a = "2";
-    console.log("a + this.a", a, this.a); // NaN
 
+    console.log("a + this.a", a + this.a); // NaN
+    var a = "2";
     console.log("a + this.a", a + this.a); // "21"
 })();
 

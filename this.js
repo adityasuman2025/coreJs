@@ -1,12 +1,12 @@
-//in regular function this represents the object who calls the function
+// in regular function this represents the object who calls the function
 // so here obj is calling logRegular so obj will be its this
 
-//in arrow function this keyword represents the this(context) of the object where it is defined
-// amd the obj has the same this as window (because object does not starts a execution context but only function does)
+// in arrow function this keyword represents the this(context) of the object where it is defined
+// and the obj has the same this as window (because object does not starts a execution context but only function does
 // so in logArrow this represents window, because it is defined in obj
 
 
-//example 1
+// example 1
 var obj = {
     prefix: 'BFE',
     list: ['1'],
@@ -24,15 +24,14 @@ var obj = {
         console.log("hi", hi())
     },
 };
-
 // obj.logArrow();
 // obj.logRegular();
 // obj.logArrow2();
 
 
 
-//example 2
-//In Javascript, only function calls establish a new this context. 
+// example 2
+// In Javascript, only function calls establish a new this context. 
 function shapeFunc() {
     this.radius = 10;
     this.diameter = function() {
@@ -43,7 +42,7 @@ function shapeFunc() {
     }
 }
 
-//here shapeFunc() is a constructor function, a constructor function is used to create objects.
+// here shapeFunc() is a constructor function, a constructor function is used to create objects.
 const run = new shapeFunc(); // here shapeFunc() is a function so it has its own this
 // console.log(run)
 // console.log(run.diameter())
@@ -59,17 +58,18 @@ const shape = {
     }
 }
 
-// console.log(shape)
-// console.log(shape.diameter())
-// console.log(shape.perimeter()) // it will give NaN because shape is a normal object and perimeter is arrow function so this is window for that
+console.log(shape)
+console.log(shape.diameter())
+console.log(shape.perimeter()) // it will give NaN because shape is a normal object and perimeter is arrow function so this is window for that
 
 
 
-//example 3
+// example 3
 function y() {
     console.log("this y", this)
     console.log(this.length);
 }
+
 var x = {
     length: 5,
     method: function(y) {
