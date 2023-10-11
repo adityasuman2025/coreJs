@@ -5,8 +5,8 @@ if (true) {
         console.log("zzz")
     }
 }
-console.log("kaka", kaka);
-console.log("zzz", zzz);
+// console.log("kaka", kaka);
+// console.log("zzz", zzz);
 
 // zzz() // will print "zzz"
 
