@@ -10,7 +10,7 @@ Promise.resolve(1)
     })
     .finally((data) => {
         console.log(data)
-        return Promise.resolve(2).then(console.log) // 2
+        return Promise.resolve(2).then(console.log);
     })
     .then(console.log)
     .catch(console.log)
