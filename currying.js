@@ -64,3 +64,29 @@ function curryAltSum(...args1) {
 
 const ans = curryAltSum(1)(2)(3, 4)(5, 6, 7)(8)(9, 10)()
 console.log("ans", ans)
+
+
+
+// curryIt
+function curryIt(func) {
+    return function curried(...args) {
+        if (args.length >= func.length) {
+            return func.call(this, ...args);
+        } else {
+            // if some more functions are there in func than coming in the curried, then we need to recursively call curried function with the missing arguments
+            return function(...missingArgs) {
+                return curried.call(this, ...args, ...missingArgs);
+            }
+        }
+    }
+}
+
+function join(a, b, c) {
+    return `${a}_${b}_${c}`;
+}
+
+const curriedJoin = curryIt(join);
+console.log(curriedJoin(1, 2, 3)) // '1_2_3'
+console.log(curriedJoin(1)(2, 3)) // '1_2_3'
+console.log(curriedJoin(1)(2)(3)) // '1_2_3'
+console.log(curriedJoin(1, 2, 3, 4)) // '1_2_3'
