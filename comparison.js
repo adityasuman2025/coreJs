@@ -4,14 +4,15 @@
 
 //The Math.max() and Math.min() functions return NaN if any parameter isn't a number and can't be converted into one (of course NaN cannot be converted into a number).
 
-console.log('10' > 9) // true
-console.log(10 > '9') // true
-console.log('10' > '9') // false
+// console.log('10' > 9) // true
+// console.log(10 > '9') // true
+// console.log('10' > '9') // false
 
-console.log(undefined == undefined) // true
-console.log(undefined === undefined) // true
-console.log(null == undefined) // true
-console.log(null === undefined) // false
+// console.log(undefined == undefined) // true
+// console.log(undefined === undefined) // true
+// console.log(null == undefined) // true
+// console.log(null === undefined) // false
+
 
 
 // 1. and 2. NaN compares unequal (via both == and ===) to any other value including to another NaN value.
@@ -19,15 +20,16 @@ console.log(null === undefined) // false
 // 4. and 5. indexOf uses Strict Equality Comparison and thus [NaN].indexOf(NaN) === -1 , array.includes uses SameValueZero comparison algorithm , thus making [NaN].includes(NaN) true.
 // 6. , 7, 8 and 9 The Math.max() and Math.min() functions return NaN if any parameter isn't a number and can't be converted into one (of course NaN cannot be converted into a number).
 
-console.log(NaN == NaN) // false
-console.log(NaN === NaN) // false
-console.log(Object.is(NaN, NaN)) // true
-console.log([NaN].indexOf(NaN)) // -1
-console.log([NaN].includes(NaN)) // true
-console.log(Math.max(NaN, 1)) // NaN
-console.log(Math.min(NaN, 1)) // NaN
-console.log(Math.min(NaN, Infinity)) // NaN
-console.log(Math.max("any string", 1)) // NaN
+// console.log(NaN == NaN) // false
+// console.log(NaN === NaN) // false
+// console.log(Object.is(NaN, NaN)) // true
+// console.log([NaN].indexOf(NaN)) // -1
+// console.log([NaN].includes(NaN)) // true
+// console.log(Math.max(NaN, 1)) // NaN
+// console.log(Math.min(NaN, 1)) // NaN
+// console.log(Math.min(NaN, Infinity)) // NaN
+// console.log(Math.max("any string", 1)) // NaN
+
 
 
 //The instanceof operator tests to see if the prototype property of a constructor appears anywhere in the prototype chain of an object. The return value is a boolean value.

@@ -19,16 +19,28 @@ const person2 = changeAgeAndName(person1);
 // console.log("person2", person2)
 
 
-//convert john to ES6 standard
+// convert given john object to ES6 standard
 var john = {
     name: 'John Doe',
     balance: 1500,
-    deduct: function (amount) {
+    deduct: function(amount) {
         this.balance = this.balance - amount;
         return this.name + " has a balance of " + this.balance;
     }
 }
-// console.log("ans", john.deduct(200))
+// console.log("john", john.deduct(200));
+
+const johnES6 = {
+    name: 'John Doe',
+    balance: 1500,
+    deduct: () => {
+        return function(amount) {
+            this.balance = this.balance - amount;
+            return this.name + " has a balance of " + this.balance;
+        }
+    }
+}
+// console.log("johnES6", johnES6.deduct().call(john, 200)); // call function calls a function with the given this and set of arguments
 
 const john2 = {
     name: 'John Doe',

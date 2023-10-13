@@ -23,7 +23,7 @@ In arrow functions the this keyword represents the this(context) of the object w
 // this.name = "ka";
 const obj = {
     name: "Bhemu",
-    regGetName: function () {
+    regGetName: function() {
         console.log("obj regGetName", this.name);
     },
     arrowGetName: () => {
@@ -37,7 +37,7 @@ obj.arrowGetName(); // here this is window because it is defined in (Global Exec
 function objConstructor() {
     this.name = "Bhemu";
 
-    this.regGetName = function () {
+    this.regGetName = function() {
         console.log("obj2 regGetName", this.name);
     }
 
@@ -75,7 +75,7 @@ hence new keyword can’t be used with arrow function
 function regConstr1(color) {
     this.color = color;
 }
-const regConstr2 = function (color) {
+const regConstr2 = function(color) {
     this.color = color;
 }
 const regObj = new regConstr2('blue');

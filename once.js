@@ -3,7 +3,7 @@
 function runItOnce(func) {
     let hasRun = false;
 
-    return function (...args) {
+    return function(...args) {
         if (!hasRun) {
             hasRun = true;
             return func.apply(this, args);

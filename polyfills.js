@@ -1,5 +1,21 @@
+/*
+    map
+    filter
+    some
+    reduce
+    forEach
+    find
+    findIndex
+    indexOf
+    includes
+    bind
+    apply
+    call
+    promiseAll
+*/
+
 /*----------------------------------------map--------------------------------*/
-Array.prototype.myMap = function (func) {
+Array.prototype.myMap = function(func) {
     let resp = [], arr = this;
 
     for (let i = 0; i < arr.length; i++) {
@@ -18,7 +34,7 @@ const myMapResp = arr.myMap((item) => item * 2);
 
 
 /*----------------------------------------filter--------------------------------*/
-Array.prototype.myFilter = function (func) {
+Array.prototype.myFilter = function(func) {
     let resp = [], arr = this;
 
     for (let i = 0; i < arr.length; i++) {
@@ -34,8 +50,23 @@ const myFilterResp = arr.myFilter((item) => item % 2 == 0);
 
 
 
+/*----------------------------------------some--------------------------------*/
+Array.prototype.mySome = function(func) {
+    let arr = this;
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i], i)) return true;
+    }
+
+    return false;
+}
+const mySomeResp = arr.mySome((item) => item > 8);
+// console.log("mySomeResp", mySomeResp)
+
+
+
+
 /*----------------------------------------reduce--------------------------------*/
-Array.prototype.myReduce = function (func, initialVal) {
+Array.prototype.myReduce = function(func, initialVal) {
     let resp = initialVal, arr = this;
 
     for (let i = 0; i < arr.length; i++) {
@@ -55,7 +86,7 @@ const myReduceResp = arr.myReduce((acc, item, index) => {
 
 
 /*----------------------------------------forEach--------------------------------*/
-Array.prototype.myForEach = function (func) {
+Array.prototype.myForEach = function(func) {
     for (let i = 0; i < this.length; i++) func(this[i], i);
 }
 // arr.forEach((item, index) => console.log(index, item));
@@ -65,7 +96,7 @@ Array.prototype.myForEach = function (func) {
 
 /*----------------------------------------chunk--------------------------------*/
 // https://leetcode.com/problems/chunk-array/description/?envType=study-plan-v2&envId=30-days-of-javascript
-Array.prototype.chunk = function (size) {
+Array.prototype.chunk = function(size) {
     const arr = this;
 
     let accIdx = 0, tempSize = 0;
@@ -89,13 +120,13 @@ const chunkArr = arr2.chunk(size);
 
 
 /*----------------------------------------find--------------------------------*/
-Array.prototype.myFind = function (func) {
+Array.prototype.myFind = function(func) {
     for (let i = 0; i < this.length; i++) {
         let item = this[i]
         if (func(item, i)) return item
     };
 
-    return -1;
+    return;
 }
 const newArrByFind = arr.myFind((item, index) => (item % 2 == 1) && (item > 3));
 // console.log("newArrByFind", newArrByFind);
@@ -104,7 +135,7 @@ const newArrByFind = arr.myFind((item, index) => (item % 2 == 1) && (item > 3));
 
 
 /*----------------------------------------findIndex--------------------------------*/
-Array.prototype.myfindIndex = function (func) {
+Array.prototype.myfindIndex = function(func) {
     for (let i = 0; i < this.length; i++) {
         let item = this[i]
         if (func(item, i)) return i
@@ -118,11 +149,41 @@ const newArrByfindIndex = arr.myfindIndex((item, index) => (item % 2 == 1) && (i
 
 
 
+/*----------------------------------------some--------------------------------*/
+Array.prototype.myIndexOf = function(toFind, startIdx = 0) {
+    let arr = this;
+    for (let idx = (startIdx || 0); idx < arr.length; idx++) {
+        if (arr[idx] === toFind) return idx;
+    }
+
+    return -1;
+}
+const myIndexOfResp = arr.myIndexOf(5, 5);
+// console.log("myIndexOfResp", myIndexOfResp);
+
+
+
+
+/*----------------------------------------some--------------------------------*/
+Array.prototype.myIncludes = function(toFind, startIdx = 0) {
+    let arr = this;
+    for (let idx = (startIdx || 0); idx < arr.length; idx++) {
+        if (arr[idx] === toFind) return true;
+    }
+
+    return false;
+}
+const myIncludesResp = arr.myIncludes(5);
+// console.log("myIncludesResp", myIncludesResp);
+
+
+
+
 /*----------------------------------------bind--------------------------------*/
-Function.prototype.myBind = function (thi, ...args) {
+Function.prototype.myBind = function(givenThis, ...args) {
     let func = this;
-    return function (...args2) {
-        func.call(thi, ...args, ...args2)
+    return function(...args2) {
+        func.call(givenThis, ...args, ...args2)
     }
 }
 
@@ -130,18 +191,18 @@ function printName(state, country) {
     console.log(this.firstName + " " + this.lastName + " from " + state + ", " + country);
 }
 
-let nameObj = { firstName: "aditya", lastName: "suman" };
+const nameObj = { firstName: "aditya", lastName: "suman" };
 const printMyName = printName.myBind(nameObj, "delhi", "india");
-printMyName()
+printMyName();
 
 
 
 
 /*----------------------------------------apply--------------------------------*/
-Function.prototype.myApply = function (thi, args = []) {
+Function.prototype.myApply = function(thi, args = []) {
     this.call(thi, ...args)
 }
-Function.prototype.myApply2 = function (obj, args = []) {
+Function.prototype.myApply2 = function(obj, args = []) {
     obj.func = this;
     obj.func(...args)
 }
@@ -153,10 +214,10 @@ Function.prototype.myApply2 = function (obj, args = []) {
 
 
 /*----------------------------------------call--------------------------------*/
-Function.prototype.myCall = function (thi, ...args) {
+Function.prototype.myCall = function(thi, ...args) {
     this.apply(thi, args)
 }
-Function.prototype.myCall2 = function (obj, ...args) {
+Function.prototype.myCall2 = function(obj, ...args) {
     obj.func = this;
     obj.func(...args)
 }
@@ -167,35 +228,39 @@ printName.myCall2(nameObj, "thimpu", "bhutan");
 
 
 /*----------------------------------------promise All--------------------------------*/
-const a = new Promise(function (resolve, reject) {
-    setTimeout(() => { resolve("biro") }, 2000)
-})
-const b = Promise.resolve("yo")
-
-Promise.myPromiseAll = function (promiseArr) {
-    let resps = [];
-    let c = 0;
-    return new Promise(function (resolve, reject) {
+Promise.myPromiseAll = function(promiseArr) {
+    let resp = [], c = 0;
+    return new Promise(function(resolve, reject) {
         for (let i = 0; i < promiseArr.length; i++) {
             promiseArr[i]
-                .then(resp => {
-                    resps[i] = resp;
+                .then(promResp => {
+                    resp[i] = promResp;
                     c++;
-                    if (c === promiseArr.length) {
-                        resolve(resps)
-                    }
+                    if (c === promiseArr.length) resolve(resp)
                 })
-                .catch((e) => {
-                    reject(e);
-                })
+                .catch(error => reject(error));
         }
     });
 }
 
-// Promise.myPromiseAll([a, b])
-//     .then(resp => {
-//         console.log("promise all done resp", resp)
-//     })
-//     .catch((e) => {
-//         console.log("promise all failed", e)
-//     })
+const promA = Promise.resolve(1);
+const PromB = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        resolve(2)
+    }, 1000);
+});
+function promC() {
+    return new Promise(function(resolve, reject) {
+        setTimeout(() => {
+            resolve(3);
+        }, 2000);
+    });
+}
+
+Promise.myPromiseAll([promA, promC(), PromB,])
+    .then(resp => {
+        console.log("resp", resp)
+    })
+    .catch(error => {
+        console.log("error", error)
+    })
