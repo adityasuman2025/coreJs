@@ -7,6 +7,7 @@ const obj = {
 };
 
 
+
 /*----- get -----*/
 function get(source, path, defaultVal = undefined) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
@@ -20,7 +21,6 @@ function get(source, path, defaultVal = undefined) {
         return defaultVal;
     }
 }
-
 // get(obj, 'a.b.c'); // [1,2,3]
 // get(obj, 'a.b.c.0'); // 1
 // get(obj, 'a.b.c[1]'); // 2
@@ -29,6 +29,7 @@ function get(source, path, defaultVal = undefined) {
 // get(obj, 'a.c', 'bfe'); // 'bfe'
 // const ans = get(obj, ['a', 'b', 'c', '2']); // 3
 // console.log("ans", ans);
+
 
 
 /*----- set -----*/
@@ -47,10 +48,10 @@ function set(obj, path, value) {
         set(obj[thisKeyAsNumberOrStr], pathArr.slice(1), value) // pathArr.slice(1), removing first element from the path array as it has already been proccessed
     }
 }
-
 // set(obj, 'a.c.d.01.e.0.f', 'BFE');
 // set(obj, 'a.b.c.4', 'BFE');
 // console.log("obj", JSON.stringify(obj));
+
 
 
 /*----- omit -----*/
@@ -65,9 +66,9 @@ function omit(obj, path) {
         if (obj.hasOwnProperty(thisKey)) omit(obj[thisKey], pathArr.slice(1));
     }
 }
-
 // omit(obj, "a.b.c.1");
 // console.log("obj", JSON.stringify(obj));
+
 
 
 /*----- flatten -----*/
@@ -95,4 +96,31 @@ function flatten(arr, depth = 0) {
     return newArr;
 }
 const ans = flatten(arr2, 1);
-console.log("fltten", ans)
+// console.log("fltten", ans)
+
+
+
+/*----- curry -----*/
+function curry(func) {
+    return function curried(...args) {
+        if (args.length >= func.length) {
+            return func.call(this, ...args);
+        } else {
+            // if some more arguments are there in func than has already come in the curried, then we need to recursively call curried function with the missing arguments
+            return function(...missingArgs) {
+                return curried.call(this, ...args, ...missingArgs);
+            }
+        }
+    }
+}
+
+function join(a, b, c) {
+    return `${a}_${b}_${c}`;
+}
+const curriedJoin = curry(join);
+console.log(curriedJoin(1, 2, 3)) // '1_2_3'
+console.log(curriedJoin(1)(2, 3)) // '1_2_3'
+console.log(curriedJoin(1)(2)(3)) // '1_2_3'
+console.log(curriedJoin(1, 2, 3, 4)) // '1_2_3'
+
+
