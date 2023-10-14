@@ -1,4 +1,5 @@
 //generator is used to generate result on the fly (whenever needed)
+// generators are used in iterable function of in-built data structures
 
 function* generateNo() {
     let i = 0;
