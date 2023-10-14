@@ -32,3 +32,23 @@ A.x().y().z();
 // }
 // const result = calc.add(10).multiply(5).subtract(30).add(10);
 // console.log("calc result", result.total)
+
+
+
+function $(el) {
+    return {
+        css: function(propertyName, value) {
+            el.style[propertyName] = value
+            return this;
+        }
+    };
+}
+
+const ele = { style: {} }; // document.createElement('p')
+
+const a = $(ele);
+a.css('color', '#fff')
+    .css('backgroundColor', '#000')
+    .css('fontWeight', 'bold');
+
+console.log("ele", ele)
