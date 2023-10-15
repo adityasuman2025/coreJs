@@ -16,3 +16,25 @@ function* generateNo() {
 const gen = generateNo();
 console.log(gen.next())
 console.log(gen.next())
+
+
+
+
+/*
+    Range function, which works as shown below
+
+    for (let num of range(1, 4)) {
+        console.log(num)  
+    }
+    // 1
+    // 2
+    // 3
+    // 4
+*/
+function* range(from, to) {
+    // return (new Array(to - from + 1)).fill(1).map((_,idx) => idx+from)
+
+    while (from <= to) {
+        yield from++
+    }
+}
