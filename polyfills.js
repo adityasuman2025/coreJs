@@ -231,14 +231,22 @@ printName.myCall2(nameObj, "thimpu", "bhutan");
 Promise.myPromiseAll = function(promiseArr) {
     let resp = [], c = 0;
     return new Promise(function(resolve, reject) {
+        if (promiseArr.length === 0) resolve(resp); // no item in array
+
         for (let i = 0; i < promiseArr.length; i++) {
-            promiseArr[i]
-                .then(promResp => {
-                    resp[i] = promResp;
-                    c++;
-                    if (c === promiseArr.length) resolve(resp)
-                })
-                .catch(error => reject(error));
+            if (typeof promiseArr[i] === "object") { // if that array item is promise
+                promiseArr[i]
+                    .then(promResp => {
+                        resp[i] = promResp;
+                        c++;
+                        if (c === promiseArr.length) resolve(resp)
+                    })
+                    .catch(error => reject(error));
+            } else {
+                resp[i] = promiseArr[i];
+                c++;
+                if (c === promiseArr.length) resolve(resp)
+            }
         }
     });
 }
@@ -263,4 +271,47 @@ Promise.myPromiseAll([promA, promC(), PromB,])
     })
     .catch(error => {
         console.log("error", error)
-    })
+    });
+
+
+
+
+/*----------------------------------------promise All settled--------------------------------*/
+Promise.myPromiseAllSettled = function(promiseArr) {
+    let resp = [], c = 0;
+    return new Promise(function(resolve, reject) {
+        if (promiseArr.length === 0) resolve(resp); // no item in array
+
+        for (let i = 0; i < promiseArr.length; i++) {
+            if (typeof promiseArr[i] === "object") { // if that array item is promise
+                promiseArr[i]
+                    .then(promResp => {
+                        resp[i] = { status: "fulfilled", value: promResp };
+                        c++;
+                        if (c === promiseArr.length) resolve(resp)
+                    })
+                    .catch(error => {
+                        resp[i] = { status: "rejected", reason: error };
+                        c++;
+                        if (c === promiseArr.length) resolve(resp)
+                    });
+            } else {
+                resp[i] = { status: 'fulfilled', value: promiseArr[i] },
+                    c++;
+                if (c === promiseArr.length) resolve(resp)
+            }
+        }
+    });
+}
+
+allSettled([1, 2, 3, Promise.resolve(4)]).then((value) => {
+    console.log(value);
+    /*
+    [
+        { status: 'fulfilled', value: 1 },
+        { status: 'fulfilled', value: 2 },
+        { status: 'fulfilled', value: 3 },
+        { status: 'fulfilled', value: 4 }
+    ]
+    */
+})
