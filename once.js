@@ -1,15 +1,15 @@
 // once() is a function which runs only once
 // it is possible because of clousre
-function runItOnce(func) {
-    let hasRun = false;
+function once(func) {
+    let result, hasRun = false;
 
     return function(...args) {
         if (!hasRun) {
             hasRun = true;
-            return func.apply(this, args);
-        } else {
-            console.log("has aready run")
+            result = func.call(this, ...args)
         }
+
+        return result;
     }
 }
 
@@ -17,7 +17,8 @@ function add(a, b) {
     return a + b;
 }
 
-const oneAdd = runItOnce(add);
+const oneAdd = once(add);
 const ans = oneAdd(5, 7);
 console.log("ans", ans)
-oneAdd(2, 3);
+const ans2 = oneAdd(2, 3);
+console.log("ans2", ans2)
