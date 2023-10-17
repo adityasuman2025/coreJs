@@ -183,46 +183,57 @@ const myIncludesResp = arr.myIncludes(5);
 Function.prototype.myBind = function(givenThis, ...args) {
     let func = this;
     return function(...args2) {
-        func.call(givenThis, ...args, ...args2)
+        return func.call(givenThis, ...args, ...args2)
     }
 }
 
 function printName(state, country) {
-    console.log(this.firstName + " " + this.lastName + " from " + state + ", " + country);
+    const res = this.firstName + " " + this.lastName + " from " + state + ", " + country;
+    // console.log(res);
+
+    return res;
 }
 
 const nameObj = { firstName: "aditya", lastName: "suman" };
 const printMyName = printName.myBind(nameObj, "delhi", "india");
-printMyName();
+// const myBindResp = printMyName();
+// console.log("myBindResp", myBindResp)
 
 
 
 
 /*----------------------------------------apply--------------------------------*/
-Function.prototype.myApply = function(thi, args = []) {
-    this.call(thi, ...args)
+Function.prototype.myApply = function(givenThis, args = []) {
+    return this.call(givenThis, ...args)
 }
-Function.prototype.myApply2 = function(obj, args = []) {
-    obj.func = this;
-    obj.func(...args)
+Function.prototype.myApply2 = function(givenThis, args = []) {
+    givenThis.func = this; // creating a key of the function in the givenThis object
+    const res = givenThis.func(...args);
+    delete givenThis.func; // deleting the key of the function in the givenThis object
+
+    return res;
 }
-// printName.myApply2(nameObj, ["kathmandu", "nepal"]);
-// console.log("nameObj", nameObj.func);
-// nameObj.func.apply(nameObj, ["bhemu", "ond"])
+const myApplyResp = printName.myApply2(nameObj, ["kathmandu", "nepal"]);
+console.log("myApplyResp", myApplyResp);
+console.log("nameObj.func", nameObj.func);
 
 
 
 
 /*----------------------------------------call--------------------------------*/
-Function.prototype.myCall = function(thi, ...args) {
-    this.apply(thi, args)
+Function.prototype.myCall = function(givenThis, ...args) {
+    return this.apply(givenThis, args);
 }
-Function.prototype.myCall2 = function(obj, ...args) {
-    obj.func = this;
-    obj.func(...args)
+Function.prototype.myCall2 = function(givenThis, ...args) {
+    givenThis.func = this; // creating a key of the function in the givenThis object
+    const res = givenThis.func(...args);
+    delete givenThis.func; // deleting the key of the function in the givenThis object
+
+    return res;
 }
-printName.myCall2(nameObj, "thimpu", "bhutan");
-// console.log("nameObj", nameObj.func);
+const myCallResp = printName.myCall2(nameObj, "thimpu", "bhutan");
+console.log("myCallResp", myCallResp);
+console.log("nameObj.func", nameObj.func);
 
 
 
@@ -265,13 +276,13 @@ function promC() {
     });
 }
 
-Promise.myPromiseAll([promA, promC(), PromB,])
-    .then(resp => {
-        console.log("resp", resp)
-    })
-    .catch(error => {
-        console.log("error", error)
-    });
+// Promise.myPromiseAll([promA, promC(), PromB,])
+//     .then(resp => {
+//         console.log("resp", resp)
+//     })
+//     .catch(error => {
+//         console.log("error", error)
+//     });
 
 
 
@@ -304,14 +315,14 @@ Promise.myPromiseAllSettled = function(promiseArr) {
     });
 }
 
-allSettled([1, 2, 3, Promise.resolve(4)]).then((value) => {
-    console.log(value);
-    /*
-    [
-        { status: 'fulfilled', value: 1 },
-        { status: 'fulfilled', value: 2 },
-        { status: 'fulfilled', value: 3 },
-        { status: 'fulfilled', value: 4 }
-    ]
-    */
-})
+// Promise.myPromiseAllSettled([1, 2, 3, Promise.resolve(4)]).then((value) => {
+//     console.log(value);
+//     /*
+//     [
+//         { status: 'fulfilled', value: 1 },
+//         { status: 'fulfilled', value: 2 },
+//         { status: 'fulfilled', value: 3 },
+//         { status: 'fulfilled', value: 4 }
+//     ]
+//     */
+// });
