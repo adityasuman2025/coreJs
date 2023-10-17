@@ -8,7 +8,8 @@ const obj = {
 
 
 
-/*----- get -----*/
+
+/*---------------------- get ----------------------*/
 function get(source, path, defaultVal = undefined) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -32,7 +33,8 @@ function get(source, path, defaultVal = undefined) {
 
 
 
-/*----- set -----*/
+
+/*---------------------- set ----------------------*/
 function set(obj, path, value) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -54,7 +56,8 @@ function set(obj, path, value) {
 
 
 
-/*----- omit -----*/
+
+/*---------------------- omit ----------------------*/
 function omit(obj, path) {
     let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
 
@@ -71,7 +74,8 @@ function omit(obj, path) {
 
 
 
-/*----- flatten -----*/
+
+/*---------------------- flatten ----------------------*/
 let arr = [
     [1, 2],
     [3, 4],
@@ -100,7 +104,8 @@ const ans = flatten(arr2, 1);
 
 
 
-/*----- curry -----*/
+
+/*---------------------- curry ----------------------*/
 function curry(func) {
     return function curried(...args) {
         if (args.length >= func.length) {
@@ -124,3 +129,34 @@ console.log(curriedJoin(1)(2)(3)) // '1_2_3'
 console.log(curriedJoin(1, 2, 3, 4)) // '1_2_3'
 
 
+
+
+/*---------------------- cloneDeep ----------------------*/
+function cloneDeep(data) {
+    const map = new Map();
+
+    function clone(data) {
+        if ([null, undefined].includes(data)) return data;
+
+        if (typeof data === "object") {
+            const clonedObj = Array.isArray(data) ? [] : {};
+
+            if (map.has(data)) return map.get(data); // to overcome circular reference in the object
+            else map.set(data, clonedObj);
+
+            // Object.getOwnPropertySymbols can detect Symbols too as keys, but Object.keys can't
+            [...Object.keys(data), ...Object.getOwnPropertySymbols(data)].forEach(key => {
+                clonedObj[key] = clone(data[key]);
+            });
+            return clonedObj;
+        } else return data;
+    }
+    return clone(data);
+}
+
+const sym = Symbol()
+const obj2 = { [sym]: 'bfe' }
+
+const clone = cloneDeep(obj2)
+console.log(clone); //.not.toBe(obj2)
+console.log(clone[sym]);
