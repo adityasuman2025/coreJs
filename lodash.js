@@ -160,3 +160,40 @@ const obj2 = { [sym]: 'bfe' }
 const clone = cloneDeep(obj2)
 console.log(clone); //.not.toBe(obj2)
 console.log(clone[sym]);
+
+
+
+
+/*---------------------- isEqual ----------------------*/
+function isEqual(a, b) {
+    let map = new Map();
+
+    function isEqualUtil(a, b) {
+        if (typeof a !== typeof b) return false;
+
+        // to overcome circular object
+        if (map.has(a) || map.has(b)) return true;
+        map.set(a, b);
+        // to overcome circular object
+
+        if (typeof a === "object") {
+            const keysA = [...Object.keys(a), ...Object.getOwnPropertySymbols(a)]; // symbols used as key be detected from Object.getOwnPropertySymbols only but not from Object.keys
+            const keysB = [...Object.keys(b), ...Object.getOwnPropertySymbols(b)]; // symbols used as key be detected from Object.getOwnPropertySymbols only but not from Object.keys
+
+            if (keysB.length !== keysA.length) return false;
+
+            for (let i = 0; i < keysA.length; i++) {
+                let key = keysA[i];
+                if (!isEqualUtil(a[key], b[key])) return false;
+            }
+        } else {
+            if (a !== b) return false;
+        }
+
+        return true;
+    }
+
+    return isEqualUtil(a, b)
+}
+
+console.log(isEqual([1, 2, 3], [1, 2, 3, 4])); //.toBe(false)
