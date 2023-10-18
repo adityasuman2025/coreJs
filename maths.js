@@ -85,3 +85,24 @@ console.log(subtract('1', '20')); //.toBe('-19')
 console.log(subtract('1000000000000000000000', '999999999999999999999')); //.toBe('1')
 
 console.log(subtract('12345678912345678', '9876501263826299')); //.toBe('2469177648519379')
+
+
+
+function addWithSign(num1, num2) {
+    let num1HasNeg = num1.includes("-");
+    let num2HasNeg = num2.includes("-");
+
+    if (num1HasNeg && num2HasNeg) {
+        return "-" + add(num1.slice(1), num2.slice(1));
+    } else if (num1HasNeg) {
+        console.log("here")
+        return "-" + subtract(num1.slice(1), num2.includes("+") ? num2.slice(1) : num2);
+    } else if (num2HasNeg) {
+        return subtract(num1.includes("+") ? num1.slice(1) : num1, num2.slice(1));
+    } else {
+        return add(num1.slice(1), num2.slice(1));
+    }
+}
+
+// console.log(addWithSign('+999999999999999999', '-1'));  //.toBe('-1000000000000000000')
+console.log(addWithSign('-999999999999999999', '+1')); //.toBe('-999999999999999998')
