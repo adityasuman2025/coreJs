@@ -62,11 +62,23 @@ function subtract(num1, num2) {
         res = String(sub) + res;
     }
 
+    res = trimPrefixZeros(res);
     if (isSwapped) res = "-" + res; // if nums has been swapped then making res (result) negative
 
-    return String(Number(res));
+    return res;
 }
 
+function trimPrefixZeros(str) {
+    if (!str) return str;
+
+    let zeroTillIdx = 0;
+    while (str[zeroTillIdx] === "0") zeroTillIdx++;
+
+    return zeroTillIdx === str.length ? "0" : str.substring(zeroTillIdx);
+}
+
+
+console.log(subtract('999999999999999999', '1')); //.toBe('-999999999999999998')
 console.log(subtract('100', '99')); //.toBe('1')
 console.log(subtract('99', '100')); //.toBe('1')
 console.log(subtract('1', '20')); //.toBe('-19')
