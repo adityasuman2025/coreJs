@@ -239,6 +239,30 @@ console.log("nameObj.func", nameObj.func);
 
 
 /*----------------------------------------promise All--------------------------------*/
+String.prototype.trim = function() {
+    let str = this;
+
+    let start, end;
+    for (let i = 0; i < str.length; i++) {
+        let char = (str[i]);
+
+        if (![" ", "", "\s", "\t", "\n", "\u3000"].includes(char)) {
+            if (start === undefined) start = i;
+            end = i;
+        }
+    }
+
+    return str.substring(start, end + 1);
+}
+// console.log(('a').trim //.toBe('a')
+// console.log(('a   ').trim) //.toBe('a')
+// console.log(('  a b   ').trim) //.toBe('a b')
+console.log("yo" + ('    aa    \u3000').trim() + "yo"); //.toBe('aa')
+console.log("yo" + ('    ✌️    \u3000').trim() + "yo"); //.toBe('✌️')
+
+
+
+/*----------------------------------------promise All--------------------------------*/
 Promise.myPromiseAll = function(promiseArr) {
     let resp = [], c = 0;
     return new Promise(function(resolve, reject) {
