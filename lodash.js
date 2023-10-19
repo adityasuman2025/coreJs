@@ -11,9 +11,13 @@ const obj = {
 
 /*---------------------- get ----------------------*/
 function get(source, path, defaultVal = undefined) {
-    let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
+    /*
+        In replace function, if pattern (1st parameter) is a string, then only the first occurrence will be replaced
+        to replace all occurances of the pattern, we need to use a regex (regular expression) with g flag
+    */
+    const pathArr = Array.isArray(path) ? path : path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
 
-    let thisKey = pathArr[0];
+    const thisKey = pathArr[0];
     if (pathArr.length === 1) {
         if (source.hasOwnProperty(thisKey)) return source[thisKey]
         return defaultVal;
@@ -28,17 +32,21 @@ function get(source, path, defaultVal = undefined) {
 // get(obj, ['a', 'b', 'c', '2']); // 3
 // get(obj, 'a.b.c[3]'); // undefined
 // get(obj, 'a.c', 'bfe'); // 'bfe'
-// const ans = get(obj, ['a', 'b', 'c', '2']); // 3
-// console.log("ans", ans);
+// const getAns = get(obj, []); // 3
+// console.log("getAns", getAns);
 
 
 
 
 /*---------------------- set ----------------------*/
 function set(obj, path, value) {
-    let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
+    /*
+        In replace function, if pattern (1st parameter) is a string, then only the first occurrence will be replaced
+        to replace all occurances of the pattern, we need to use a regex (regular expression) with g flag
+    */
+    const pathArr = Array.isArray(path) ? path : path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
 
-    let thisKey = pathArr[0], nextKey = pathArr[1];
+    const thisKey = pathArr[0], nextKey = pathArr[1];
     const thisKeyAsNumberOrStr = Number(thisKey) || thisKey; // if thisKey is a number then key should go as number, otherwise as string
 
     if (pathArr.length === 1) obj[thisKeyAsNumberOrStr] = value;
