@@ -5,9 +5,9 @@ import AutoCompleteWrapper from "./AutoCompleteWrapper";
 function App() {
     return (
         <>
-            {/* <CurrencyInput /> */}
+            <CurrencyInput />
             {/* <OTPInput /> */}
-            <AutoCompleteWrapper />
+            {/* <AutoCompleteWrapper /> */}
         </>
     )
 }

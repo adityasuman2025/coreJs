@@ -28,6 +28,12 @@ body {
     height: 35px;
 }
 
+#currencyError {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+}
+
 #content {
     position: absolute;
     top: 50%;
