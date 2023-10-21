@@ -78,9 +78,9 @@ The function immediately throws an error.
  * @param {number} t
  * @return {Function}
  */
-var timeLimit = function (fn, t) {
-    return function (...args) {
-        return new Promise(function (resolve, reject) {
+var timeLimit = function(fn, t) {
+    return function(...args) {
+        return new Promise(function(resolve, reject) {
             const timer = setTimeout(() => {
                 clearTimeout(timer);
                 reject("Time Limit Exceeded");
