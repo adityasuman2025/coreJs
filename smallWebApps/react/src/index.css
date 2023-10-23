@@ -61,12 +61,15 @@ body {
 }
 
 #autoCompleteSuggestions {
+    margin: 0;
+    padding: 0;
     position: absolute;
     width: 100%;
     background-color: antiquewhite;
 }
 
 .autoCompleteSuggestion {
+    list-style: none;
     padding: 10px;
     cursor: pointer;
 }
