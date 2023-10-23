@@ -11,7 +11,7 @@ async function apiCall(url, method = "get", body) {
 
         return jsonResp;
     } catch (e) {
-        return [];
+        throw Error(e);
     }
 }
 
@@ -20,20 +20,22 @@ const DATA = [{ "name": "january", "days": 31 }, { "name": "february", "days": 2
 export default function AutoCompleteWrapper() {
     const [value, setValue] = useState("");
     async function filterSuggestions(query) {
-        const data = await apiCall("https://jsonblob.com/api/1164846962242871296")
+        const data = await apiCall("https://jsonblob.com/api/1164846962242871296");
         return data.filter(i => i.name.toLowerCase().includes(query.toLowerCase()));
     }
 
     return (
-        <AutoComplete
-            value={value}
-            getSuggestions={filterSuggestions}
-            suggestionItemRenderer={(item) => (
-                <div>{item.name} - {item.days + " days"}</div>
-            )}
-            handleSuggestionClick={(item) => {
-                setValue(item.name);
-            }}
-        />
+        <div id="content">
+            <AutoComplete
+                value={value}
+                getSuggestions={filterSuggestions}
+                suggestionItemRenderer={(item) => (
+                    <div>{item.name} - {item.days + " days"}</div>
+                )}
+                handleSuggestionClick={(item) => {
+                    setValue(item.name);
+                }}
+            />
+        </div>
     )
 }

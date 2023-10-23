@@ -60,12 +60,18 @@ body {
     height: 35px;
 }
 
+#loaderOrError {
+    text-align: center;
+}
+
 #autoCompleteSuggestions {
     margin: 0;
     padding: 0;
     position: absolute;
     width: 100%;
     background-color: antiquewhite;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .autoCompleteSuggestion {
