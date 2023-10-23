@@ -11,9 +11,6 @@ function debounce(func, delay) {
     }
 }
 
-/*
-    pagination props
-*/
 export default function AutoComplete({
     autoFocus = true,
     placeholder = "",
@@ -28,14 +25,18 @@ export default function AutoComplete({
 
     useCache = true,
     cacheTimeToLive = 60, // in minutes
+    totalPaginationPages = 1,
 
     value,
     getSuggestions = () => { },
+    getMoreSuggestions = () => { },
     suggestionItemRenderer,
-    handleSuggestionClick
+    handleSuggestionClick,
 }) {
     const cacheTimeToLiveInMSeconds = cacheTimeToLive * 60 * 1000; // in milli seconds
 
+    const autoCompleteSuggestionsRef = useRef(null);
+    const observerTarget = useRef(null);
     const inputRef = useRef(null);
     const [suggestionsVisible, setSuggestionsVisible] = useState(false);
     const [suggestions, setSuggestions] = useState([]);
@@ -44,10 +45,55 @@ export default function AutoComplete({
     const [error, setError] = useState("");
     const [cache, setCache] = useState({});
 
+    const [paginationPage, setPaginationPage] = useState(1);
+
     useEffect(() => {
         inputRef.current.value = value;
         inputRef.current.focus();
     }, [value]);
+
+    useEffect(() => {
+        const intersectionObservor = new IntersectionObserver(function(enteries) {
+            const lastElement = enteries[0];;
+
+            if (!lastElement.isIntersecting) return;
+
+            const scrollTop = autoCompleteSuggestionsRef.current.scrollTop;
+            if (scrollTop > 0) handleMoreSuggestions(); // is the parent/wrapper/container is scrolled then only calling getMoreSuggestions() function, because observerTarget can be in viewport when there are not enough elements to scroll
+        }, {
+            root: autoCompleteSuggestionsRef.current, // target element i.e scrollable element (where we want infinite scrolling)
+            rootMargin: "5px" // will load next content before 10px of the last element
+        });
+
+        if (observerTarget.current) intersectionObservor.observe(observerTarget.current);
+    }, []);
+
+    function handleMoreSuggestions() {
+        setError("");
+
+        setPaginationPage((prev) => {
+            if (prev <= totalPaginationPages) {
+                (async function() {
+                    try {
+                        setIsLoading(true);
+
+                        const filteredData = await getMoreSuggestions(inputRef.current.value, prev);
+                        console.log("filteredData", filteredData);
+
+                        setSuggestions(prev => ([...prev, ...filteredData]));
+                    } catch (e) { // any failure in api call can be detected here
+                        setError("failed to get suggestions");
+                    }
+                })();
+
+                return prev + 1;
+            } else {
+                return prev;
+            }
+        });
+
+        setIsLoading(false);
+    }
 
     const optimisedHandleChange = debounce(handleChange, debounceDuration);
     async function handleChange(e) {
@@ -58,6 +104,7 @@ export default function AutoComplete({
             setSuggestionsVisible(true);
             try {
                 setIsLoading(true);
+                setSuggestions([]);
 
                 await optimisedGetSuggestions(query);
             } catch (e) { // any failure in api call can be detected here
@@ -89,6 +136,7 @@ export default function AutoComplete({
             }));
         } else filteredData = await getSuggestions(query); // caching is disabled
 
+        setPaginationPage(2);
         setSuggestions(filteredData);
     }
 
@@ -110,26 +158,28 @@ export default function AutoComplete({
                 role="combobox"
             />
 
-            <ul id="autoCompleteSuggestions" className={suggestionContainerClassName} aria-live={true}>
+            <ul id="autoCompleteSuggestions" ref={autoCompleteSuggestionsRef} className={suggestionContainerClassName} aria-live={true}>
+                {
+                    suggestionsVisible && suggestions.map((sugg, idx) => (
+                        <li className="autoCompleteSuggestion" key={idx}
+                            onClick={() => {
+                                setSuggestionsVisible(false);
+                                handleSuggestionClick && handleSuggestionClick(sugg)
+                            }}
+                        >
+                            {suggestionItemRenderer(sugg)}
+                        </li>
+                    ))
+                }
+
                 {
                     (isLoading) ? (
                         <div id="loaderOrError">{loadingRenderer}</div>
                     ) : (error) ? (
                         <div id="loaderOrError">{errorRenderer(error)}</div>
-                    ) : (
-                        suggestionsVisible && suggestions.map((sugg, idx) => (
-                            <li
-                                className="autoCompleteSuggestion" key={idx}
-                                onClick={() => {
-                                    setSuggestionsVisible(false);
-                                    handleSuggestionClick && handleSuggestionClick(sugg)
-                                }}
-                            >
-                                {suggestionItemRenderer(sugg)}
-                            </li>
-                        ))
-                    )
+                    ) : null
                 }
+                <div ref={observerTarget}></div>
             </ul>
         </div>
     )

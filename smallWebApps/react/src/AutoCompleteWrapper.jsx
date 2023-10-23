@@ -28,7 +28,13 @@ export default function AutoCompleteWrapper() {
         <div id="content">
             <AutoComplete
                 value={value}
+                totalPaginationPages={5}
                 getSuggestions={filterSuggestions}
+                getMoreSuggestions={(query, page) => {
+                    console.log("getMoreSuggestions", query, page)
+                    return DATA;
+                }}
+
                 suggestionItemRenderer={(item) => (
                     <div>{item.name} - {item.days + " days"}</div>
                 )}
