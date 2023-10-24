@@ -53,7 +53,7 @@ function isString(value) {
 }
 
 function isBoolean(val) {
-    return 'boolean' === typeof val;
+    return typeof val === 'boolean';
 }
 
 function isFloat(n) {
