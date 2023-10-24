@@ -22,9 +22,10 @@ export default class App extends React.Component {
         this.setState({ count: this.state.count + 1 });
     };
 
-    handleAddToDo = function() {
+    handleAddToDo = function(e) { // or handleAddToDo() {
+        console.log("e", e)
         //in case of regular function .bind(this) is added at the end of the onClick event handler
-        //because for regular function execution context/this is the object/element which calls this function
+        //because for regular function execution context/this is the object/element which calls this function, here <button> element
         //and for arrow function execution context/this is the object where it is defined, here App class
         this.setState({ todos: [...this.state.todos, "new todo " + this.state.todos.length] });
     };
@@ -45,6 +46,8 @@ export default class App extends React.Component {
                     this.state.todos.length <= 5 ?
                         <>
                             <button onClick={this.handleAddToDo.bind(this)}>add to do</button>
+                            {/* <button onClick={(e) => this.handleAddToDo.bind(this)(e)}>add to do</button> */}
+                            {/* <button onClick={(e) => this.handleAddToDo.call(this, e)}>add to do</button> */}
                             <ToDos todos={this.state.todos} />
                         </>
                         : null // will console unmounted from componentWillUnmount of ToDos component after 5 todos
