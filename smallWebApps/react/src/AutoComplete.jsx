@@ -31,7 +31,7 @@ export default function AutoComplete({
     getSuggestions = () => { },
     getMoreSuggestions = () => { },
     suggestionItemRenderer,
-    handleSuggestionClick,
+    onSuggestionItemClick,
 }) {
     const cacheTimeToLiveInMSeconds = cacheTimeToLive * 60 * 1000; // in milli seconds
 
@@ -78,12 +78,13 @@ export default function AutoComplete({
                         setIsLoading(true);
 
                         const filteredData = await getMoreSuggestions(inputRef.current.value, prev);
-                        console.log("filteredData", filteredData);
 
                         setSuggestions(prev => ([...prev, ...filteredData]));
                     } catch (e) { // any failure in api call can be detected here
                         setError("failed to get suggestions");
                     }
+
+                    setIsLoading(false);
                 })();
 
                 return prev + 1;
@@ -91,8 +92,6 @@ export default function AutoComplete({
                 return prev;
             }
         });
-
-        setIsLoading(false);
     }
 
     const optimisedHandleChange = debounce(handleChange, debounceDuration);
@@ -164,7 +163,7 @@ export default function AutoComplete({
                         <li className="autoCompleteSuggestion" key={idx}
                             onClick={() => {
                                 setSuggestionsVisible(false);
-                                handleSuggestionClick && handleSuggestionClick(sugg)
+                                onSuggestionItemClick && onSuggestionItemClick(sugg)
                             }}
                         >
                             {suggestionItemRenderer(sugg)}

@@ -38,7 +38,7 @@ export default function AutoCompleteWrapper() {
                 suggestionItemRenderer={(item) => (
                     <div>{item.name} - {item.days + " days"}</div>
                 )}
-                handleSuggestionClick={(item) => {
+                onSuggestionItemClick={(item) => {
                     setValue(item.name);
                 }}
             />
