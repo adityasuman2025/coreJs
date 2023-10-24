@@ -3,21 +3,30 @@ const data = downloadDocumentFile(url).then(resp => {
     console.log("resp", resp)
 });
 
-function downloadDocumentFile(url) {
+async function downloadDocumentFile(url) {
+    // using async/await
+    // try {
+    //     const resp = await fetch(url);
+
+    //     const blobText = await resp.text();
+
+    //     // const blob = await resp.blob();
+    //     // const blobText = await new Response(blob).text();
+
+    //     const jsonResp = JSON.parse(blobText);
+    //     return jsonResp;
+    // } catch (e) {
+    //     throw Error("failed to download file")
+    // }
+
+    // using then/catch
     return fetch(url)
-        .then(async resp => {
-            // const text = await resp.text()
-            // console.log("text", text)
-
-            const blob = await resp.blob();
-            const blobText = await new Response(blob).text();
-
-            if (resp.status < 200 || resp.status > 299) {
-                const err = await resp.json();
-                throw err;
-            }
-
-            const jsonResp = JSON.parse(blobText);
-            return jsonResp;
-        });
+        .then(resp => {
+            return resp.text();
+        })
+        .then(text => {
+            return JSON.parse(text);
+        }).catch(e => {
+            throw Error("failed to download file")
+        })
 }
