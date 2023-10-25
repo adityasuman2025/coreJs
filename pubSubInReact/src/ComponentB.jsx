@@ -1,0 +1,22 @@
+import React, { useEffect } from 'react';
+import { usePubSub } from './PubSubContext';
+
+export default function ComponentB() {
+    const { subscribe } = usePubSub();
+
+    useEffect(() => {
+        const unsubscribe = subscribe("topic2", (...args) => {
+            console.log('Message Received in Component B:', ...args);
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, [subscribe]);
+
+    return (
+        <div>
+            <h2>Component B</h2>
+        </div>
+    );
+};
