@@ -6,12 +6,24 @@
 // so in logArrow this represents window, because it is defined in obj
 
 
+// example 0
+const a = {
+    dev: 'BFE.dev',
+    update: name => {
+        // here this is window, because it is a arrow function, and in arrow function this represents the this of the object where it is 
+        this.dev = name
+    }
+}
+a.update('bigfrontend.dev')
+console.log(a.dev) //  'BFE.dev'
+
+
 // example 1
 var obj = {
     prefix: 'BFE',
     list: ['1'],
     logArrow: () => {
-        console.log("this", this) //here this is window
+        console.log("this", this) // here this is window, because it is a arrow function, and in arrow function this represents the this of the object where it is defined
         console.log(this.prefix + this.list);
     },
     logRegular() {
@@ -58,9 +70,9 @@ const shape = {
     }
 }
 
-console.log(shape)
-console.log(shape.diameter())
-console.log(shape.perimeter()) // it will give NaN because shape is a normal object and perimeter is arrow function so this is window for that
+// console.log(shape)
+// console.log(shape.diameter())
+// console.log(shape.perimeter()) // it will give NaN because shape is a normal object and perimeter is arrow function so this is window for that
 
 
 
@@ -78,4 +90,4 @@ var x = {
     }
 }
 
-x.method(y, 1);
+// x.method(y, 1);
