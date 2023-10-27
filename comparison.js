@@ -41,46 +41,17 @@ console.log("Object instanceof Object", Object instanceof Object)
 //array index can go from 0 to 2^32 - 2
 
 
-var a = 'a'
-try {
-  throw new Error('BFE.dev')
-} catch { // no local variable being used
-  var a = 'a1' // overwrites outer varibale a, redeclaring global a
-}
-console.log(a) // a1
-
-var b = 'b'
-try {
-  throw new Error('BFE.dev')
-} catch (b) { // local variable b references the passed error
-  var b = 'b1' // No longer pointing to the global variable, its a locally scoped variable only
-}
-console.log(b) // b
-
-var c = 'c'
-try {
-  throw new Error('BFE.dev')
-} catch (error) { // local variable error references the passed error
-  var c = 'c1' // overwrites outer variable c, redeclaring global c
-}
-console.log(c) // c1
-
-
 //Array.sort expects a compare function that defines the sort order. 
 //If omitted, the array elements are converted to strings, then sorted according lexicographically
 //i.e [999, 1111, 111, 2, 0] will become [0,111,1111,2,999]
 
-//In mathematical operators, + works on both numbers and strings (used in string concatenation). 
-//Hence, if any of the operands is not a number, using + converts all operand/s to string and concatenates.
-console.log('1' + + '1' + + '1') // "1" + (+'1') + (+'1') = "1" + 1 + 1 = "1" + "1" + "1" = "111"
-console.log('a' + + 'b') // "a" + (+'b') = a + "NaN" = "aNaN"
 
 
 var hi = 10;
 function hello() {
-  // hi = 20
-  var hi = 20;
-  hi = 40;
+    // hi = 20
+    var hi = 20;
+    hi = 40;
 }
 hello()
 console.log("hi", hi)

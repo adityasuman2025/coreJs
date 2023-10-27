@@ -29,9 +29,14 @@ console.log(4)
 func1()
 func2()
 
-/*
-4
-2
-1
-3
-*/
+
+// example 2
+const promise = new Promise((resolve, reject) => {
+    const promise2 = Promise.reject('error').then(() => {
+        console.log(1)
+    }, () => {
+        console.log(2)
+    })
+    resolve(promise2)
+});
+promise.then(console.log);
