@@ -29,3 +29,16 @@ for (var i = 1; i <= 5; i++) {
     }
     inside(i);
 }
+
+
+// which will print Wingify after 300ms
+setTimeout(console.log('Wingify'), 300)
+
+setTimeout.call(console.log('Wingify'), 300)
+
+setTimeout.call(null, () => console.log('Wingify'), 300)
+
+setTimeout(() => console.log('Wingify'))
+
+
+// correct: c (thik hai)

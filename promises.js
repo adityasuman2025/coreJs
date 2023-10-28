@@ -69,3 +69,24 @@ new Promise(function(resolve) {
 })
 
 console.log(8)
+
+
+// example 4
+function foo1() {
+    console.log('foo1-1');
+    foo2()
+    console.log('foo1-2');
+}
+
+
+async function foo2() {
+    console.log('foo2-1');
+    await foo3()
+    console.log('foo2-2');
+}
+
+async function foo3() {
+    console.log('foo3');
+}
+
+foo1();
