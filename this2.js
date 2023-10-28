@@ -1,39 +1,60 @@
-// example 1
 const obj = {
-    prefix: 'BFE',
-    list: ['1', '2', '3'],
-    log() {
-        this.list.forEach(function(item) {
-            console.log(this.prefix + item);
-        });
+    a: 1,
+    b: function() {
+        console.log(this.a)
     },
-};
-
-obj.log();
-
-
-// example 2
-var bar = 1
-
-function foo() {
-    return this.bar++
-}
-
-const a = {
-    bar: 10,
-    foo1: foo,
-    foo2: function() {
-        return foo()
+    c() {
+        console.log(this.a)
     },
+    d: () => {
+        console.log(this.a)
+    },
+    e: (function() {
+        return () => {
+            console.log(this.a);
+        }
+    })(),
+    f: function() {
+        return () => {
+            console.log(this.a);
+        }
+    }
 }
 
 
-console.log(a.foo1.call())
-console.log(a.foo1())
-console.log(a.foo2.call())
-console.log(a.foo2())
+console.log(obj.a)
+obj.b();
+(obj.b)();
+const b = obj.b
+b()
+obj.b.apply({ a: 2 })
+obj.c()
+obj.d();
+(obj.d)()
+obj.d.apply({ a: 2 })
+obj.e();
+(obj.e)()
+obj.e.call({ a: 2 })
+obj.f()();
+(obj.f())()
+obj.f().call({ a: 2 })
 
-/*
-The call() method calls a function with a given this value and arguments provided individually.
-When we don't specify this, it'll refer to the globalThis aka window in the browser's context.
-*/
+
+// ref: https://bigfrontend.dev/quiz/this/discuss
+
+// console.log(obj.a); // 1
+// obj.b(); // 1
+// (obj.b)() // 1 // (obj.b)() is the same as obj.b()
+// const b = obj.b
+// b() // undefined
+// obj.b.apply({ a: 2 }) // 2
+// obj.c() // 1
+// obj.d(); // undefined
+// (obj.d)() // undefined
+// obj.d.apply({ a: 2 }) // undefined
+// obj.e(); // undefined // obj.e is actually an IIFE so this refers to window and it returns an arrow function hence this will take its value from enclosing context i.e. it'll be window.
+// (obj.e)() // undefined
+// obj.e.call({ a: 2 }) // undefined
+// obj.f()(); // 1
+// (obj.f())(); // 1
+// obj.f().call({ a: 2 }) // 1

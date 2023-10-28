@@ -91,3 +91,44 @@ var x = {
 }
 
 // x.method(y, 1);
+
+
+// example 4
+const obj = {
+    prefix: 'BFE',
+    list: ['1', '2', '3'],
+    log() {
+        this.list.forEach(function(item) {
+            console.log(this.prefix + item);
+        });
+    },
+};
+
+obj.log();
+
+
+// example 5
+var bar = 1
+
+function foo() {
+    return this.bar++
+}
+
+const a1 = {
+    bar: 10,
+    foo1: foo,
+    foo2: function() {
+        return foo()
+    },
+}
+
+
+console.log(a1.foo1.call())
+console.log(a1.foo1())
+console.log(a1.foo2.call())
+console.log(a1.foo2())
+
+/*
+The call() method calls a function with a given this value and arguments provided individually.
+When we don't specify this, it'll refer to the globalThis aka window in the browser's context.
+*/
