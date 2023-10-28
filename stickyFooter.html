@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Fooer</title>
+    <style>
+        .gradient-text {
+            font-size: 30px;
+            font-weight: bold;
+
+            background: linear-gradient(to right, red, yellow);
+            color: transparent;
+            background-clip: text;
+        }
+
+
+        .close {
+            border: 1px solid #aaa;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .close::before,
+        .close::after {
+            position: absolute;
+            content: '';
+            background: #aaa;
+            width: 75%;
+            height: 2px;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .close::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+
+        .truncate-one-line {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .truncate-multiple-line {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #555;
+            color: #fff;
+            padding: 20px 10px;
+        }
+
+        .body {
+            padding: 20px 10px;
+        }
+
+        .footer {
+            background-color: #555;
+            color: #fff;
+            padding: 20px 10px;
+
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">header</div>
+        <div class="body">
+            <button class="close"></button>
+            <br />
+
+
+            <span class="gradient-text">practice on BFE.dev, get an offer</span>
+            <br />
+
+
+            <div style="width: 100px;">
+                <div class="truncate-one-line">practice on BFE.dev, get an offer</div>
+            </div>
+
+            <div style="width: 50px;">
+                <div class="truncate-multiple-line">practice on BFE.dev, get an offer</div>
+            </div>
+            <br /> <br /> <br />
+
+
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+            content here might be tall , might be short
+            <br /><br /><br />
+        </div>
+        <div class="footer">footer</div>
+    </div>
+</body>
+
+</html>
