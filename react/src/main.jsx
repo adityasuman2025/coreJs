@@ -12,8 +12,8 @@ import EventQueue from "./EventQueue";
 
 const AuthenticatedContent = hoc(Content);
 export default class App extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             count: 1,
             todos: ["hi", "bye"]
@@ -79,38 +79,38 @@ function expensiveCalculation(toDos) {
 }
 
 // export default function App() {
-//   const [count, setCount] = useState(1);
-//   const [toDos, setToDos] = useState(["hi"]);
+//     const [count, setCount] = useState(1);
+//     const [toDos, setToDos] = useState(["hi"]);
 
-//   // const calculation = expensiveCalculation(toDos);
-//   const calculation = useMemo(() => {
-//     return expensiveCalculation(toDos);
-//   }, [toDos]);
+//     // const calculation = expensiveCalculation(toDos);
+//     const calculation = useMemo(() => {
+//         return expensiveCalculation(toDos);
+//     }, [toDos]);
 
-//   useEffect(() => {
-//     console.log("mounted");
+//     useEffect(() => {
+//         console.log("mounted");
 
-//     return () => {
-//       console.log("un mounted");
-//     }
-//   }, []);
+//         return () => {
+//             console.log("un mounted");
+//         }
+//     }, []);
 
-//   useEffect(() => {
-//     console.log("count", count);
-//   }, [count]);
+//     useEffect(() => {
+//         console.log("count", count);
+//     }, [count]);
 
-//   const handleClick = useCallback(function() {
-//     console.log("handleClick run");
-//     setCount(count => count +1)
-//   }, [count])
+//     const handleClick = useCallback(function() {
+//         console.log("handleClick run");
+//         setCount(count => count + 1)
+//     }, [count])
 
-//   return (
-//     <div className="App">
-//       <button onClick={handleClick}>count</button>
-//       <h2>Start editing to see some magic happen!</h2>
-//       {calculation}
-//     </div>
-//   );
+//     return (
+//         <div className="App">
+//             <button onClick={handleClick}>count</button>
+//             <h2>Start editing to see some magic happen!</h2>
+//             {calculation}
+//         </div>
+//     );
 // }
 
 
