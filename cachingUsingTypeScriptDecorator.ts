@@ -145,9 +145,6 @@ class TestClass {
 
 const test = new TestClass();
 
-// first call to the method - result stored in cache
-const result = test.testMethod('John', 'Doe');
-// call with different parameters, original method is called
-const result2 = test.testMethod('Jane', 'Doe');
-// result3 is returned from cache
-const result3 = test.testMethod('John', 'Doe');
+const result = test.testMethod('John', 'Doe'); // first call to the method - result stored in cache
+const result2 = test.testMethod('Jane', 'Doe'); // call with different parameters, original method is called
+const result3 = test.testMethod('John', 'Doe'); // result3 is returned from cache

@@ -1,5 +1,4 @@
 // ref: https://bigfrontend.dev/problem/create-a-browser-history
-
 class BrowserHistory {
     /**
      * @param {string} url
