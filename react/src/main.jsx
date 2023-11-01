@@ -7,7 +7,7 @@ import ContextComp from "./ContextComp";
 import CustomHook from "./CustomHook";
 import hoc from "./hoc";
 import Content from "./Content.jsx";
-import Random from "./Random";
+import Counter from "./Counter";
 import EventQueue from "./EventQueue";
 
 const AuthenticatedContent = hoc(Content);
@@ -37,7 +37,7 @@ export default class App extends React.Component {
             <div className="App">
                 <EventQueue />
 
-                <Random />
+                <Counter />
 
                 <AuthenticatedContent name="Aditya" />
 
