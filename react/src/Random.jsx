@@ -1,8 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // ref: https://react.dev/learn/queueing-a-series-of-state-updates#
 export default function Random() {
     const [counter, setCounter] = useState(0);
+    console.log("counter", counter);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setCounter((counter) => counter + 1);
+            // setCounter(counter + 1);
+        }, 100); // it will increase counter only 1 time, so counter will be rendered 2 times - 0(initial value) & 1 (increased value)
+
+        // setInterval(() => {
+        //     // setCounter((counter) => counter + 1); // it will keep increasing counter, so counet will be rendered infinite times
+        //     setCounter(counter + 1); // it will increase counter only 1 time, so counter will be rendered 2 times - 0(initial value) & 1 (increased value)
+        // }, 100); 
+    }, []);
 
     function handleIncreaseClick() {
         // setInterval(() => {
