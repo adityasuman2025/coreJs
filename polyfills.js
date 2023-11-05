@@ -67,9 +67,12 @@ const mySomeResp = arr.mySome((item) => item > 8);
 
 /*----------------------------------------reduce--------------------------------*/
 Array.prototype.myReduce = function(func, initialVal) {
-    let resp = initialVal, arr = this;
+    const arr = this;
+    const hasInitialVal = arguments.length > 1; // if initialVal paramater is passed, then length of arguments will be greater than 1
 
-    for (let i = 0; i < arr.length; i++) {
+    let resp = hasInitialVal ? initialVal : arr[0];
+
+    for (let i = (hasInitialVal ? 0 : 1); i < arr.length; i++) {
         resp = func(resp, arr[i], i);
     }
 
