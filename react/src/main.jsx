@@ -9,7 +9,8 @@ import hoc from "./hoc";
 import Content from "./Content.jsx";
 import Counter from "./Counter";
 import EventQueue from "./EventQueue";
-import ApiCallUsingUseState from "./ApiCallUsingUseState.jsx";
+import ApiCallUsingUseState from "./ApiCallUsingUseState";
+import ControlledComponent from "./ControlledComponent";
 
 const AuthenticatedContent = hoc(Content);
 export default class App extends React.Component {
@@ -36,12 +37,20 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <ControlledComponent />
+                <br /><br />
+
                 <ApiCallUsingUseState />
+                <br /><br />
+
                 <EventQueue />
+                <br /><br />
 
                 <Counter />
+                <br /><br />
 
                 <AuthenticatedContent name="Aditya" />
+                <br /><br />
 
                 <h1>Counter</h1>
                 {this.state.count}<br />
