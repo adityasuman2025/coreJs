@@ -6,11 +6,12 @@ import ToDos from "./ToDos";
 import ContextComp from "./ContextComp";
 import CustomHook from "./CustomHook";
 import hoc from "./hoc";
-import Content from "./Content.jsx";
+import Content from "./Content";
 import Counter from "./Counter";
 import EventQueue from "./EventQueue";
 import ApiCallUsingUseState from "./ApiCallUsingUseState";
 import ControlledComponent from "./ControlledComponent";
+import Test from "./Test";
 
 const AuthenticatedContent = hoc(Content);
 export default class App extends React.Component {
@@ -37,6 +38,9 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <Test name={"Aditya"} />
+                <br /><br />
+
                 <ControlledComponent />
                 <br /><br />
 
