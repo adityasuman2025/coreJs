@@ -242,6 +242,49 @@ console.log("nameObj.func", nameObj.func);
 
 
 
+/*----------------------------------------compose--------------------------------*/
+const addOne = x => x + 1;
+const multiplyByTwo = x => x * 2;
+const square = x => x * x;
+
+
+// The compose() function takes a list of functions and returns a new function. This new function, when called with an argument, will apply the functions from right to left.
+function compose(...funcs) {
+    return function(intialVal) {
+        let res = intialVal
+        for (let i = funcs.length - 1; i >= 0; i--) {
+            res = funcs[i](res);
+        }
+        return res;
+    }
+}
+
+const composedFunction = compose(square, multiplyByTwo, addOne);
+const result1 = composedFunction(3); // Equivalent to square(multiplyByTwo(addOne(3)))
+console.log("composedFunction result", result1); // Output: 64
+
+
+
+
+/*----------------------------------------pipe--------------------------------*/
+// The pipe() function is similar to compose(), but it applies the functions from left to right.
+function pipe(...funcs) {
+    return function(intialVal) {
+        let res = intialVal
+        for (let i = 0; i < funcs.length; i++) {
+            res = funcs[i](res);
+        }
+        return res;
+    }
+}
+
+const pipedFunction = pipe(square, multiplyByTwo, addOne);
+const result2 = pipedFunction(3); // Equivalent to square(multiplyByTwo(addOne(3)))
+console.log("pipedFunction result", result2); // Output: 19
+
+
+
+
 /*----------------------------------------String trim--------------------------------*/
 String.prototype.trim = function() {
     let str = this;
