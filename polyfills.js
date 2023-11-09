@@ -241,7 +241,7 @@ console.log("nameObj.func", nameObj.func);
 
 
 
-/*----------------------------------------promise All--------------------------------*/
+/*----------------------------------------String trim--------------------------------*/
 String.prototype.trim = function() {
     let str = this;
 
