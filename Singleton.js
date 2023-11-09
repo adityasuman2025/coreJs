@@ -1,12 +1,12 @@
 class Single {
-    constructor() {
+    constructor(color) {
         // Single.instance is already created then returning that and not creating any new instance
         if (Single.instance instanceof Single) {
             return Single.instance;
         }
 
         this.settingsObj = {
-            color: "red",
+            color: color,
             version: Math.floor(Math.random() * 100)
         }
 
@@ -19,7 +19,7 @@ class Single {
     }
 }
 
-let a = new Single();
-let b = new Single();
+let a = new Single("red");
+let b = new Single("blue");
 console.log("a", a)
 console.log("b", b)

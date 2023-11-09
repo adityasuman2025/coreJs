@@ -1,5 +1,3 @@
-// This is a JavaScript Quiz from BFE.dev 
-
 // example 1
 let a = 1;
 (function() {
@@ -50,7 +48,7 @@ obj1.foo(); // "BFE"
 (obj1.foo)(); // "BFE"
 (obj1.foo || obj1.bar)(); // undefined
 /*
-n normal javascript functions, this keyword points to who is calling the function (dynamic binding). Thus, when we invoke a function as obj.foo() the this keyword points to obj.
+in regular/normal javascript functions, this keyword points to who is calling the function (dynamic binding). Thus, when we invoke a function as obj.foo() the this keyword points to obj.
 
 Note that, (obj.foo)() is the same as obj.foo() and this again points to obj
 

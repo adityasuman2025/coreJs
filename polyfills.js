@@ -4,6 +4,7 @@
     some
     reduce
     forEach
+    chunk
     find
     findIndex
     indexOf
@@ -152,7 +153,7 @@ const newArrByfindIndex = arr.myfindIndex((item, index) => (item % 2 == 1) && (i
 
 
 
-/*----------------------------------------some--------------------------------*/
+/*----------------------------------------indexOf--------------------------------*/
 Array.prototype.myIndexOf = function(toFind, startIdx = 0) {
     let arr = this;
     for (let idx = (startIdx || 0); idx < arr.length; idx++) {
@@ -167,7 +168,7 @@ const myIndexOfResp = arr.myIndexOf(5, 5);
 
 
 
-/*----------------------------------------some--------------------------------*/
+/*----------------------------------------includes--------------------------------*/
 Array.prototype.myIncludes = function(toFind, startIdx = 0) {
     let arr = this;
     for (let idx = (startIdx || 0); idx < arr.length; idx++) {
@@ -334,8 +335,8 @@ Promise.myPromiseAllSettled = function(promiseArr) {
                         if (c === promiseArr.length) resolve(resp)
                     });
             } else {
-                resp[i] = { status: 'fulfilled', value: promiseArr[i] },
-                    c++;
+                resp[i] = { status: 'fulfilled', value: promiseArr[i] };
+                c++;
                 if (c === promiseArr.length) resolve(resp)
             }
         }

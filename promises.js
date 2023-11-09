@@ -1,4 +1,4 @@
-// example 1
+// example 0
 const promise1 = Promise.resolve(1)
 const promise2 = Promise.resolve(2)
 const promise3 = Promise.resolve(3)
@@ -10,10 +10,10 @@ const promiseAll = async () => {
     return [group1, group2]
 }
 
-promiseAll().then(console.log).catch(console.log); // 4
+promiseAll().then(console.log).catch(console.log);
 
 
-// example 2
+// example 1
 const createPromise = () => Promise.resolve(1)
 function func1() {
     createPromise().then(console.log)
