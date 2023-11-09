@@ -6,11 +6,10 @@ let todos = [
     { text: "drink water", isDone: true }
 ];
 
-const todosEle = document.getElementById("todos");
 const inputEle = document.getElementById("input");
 inputEle.addEventListener("keyup", handleInputChange);
 
-
+const todosEle = document.getElementById("todos");
 const optimisedHandleToDoChange = debounce(handleToDoChange, 300);
 todosEle.addEventListener("keyup", optimisedHandleToDoChange);
 todosEle.addEventListener("click", handleDoneBtnClick);

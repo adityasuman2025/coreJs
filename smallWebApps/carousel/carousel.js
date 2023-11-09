@@ -22,7 +22,7 @@ export default function carousel(images, element) {
             imgTitle.classList.add("imgTitle");
             slide.style.left = index * WIDTH + "px"
             slide.append(imgTitle);
-            
+
             slider.append(slide);
         });
 
@@ -49,9 +49,9 @@ export default function carousel(images, element) {
     const slides = document.getElementsByClassName("slide");
     const totalSlides = slides.length;
 
-    document.getElementById("btn-prev").addEventListener("click", movePrev);   
-    document.getElementById("btn-next").addEventListener("click", moveNext)
-    
+    document.getElementById("btn-prev").addEventListener("click", movePrev);
+    document.getElementById("btn-next").addEventListener("click", moveNext);
+
     let active = 0;
     function moveNext() {
         active = (active == totalSlides - 1) ? 0 : active + 1;
@@ -64,8 +64,8 @@ export default function carousel(images, element) {
     }
 
     function moveSlides() {
-        for (let i=0; i<totalSlides; i++) {
-            slides[i].style.left = (i-active) * WIDTH + "px";
+        for (let i = 0; i < totalSlides; i++) {
+            slides[i].style.left = (i - active) * WIDTH + "px";
         }
     }
 
