@@ -47,20 +47,19 @@ function set(obj, path, value) {
     const pathArr = Array.isArray(path) ? path : path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
 
     const thisKey = pathArr[0], nextKey = pathArr[1];
-    const thisKeyAsNumberOrStr = Number(thisKey) || thisKey; // if thisKey is a number then key should go as number, otherwise as string
-
-    if (pathArr.length === 1) obj[thisKeyAsNumberOrStr] = value;
-    else {
+    if (pathArr.length === 1) {
+        obj[thisKey] = value;
+    } else {
         if (!obj.hasOwnProperty(thisKey)) {
-            obj[thisKeyAsNumberOrStr] = isNaN(Number(nextKey)) ? {} : [] // if nextKey is a number then making that key's value array otherwise object
+            obj[thisKey] = String(Number(nextKey)) === nextKey ? [] : {};
         }
 
-        set(obj[thisKeyAsNumberOrStr], pathArr.slice(1), value) // pathArr.slice(1), removing first element from the path array as it has already been proccessed
+        set(obj[thisKey], pathArr.slice(1), value);
     }
 }
-// set(obj, 'a.c.d.01.e.0.f', 'BFE');
-// set(obj, 'a.b.c.4', 'BFE');
-// console.log("obj", JSON.stringify(obj));
+set(obj, 'a.c.d.01.e.0.f', 'BFE');
+set(obj, 'a.b.c.4', 'BFE');
+console.log("obj", JSON.stringify(obj));
 
 
 
@@ -130,11 +129,11 @@ function curry(func) {
 function join(a, b, c) {
     return `${a}_${b}_${c}`;
 }
-const curriedJoin = curry(join);
-console.log(curriedJoin(1, 2, 3)) // '1_2_3'
-console.log(curriedJoin(1)(2, 3)) // '1_2_3'
-console.log(curriedJoin(1)(2)(3)) // '1_2_3'
-console.log(curriedJoin(1, 2, 3, 4)) // '1_2_3'
+// const curriedJoin = curry(join);
+// console.log(curriedJoin(1, 2, 3)) // '1_2_3'
+// console.log(curriedJoin(1)(2, 3)) // '1_2_3'
+// console.log(curriedJoin(1)(2)(3)) // '1_2_3'
+// console.log(curriedJoin(1, 2, 3, 4)) // '1_2_3'
 
 
 
@@ -162,12 +161,12 @@ function cloneDeep(data) {
     return clone(data);
 }
 
-const sym = Symbol()
-const obj2 = { [sym]: 'bfe' }
+// const sym = Symbol()
+// const obj2 = { [sym]: 'bfe' }
 
-const clone = cloneDeep(obj2)
-console.log(clone); //.not.toBe(obj2)
-console.log(clone[sym]);
+// const clone = cloneDeep(obj2)
+// console.log(clone); //.not.toBe(obj2)
+// console.log(clone[sym]);
 
 
 
@@ -204,4 +203,4 @@ function isEqual(a, b) {
     return isEqualUtil(a, b)
 }
 
-console.log(isEqual([1, 2, 3], [1, 2, 3, 4])); //.toBe(false)
+// console.log(isEqual([1, 2, 3], [1, 2, 3, 4])); //.toBe(false)
