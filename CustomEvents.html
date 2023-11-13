@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Events</title>
+</head>
+
+<body>
+    <div id="element">Custom Events</div>
+
+    <script type="text/javascript">
+        const element = document.getElementById("element");
+
+        // const event = new Event("build");
+        const customEvent = new CustomEvent("build", { detail: "yo bro" })
+
+        // Listen for the event.
+        element.addEventListener("build", function(e) {
+            console.log("e", e)
+        });
+
+        // Dispatch the event.
+        element.dispatchEvent(customEvent);
+    </script>
+</body>
+
+</html>
