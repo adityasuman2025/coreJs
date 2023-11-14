@@ -66,7 +66,7 @@ console.log("obj", JSON.stringify(obj));
 
 /*---------------------- omit ----------------------*/
 function omit(obj, path) {
-    let pathArr = Array.isArray(path) ? path : path.replace("[", ".").replace("]", "").split(".");
+    const pathArr = Array.isArray(path) ? path : path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
 
     const thisKey = Number(pathArr[0]) || pathArr[0];
     if (pathArr.length === 1) {
