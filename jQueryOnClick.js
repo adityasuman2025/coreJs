@@ -6,14 +6,14 @@ Can you create a function which works like jQuery.on(), that attaches event list
 In jQuery, selector is used to target the elements, in this problem, it is changed to a predicate function.
 
 onClick(
-  // root element
-  document.body,  
-  // predicate
-  (el) => el.tagName.toLowerCase() === 'div',  
-  function(e) {
-    console.log(this);
-    // this logs all the `div` element
-  }
+    // root element
+    document.body,  
+    // predicate
+    (el) => el.tagName.toLowerCase() === 'div',  
+    function(e) {
+        console.log(this);
+        // this logs all the `div` element
+    }
 )
 event.stopPropagation() and event.stopImmediatePropagation() should also be supported.
 
