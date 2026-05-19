@@ -48,7 +48,7 @@ function objConstructor() {
 
 const obj2 = new objConstructor();
 obj2.regGetName(); // here this is obj2
-obj2.arrowGetName(); // here this is obj2 because arrow function's this, is this of the object where it is defined and here it is defined in objConstructor function which has its own Execution Context and its own this
+obj2.arrowGetName(); // here this is obj2 because arrow function's this is this of the object where it is defined and here it is defined in objConstructor function which has its own Execution Context and its own this
 
 
 

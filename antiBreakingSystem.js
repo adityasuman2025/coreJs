@@ -29,7 +29,7 @@ function performHeavyCalculation(data) {
 }
 
 // Example usage
-const dataArray = Array.from({ length: 1000000 }, () => Math.random()); // Generate an array of 10,000 random numbers
+const dataArray = Array.from({ length: 1000000 }, () => Math.floor(Math.random() * (10 - 1) + 1)); // Generate an array of N random numbers b/w 1 and 10
 
 performHeavyCalculation(dataArray)
     .then(result => {
