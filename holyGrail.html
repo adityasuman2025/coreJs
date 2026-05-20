@@ -1,0 +1,113 @@
+<!----
+https://www.greatfrontend.com/interviews/study/gfe75/questions/user-interface/holy-grail
+see the image file holy-grail-example.png
+
+The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page contents, and the right column contains ads.
+
+Holy Grail layout example
+
+Implement the Holy Grail layout using just CSS. You shouldn't need to change the HTML too much.
+
+Requirements
+
+Header
+Stretches horizontally across the whole page.
+60px tall.
+Columns
+Both the left and right columns have a fixed width of 100px.
+The center column is fluid-width.
+All the columns should have the same height, regardless of which column is the tallest.
+Footer
+Stretches horizontally across the whole page.
+100px tall.
+The footer should be at the bottom of the page even if there is not enough content to fill up the viewport height.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        header,
+        nav,
+        main,
+        aside,
+        footer {
+            padding: 12px;
+        }
+
+        #root {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        header {
+            background-color: tomato;
+            height: 60px;
+
+            /* don't let the height/width to go below the defined (here height 60px) at any situation */
+            flex-shrink: 0;
+        }
+
+        .content {
+            display: flex;
+            flex: 1;
+        }
+
+        nav {
+            background-color: coral;
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        main {
+            background-color: moccasin;
+            flex: 1;
+        }
+
+        aside {
+            background-color: sandybrown;
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        footer {
+            background-color: slategray;
+            height: 100px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <header>Header</header>
+        <div class="content">
+            <nav>Navigation</nav>
+            <main>Main</main>
+            <aside>Sidebar</aside>
+        </div>
+        <footer>Footer</footer>
+    </div>
+</body>
+
+</html>

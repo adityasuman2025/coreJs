@@ -3,7 +3,7 @@
 let person1 = {
     firstName: "aditya",
     lastName: "suman",
-    printName: function () {
+    printName: function() {
         console.log(this.firstName + " " + this.lastName)
     }
 }
