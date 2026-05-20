@@ -1,126 +1,71 @@
-let str0 = "The gods have yet to make a man who lacks the patience for absolute power"; // normal string
-let str1 = "Half       BLOOD   pRINCE"; // normal string with extra spaces
+/*
+https://bigfrontend.dev/problem/convert-snake_case-to-camelCase
 
-let str2 = "i_AM_IRON_man"; // snake case
-let str3 = "tom-------mARVolo-------Riddle"; // hyphen
-let str4 = "Spiderman---FAR    frOM______home"; // mix of all
+Do you prefer snake_case or camelCase ?
 
-let str5 = "AManHasNoName"; // somewhat camelCase
-let str6 = "godOfThunder "; // already camelCase
-
-let str7 = "undefined null NaN "; // string contains unexpected words
-let str8 = 123; // not a string
-let str9 = "123 456 str a987BOY"; // string with numbers
-let str10 = "--a__b      c"; // string starting with symbols
-
-// Half       BLOOD   pRINCE  ->  halfBloodPrince
-// tom-------mARVolo-------Riddle  -> tomMarvoloRiddle
-function camelCase(str) {
-    if (!str || Number(str)) return str;
-
-    const strSymbolsRemoved = str.replace(/-/g, " ").replace(/_/g, " ");
-    const strSplittedBySpace = strSymbolsRemoved.split(" ");
-    const extraSpaceRemoved = strSplittedBySpace.filter(item => item !== "");
-
-    if (extraSpaceRemoved.length === 1) {
-        const item = extraSpaceRemoved[0];
-        return item[0].toLowerCase() + item.slice(1);
-    } else {
-        const res = extraSpaceRemoved.reduce((acc, item, idx) => {
-            const ans = (idx === 0 ? item[0].toLowerCase() : item[0].toUpperCase()) + item.slice(1).toLowerCase();
-            return acc + ans;
-        }, "");
-
-        return res;
-    }
-}
-
-// console.log("str0", camelCase(str0));
-// console.log("str1", camelCase(str1));
-// console.log("str2", camelCase(str2));
-// console.log("str3", camelCase(str3));
-// console.log("str4", camelCase(str4));
-// console.log("str5", camelCase(str5));
-// console.log("str6", camelCase(str6));
-// console.log("str7", camelCase(str7));
-// console.log("str8", camelCase(str8));
-// console.log("str9", camelCase(str9));
-// console.log("str10", camelCase(str10));
+Anyway, please create a function to convert snake_case to camcelCase.
+snakeToCamel('snake_case') 
+// 'snakeCase'
+snakeToCamel('is_flag_on') 
+// 'isFlagOn'
+snakeToCamel('is_IOS_or_Android') 
+// 'isIOSOrAndroid'
+snakeToCamel('_first_underscore') 
+// '_firstUnderscore'
+snakeToCamel('last_underscore_') 
+// 'lastUnderscore_'
+snakeToCamel('_double__underscore_') 
+// '_double__underscore_'
+contiguous underscore __, leading underscore _a, and trailing underscors a_ should be kept untouched.
+*/
 
 
+/**
+ * @param {string} str
+ * @return {string}
+ */
+function snakeToCamel(str) {
+    let result = "";
 
+    let len = str.length;
+    let start = 0, end = len - 1;
 
-let obj = {
-    [str0]: "1",
-    [str1]: [
-        { [str2]: 2 },
-        3,
-        {
-            [str3]: "4",
-            [str4]: [
-                { [str5]: 5 }
-            ]
-        },
-        ["6", 7]
-    ],
-    [str6]: {
-        [str7]: {
-            [str8]: 8,
-            [str9]: {
-                [str10]: "9"
+    while (str[start] === "_") {
+        result += str[start];
+        start++;
+    } // for all pre underscores
+
+    while (start <= end) {
+        if (str[start] != "_") {
+            result += str[start];
+            start++;
+        } else {
+            if (str[start + 1] === "_") {
+                result += str[start];
+                start++;
+
+                while (str[start] === "_") {
+                    result += str[start];
+                    start++;
+                }
+            } else {
+                // If it's a single underscore, check if it's trailing.
+                // If it is the last character, we must keep it.
+                if (start === end) {
+                    result += str[start];
+                    start++;
+                } else {
+                    // Otherwise, skip the underscore and capitalize the NEXT character
+                    start++;
+                    result += str[start].toUpperCase();
+                    start++;
+                }
             }
         }
-    },
-    5: "10"
-};
-
-const obj2 = [
-    { i_d: 1 },
-    { i_d: 2 },
-    { i_d: 3 },
-    "yo",
-    {
-        o_ne: "1",
-        t_wo: "2",
-        th_ree: [
-            { i_d: 1 },
-            { i_d: 2 },
-        ]
-    },
-    ["sa", "a"]
-]
-
-let obj3 = [1, 2, 3];
-
-let obj4 = {
-    0: 0,
-    1: 1,
-    2: 2,
-    3: 3
-}
-
-function camelizeObject(obj) {
-    let newObj;
-    if (typeof obj === "object") {
-        newObj = {};
-        if (Array.isArray(obj)) newObj = [];
-    } else {
-        return obj;
     }
 
-    Object.keys(obj).forEach((key) => {
-        const val = obj[key];
-        const camelKey = camelCase(key);
-        if (typeof val === "object") {
-            newObj[camelKey] = camelizeObject(val);
-        } else {
-            newObj[camelKey] = val;
-        }
-    });
-
-    return newObj;
+    return result;
 }
 
-const res = camelizeObject(obj4);
-console.log("obj", (obj4))
-console.log("res", (res))
+const val = snakeToCamel('snake_case')
+console.log("val", val);
