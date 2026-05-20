@@ -1,5 +1,5 @@
 //currying
-//it is a technique in functional programming in which a function with multiple arguments is transformed into serveral function with single argument in sequence
+//it is a technique in functional programming in which a function with multiple arguments is transformed into serveral function with one or more arguments in sequence
 //it can be done in 2 ways
 //1: bind
 const add = (x, y) => {
@@ -39,26 +39,17 @@ const sumVal = sum(1)(2)(3)(4)(5)(6)();
 
 // curryAltSum(1)(2)(3, 4)(5, 6, 7)(8)(9, 10)...()
 // 1+2-3+4-5+6-7+8-9+10
-let isSum = true;
+let toSum = true;
 function curryAltSum(...args1) {
-    let sum = args1[0];
-
     return function(...args2) {
-        for (let i = 1; i < args1.length; i++) {
-            if (isSum) sum += args1[i]
-            else sum -= args1[i]
+        const sum = [...args1, ...args2].reduce((res, i) => {
+            let ans = toSum ? res + i : res - i;
+            toSum = !toSum;
 
-            isSum = !isSum;
-        }
+            return ans;
+        });
 
-        for (let i = 0; i < args2.length; i++) {
-            if (isSum) sum += args2[i]
-            else sum -= args2[i]
-
-            isSum = !isSum;
-        }
-
-        return args2.length ? curryAltSum(sum) : sum
+        return args2.length ? curryAltSum(sum) : args1[0];
     }
 }
 

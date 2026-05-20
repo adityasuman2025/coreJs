@@ -29,43 +29,26 @@ Explanation: obj[0], obj[1], obj[3][0], and obj[4][0] were falsy and removed.
  * @param {Object} obj
  * @return {Object}
  */
-var compactObject = function (obj) {
-    let resp = Array.isArray(obj) ? [] : {};
+var compactObject = function(obj) {
+    function helper(obj) {
+        const result = Array.isArray(obj) ? [] : {};
+        const keys = Object.keys(obj);
 
-    function helper(resp, val, key) {
-        if (typeof val === "object") {
-            if (Array.isArray(val)) {
-                resp[key] = [];
-                util(val, resp[key]);
-            } else {
-                resp[key] = {};
-                util(val, resp[key]);
-            }
-        } else {
-            resp[key] = val;
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            const val = obj[key];
+            if (!val) continue;
+
+            if (typeof val === "object") Array.isArray(obj) ? result.push(helper(val)) : result[key] = helper(val);
+            else Array.isArray(obj) ? result.push(val) : result[key] = val
         }
+
+        return result;
     }
 
-    function util(obj, resp) {
-        if (Array.isArray(obj)) {
-            let c = 0;
-            obj.forEach(val => {
-                if (val) {
-                    helper(resp, val, c);
-                    c++;
-                }
-            })
-        } else {
-            Object.keys(obj).forEach(key => {
-                const val = obj[key];
-
-                if (val) {
-                    helper(resp, val, key);
-                }
-            });
-        }
-    }
-    util(obj, resp);
-
-    return resp;
+    return helper(obj)
 };
+
+const obj = [null, 0, 5, [0], [false, 16]]
+const res = compactObject(obj);
+console.log("res", res)

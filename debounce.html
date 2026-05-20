@@ -17,7 +17,7 @@
         //debounce
         function myDebounce(functionToRun, delay) {
             let timer;
-            return function (...args) {
+            return function(...args) {
                 console.log("args", args)
                 clearTimeout(timer);
                 timer = setTimeout(() => { functionToRun.call(this, ...args) }, delay)
@@ -35,7 +35,7 @@
         //throttle
         function myThrottle(functionToRun, delay) {
             let flag = true;
-            return function (...args) {
+            return function(...args) {
                 if (flag) {
                     flag = false;
                     functionToRun.call(this, ...args);
