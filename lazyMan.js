@@ -51,52 +51,47 @@ Please create such LazyMan()
  * @param {(log: string) => void} logFn
  * @returns {Laziness}
  */
-
 function LazyMan(name, logFn) {
-    let tasks = [{ type: "greet", args: [name] }];
+    let tasks = [() => logFn("Hi, I'm " + name + '.')]; // funcs
 
-    const actions = {
-        greet(name) {
-            logFn(`Hi, I'm ${name}.`);
-        },
-        eat: function(food) {
-            logFn(`Eat ${food}.`);
-        },
-        sleep: function(duration) {
-            return new Promise(function(resolve) {
-                setTimeout(() => {
-                    logFn(`Wake up after ${duration} second${duration > 1 ? 's' : ''}.`);
-                    resolve();
-                }, duration * 1000);
-            });
-        }
+    function sleepFunction(time) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                logFn("Wake up after " + time + " second" + (time > 1 ? "s" : "") + ".")
+                resolve()
+            }, time * 1000);
+        }); // returned promise so that the task can stop next execution
     }
 
-    Promise.resolve().then(execTasks);
-    async function execTasks() {
-        console.log("execTasks")
+    Promise.resolve().then(async () => {
         for (let i = 0; i < tasks.length; i++) {
-            const { type, args } = tasks[i];
-            await actions[type](...args);
+            const task = tasks[i];
+            await task();
         }
-    }
+    }); // promise is used so that all tasks can be processed using microtask queue as sleepFirst holds normal tasks like greet/eat too
 
     return {
-        eat(...args) {
-            tasks.push({ type: "eat", args });
+        eat: function(food) {
+            tasks.push(() => logFn("Eat " + food + "."));
             return this;
         },
-        sleep(...args) {
-            tasks.push({ type: "sleep", args });
+        sleep: function(time) {
+            tasks.push(() => sleepFunction(time))
             return this;
         },
-        sleepFirst(...args) {
-            tasks.unshift({ type: "sleep", args });
+        sleepFirst: function(time) {
+            tasks.unshift(() => sleepFunction(time));
             return this;
-        },
+        }
     }
 }
 
-const log = console.log;
-// LazyMan('Jack', log).eat('banana').sleep(1).eat('apple');
-LazyMan('Jack', log).eat('banana').eat('apple').sleepFirst(2);
+// LazyMan('Jack', console.log)
+// Hi, I'm Jack.
+
+// LazyMan('Jack', console.log)
+//     .eat('banana')
+//     .sleep(1000)
+//     .eat('apple')
+
+LazyMan('Jack', console.log).eat('banana').eat('apple').sleepFirst(2)
