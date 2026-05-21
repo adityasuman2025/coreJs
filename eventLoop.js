@@ -1,4 +1,4 @@
-// it will print b c a
+/*------------------ prblm ------------------------*/
 // callbacks exists in callback Queue(macrotask queue) and wait for event loop to pick it and then add it in call stack (once the call stack is empty)
 // setTimeout(() => {
 //     console.log("a");
@@ -32,10 +32,12 @@
 
 
 
-// promise callback and mutation observar is moved to microTask Queue
-// All Callback functions (except promise callback and mutation observer) are transferred to callback queue or task queue or macroTask queue
 
-// Microtask queue tasks are given priority over callback/macrostask queue tasks, event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
+/*------------------ prblm ------------------------*/
+// // promise callback and mutation observar is moved to microTask Queue
+// // All Callback functions (except promise callback and mutation observer) are transferred to callback queue or task queue or macroTask queue
+
+// // Microtask queue tasks are given priority over callback/macrostask queue tasks -> event loop will pick tasks from callback queue, only when all tasks of microtask queue is done
 // console.log(1)
 
 // const mc = new MessageChannel()
@@ -59,7 +61,9 @@
 // console.log(6)
 
 
-// another
+
+
+/*------------------ prblm ------------------------*/
 // console.log(1)
 
 // document.body.addEventListener('click', () => {
@@ -76,21 +80,16 @@
 
 // console.log(5)
 
-// document.body.click()
+// document.body.click() // document.body.click() is synchronous
 
 // console.log(6)
 
-
-// Synchronous code (including event listeners) gets executed first in order.
-/* 
-Order:
-    - Statement
-    - Promise callbacks/mutation observer
-    - Web worker (port/window.eventHander, etc..)
-    - all other callbacks e.g. setTimeout
-*/
+// // Synchronous code (including event listeners) gets executed first in order.
 
 
+
+
+/*------------------ prblm ------------------------*/
 console.log(1)
 
 window.onmessage = () => {

@@ -38,25 +38,29 @@ const obj = {
     ]
 };
 
-function flattenObj(obj, parentKey = "") {
-    let newObj = {};
 
-    function flattenObjUtil(obj, parentKey = "") {
-        Object.keys(obj).forEach(key => {
-            const val = obj[key];
-            const newKey = (parentKey ? parentKey + "_" : "") + key;
+function flatten(obj) {
+    let res = {};
 
-            if (typeof val === "object") {
-                flattenObjUtil(val, newKey)
-            } else {
-                newObj[newKey] = val;
-            }
-        });
+    function util(obj, pre) {
+        let keys = Object.keys(obj);
+
+        for (let i = 0; i < keys.length; i++) {
+            let key = keys[i];
+            let newKey = (pre ? (pre + "_") : "") + key;
+            let val = obj[key];
+
+            // console.log("key", key);
+            // console.log("val", val);
+
+            if (typeof val === "object") util(val, newKey)
+            else res[newKey] = val;
+        }
     }
-    flattenObjUtil(obj, parentKey);
+    util(obj, "");
 
-    return newObj;
+    return res;
 }
 
-const ans = flattenObj(obj);
-console.log("flatten obj", ans)
+const res = flatten(obj);
+console.log("flatten obj", res);

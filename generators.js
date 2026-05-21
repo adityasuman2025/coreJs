@@ -32,9 +32,9 @@ console.log(gen.next())
     // 4
 */
 function* range(from, to) {
-    // return (new Array(to - from + 1)).fill(1).map((_,idx) => idx+from)
+    let i = from;
 
-    while (from <= to) {
-        yield from++
+    while (i <= to) {
+        yield i++;
     }
 }

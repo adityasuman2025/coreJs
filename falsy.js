@@ -1,6 +1,6 @@
 /*
-What are the number of possible values following function can print?
-(We can call this function any number of times using any possible value in javascript)
+    What are the number of possible values following function can print?
+    (We can call this function any number of times using any possible value in javascript)
 */
 
 function printValue(val) {
