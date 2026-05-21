@@ -3,11 +3,12 @@
 */
 
 const entries = [1, 2, 3, 4].entries()
-for (const [, item] of entries) {
-    console.log(item)
+for (const [key, val] of entries) {
+    console.log(key, val)
     break;
 }
-for (const [, item] of entries) {
-    console.log(item)
+
+for (const [key, val] of entries) {
+    console.log(key, val)
     break;
 }

@@ -5,29 +5,29 @@
  * @param {any} data
  * @returns {string}
  */
-function t(str, data = {}) {
-    const length = str.length;
+function t(translation, data = {}) {
+    const len = translation.length;
+    let res = translation;
 
-    let out = str;
-    for (let i = 0; i < length;) {
-        if (str[i] === "{" && str[i + 1] === "{") {
-            let j = i + 2;
-            while (str[j] !== "}" && j < length) j++;
+    let i = 0;
+    while (i < len) {
+        if (translation[i] === '{' && translation[i + 1] === '{') {
+            let start = i + 2, end = i + 2;
+            while (translation[end] != "}" && end < len) end++;
 
-            if (str[j] === "}" && str[j + 1] === "}") {
-                const startIdx = i + 2;
-                const endIdx = j - 1;
-                const key = str.substring(startIdx, endIdx + 1);
+            if (translation[end + 1] === "}") {
+                // found a key
+                const key = translation.slice(start, end);
 
-                out = out.replace(`{{${key}}}`, data[key] || "");
-                i = endIdx;
+                res = res.replace("{{" + key + "}}", data[key] || "");
+                i = end;
             }
         }
 
         i++;
     }
 
-    return out;
+    return res;
 }
 
 console.log(t(

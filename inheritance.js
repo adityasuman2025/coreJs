@@ -14,7 +14,7 @@ class Employee {
         console.log("name is " + this.name);
     }
 
-    getName3 = function () {
+    getName3 = function() {
         console.log("name is " + this.name)
     }
 
@@ -59,16 +59,16 @@ function EmployeeFunc(name, doj) {
     this.doj = doj;
     this.__proto__.kauaa = "kauaa is a bird";
 
-    this.getName = function () {
+    this.getName = function() {
         console.log(this.name);
     }
 
-    this.getDateOfJoining = function () {
+    this.getDateOfJoining = function() {
         console.log(this.doj);
     }
 }
 EmployeeFunc.prototype.biro = "kauaa"; // will be added to prototype object of this object
-EmployeeFunc.prototype.setName = function (name) {
+EmployeeFunc.prototype.setName = function(name) {
     this.name = name;
 }
 
@@ -85,7 +85,7 @@ function ProgrammerFunc(name, doj, team, language) {
     this.team = team;
     this.language = language;
 
-    this.getLang = function () {
+    this.getLang = function() {
         console.log(this.language);
     }
 }
