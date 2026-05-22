@@ -1,7 +1,12 @@
-//Memoization is a programming technique which attempts to increase a function’s performance by caching its previously computed results. 
-//Because JavaScript objects behave like associative arrays, they are ideal candidates to act as caches.
+// Memoization is a programming technique which attempts to increase a function’s performance by caching its previously computed results. 
+// Because JavaScript objects behave like associative arrays, they are ideal candidates to act as caches.
 
 // fibonnaci series: // 0 1 1 2 3 5 8 13 21 34 ...
+/*
+    fib(0) = 0, fib(1) = 1
+    fibonnaci rule: fib(n) = fib(n-1) + fib(n-2) 
+
+*/
 function fibonnaci(n) {
     let cache = { 0: 0, 1: 1 };
 
@@ -17,7 +22,7 @@ function fibonnaci(n) {
     return fibUtil(n);
 }
 
-// const ans = fibonnaci(50);
+// const ans = fibonnaci(500);
 // console.log("ans", ans)
 
 

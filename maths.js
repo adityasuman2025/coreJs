@@ -4,24 +4,33 @@
  * @return {string}
  */
 function add(num1, num2) {
-    const num1Arr = num1.split(""), num2Arr = num2.split("");
+    const arr1 = num1.split(""), arr2 = num2.split("");
+    const l1 = arr1.length, l2 = arr2.length;
 
-    let res = "", carry;
-    while (num1Arr.length || num2Arr.length || carry) {
-        const sum = Number(num1Arr.pop() || 0) + Number(num2Arr.pop() || 0) + Number(carry || 0);
+    let ans = new Array(l1 > l2 ? l1 : l2);
+    let carry;
 
-        carry = (sum >= 10) ? 1 : 0;
+    for (let i = (l1 > l2 ? l1 : l2) - 1; i >= 0; i--) {
+        let sum = Number(arr1[i] || 0) + Number(arr2[i] || 0) + Number(carry || 0);
 
-        res = (sum % 10) + res;
+        if (sum > 9) {
+            let temp = String(sum).split("");
+            ans[i] = temp[1];
+            carry = temp[0];
+        } else {
+            ans[i] = sum;
+            carry = undefined;
+        }
     }
 
-    return res;
+    return Number((carry ? carry : "") + ans.join(""));
 }
 
-console.log(add('0', '1')); //.toBe('1')
-console.log(add('9', '9')); //.toBe('18')
-console.log(add('999999999999999999999', '1')); //.toBe('1000000000000000000000')
-console.log(add('123456789123456789123456789', '123456789123456789123456789'));
+// console.log(add('0', '1'));
+// console.log(add('9', '9'));
+// console.log(add('999999999999999999999', '1')); //.toBe('1000000000000000000000')
+console.log(add('123456789999999999999', '123456789999999999999'));
+console.log(123456789999999999999 + 123456789999999999999);
 
 
 

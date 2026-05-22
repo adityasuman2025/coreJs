@@ -39,6 +39,18 @@ obj.f()();
 (obj.f())()
 obj.f().call({ a: 2 })
 
+/*
+    1
+    1
+    undefined
+    undefined
+    2
+    1
+    undefined
+    undefined
+    undefined
+*/
+
 
 // ref: https://bigfrontend.dev/quiz/this/discuss
 

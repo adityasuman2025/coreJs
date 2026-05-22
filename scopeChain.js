@@ -12,26 +12,32 @@
 
 
 
+
+/*--------------prblm--------------*/
 // function print() {
 //     console.log("a", a) //it will look for b in its local memory of print function Execution context, if not found, it will look in its parent lexical environment, which is Global Execution context
 // }
-// print(); //undefined
+// print();
 // var a = 10;
 // print();
 
 
 
+
+/*--------------prblm--------------*/
 // function print2() {
 //     console.log("b", b)
 // }
-// // print2(); //error // because let is not hoisted the way var is hoisted
+// // print2(); // error -> because let is not hoisted the way var is hoisted
 // let b = 20;
 // print2();
 
 
 
-function print3() {
-    var c = 30;
-}
-console.log("c", c) //error // because c is var and is defined in print3 function, and var is function scoped, so not accessible outside of print3
-console.log(this) //undefined
+
+/*--------------prblm--------------*/
+// function print3() {
+//     var c = 30;
+// }
+// console.log("c", c) //error // because c is var and is defined in print3 function, and var is function scoped, so not accessible outside of print3
+// console.log(this) //undefined

@@ -6,43 +6,42 @@
 // so in logArrow this represents window, because it is defined in obj
 
 
-// example 0
-const a = {
-    dev: 'BFE.dev',
-    update: name => {
-        // here this is window, because it is a arrow function, and in arrow function this represents the this of the object where it is 
-        this.dev = name
-    }
-}
-a.update('bigfrontend.dev')
-console.log(a.dev) //  'BFE.dev'
+/*-----------------prblm----------------*/
+// const a = {
+//     dev: 'BFE.dev',
+//     update: name => {
+//         this.dev = name
+//     }
+// }
+// a.update('bigfrontend.dev')
+// console.log(a.dev);
 
 
-// example 1
-var obj = {
-    prefix: 'BFE',
-    list: ['1'],
-    logArrow: () => {
-        console.log("this", this) // here this is window, because it is a arrow function, and in arrow function this represents the this of the object where it is defined
-        console.log(this.prefix + this.list);
-    },
-    logRegular() {
-        console.log("this", this) //logRegular is a regular function so it takes this as obj because it is called by obj
-        console.log(this.prefix + this.list);
-    },
-    logArrow2() {
-        console.log("this", this)
-        const hi = () => this.prefix; //here arrow function is defined in logArrow2, so it borrows this from logArrow2 function i.e. obj
-        console.log("hi", hi())
-    },
-};
+
+
+/*-----------------prblm----------------*/
+// var obj = {
+//     prefix: 'BFE',
+//     list: ['1'],
+//     logArrow: () => {
+//         console.log(this.prefix + this.list);
+//     },
+//     logRegular() {
+//         console.log(this.prefix + this.list);
+//     },
+//     logArrow2() {
+//         const hi = () => this.prefix;
+//         console.log("hi", hi())
+//     },
+// };
 // obj.logArrow();
 // obj.logRegular();
 // obj.logArrow2();
 
 
 
-// example 2
+
+/*-----------------prblm----------------*/
 // In Javascript, only function calls establish a new this context. 
 function shapeFunc() {
     this.radius = 10;
@@ -55,10 +54,10 @@ function shapeFunc() {
 }
 
 // here shapeFunc() is a constructor function, a constructor function is used to create objects.
-const run = new shapeFunc(); // here shapeFunc() is a function so it has its own this
+// const run = new shapeFunc(); // here shapeFunc() is a function so it has its own this
 // console.log(run)
 // console.log(run.diameter())
-// console.log(run.perimeter()) // it will get called successfully because shapeFunc() is a function so it establish a this for itself and perimeter is arrow function so it takes this of shapeFunc()
+// console.log(run.perimeter())
 
 const shape = {
     radius: 10,
@@ -76,7 +75,8 @@ const shape = {
 
 
 
-// example 3
+
+/*-----------------prblm----------------*/
 function y() {
     console.log("this y", this)
     console.log(this.length);
@@ -86,14 +86,15 @@ var x = {
     length: 5,
     method: function(y) {
         console.log("this method", this)
-        arguments[0](); //here arguments object is calling function y, as arguments[0] represents y, so this will become arguments object in y
+        arguments[0]();
     }
 }
-
 // x.method(y, 1);
 
 
-// example 4
+
+
+/*-----------------prblm----------------*/
 const obj = {
     prefix: 'BFE',
     list: ['1', '2', '3'],
@@ -104,10 +105,12 @@ const obj = {
     },
 };
 
-obj.log();
+// obj.log();
 
 
-// example 5
+
+
+/*-----------------prblm----------------*/
 var bar = 1
 
 function foo() {
@@ -123,12 +126,12 @@ const a1 = {
 }
 
 
-console.log(a1.foo1.call())
-console.log(a1.foo1())
-console.log(a1.foo2.call())
+console.log(a1.foo1.call()) // 1
+console.log(a1.foo1()) // 10
+console.log(a1.foo2.call()) // 
 console.log(a1.foo2())
 
 /*
-The call() method calls a function with a given this value and arguments provided individually.
-When we don't specify this, it'll refer to the globalThis aka window in the browser's context.
+    The call() method calls a function with a given this value and arguments provided individually.
+    When we don't specify this, it'll refer to the globalThis aka window in the browser's context.
 */
