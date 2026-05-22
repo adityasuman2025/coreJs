@@ -11,55 +11,48 @@ const obj = {
 
 /*---------------------- get ----------------------*/
 function get(source, path, defaultVal = undefined) {
-    /*
-        In replace function, if pattern (1st parameter) is a string, then only the first occurrence will be replaced
-        to replace all occurances of the pattern, we need to use a regex (regular expression) with g flag
-    */
-    const pathArr = Array.isArray(path) ? path : path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
-
-    const thisKey = pathArr[0];
-    if (pathArr.length === 1) {
-        if (source.hasOwnProperty(thisKey)) return source[thisKey]
-        return defaultVal;
-    } else {
-        if (source.hasOwnProperty(thisKey)) return get(source[thisKey], pathArr.slice(1), defaultVal); // pathArr.slice(1), removing first element from the path array as it has already been proccessed
-        return defaultVal;
+    function util(source, pathArr, defaultVal) {
+        const key = pathArr[0];
+        if (pathArr.length === 1) return source.hasOwnProperty(key) ? source[key] : defaultVal;
+        else return source.hasOwnProperty(key) ? util(source[key], pathArr.slice(1), defaultVal) : defaultVal;
     }
+
+    path = Array.isArray(path) ? path : path.replaceAll("[", ".").replaceAll("]", '').split(".")
+    return util(source, path, defaultVal);
 }
-// get(obj, 'a.b.c'); // [1,2,3]
-// get(obj, 'a.b.c.0'); // 1
-// get(obj, 'a.b.c[1]'); // 2
-// get(obj, ['a', 'b', 'c', '2']); // 3
-// get(obj, 'a.b.c[3]'); // undefined
-// get(obj, 'a.c', 'bfe'); // 'bfe'
-// const getAns = get(obj, []); // 3
-// console.log("getAns", getAns);
+// console.log(get(obj, 'a.b.c')); // [1,2,3]
+// console.log(get(obj, 'a.b.c.0')); // 1
+// console.log(get(obj, 'a.b.c[1]')); // 2
+// console.log(get(obj, ['a', 'b', 'c', '2'])); // 3
+// console.log(get(obj, 'a.b.c[3]')); // undefined
+// console.log(get(obj, 'a.c', 'bfe')); // 'bfe'
+// console.log(get(obj, [])); // 3
 
 
 
 
 /*---------------------- set ----------------------*/
 function set(obj, path, value) {
-    /*
-        In replace function, if pattern (1st parameter) is a string, then only the first occurrence will be replaced
-        to replace all occurances of the pattern, we need to use a regex (regular expression) with g flag
-    */
-    const pathArr = Array.isArray(path) ? path : path.replace(/\[/g, ".").replace(/\]/g, "").split(".");
+    const pathArr = Array.isArray(path) ? path : path.replaceAll("[", ".").replaceAll("]", '').split(".")
+        .map(key => isFinite(Number(key)) ? Number(key) : key); // to convert the integer keys (for array representation) to number data type (from string)
 
-    const thisKey = pathArr[0], nextKey = pathArr[1];
-    if (pathArr.length === 1) {
-        obj[thisKey] = value;
-    } else {
-        if (!obj.hasOwnProperty(thisKey)) {
-            obj[thisKey] = String(Number(nextKey)) === nextKey ? [] : {};
+    function util(obj, pathArr, value) {
+        const key = pathArr[0], nextKey = pathArr[1];
+
+        if (pathArr.length === 1) {
+            obj[key] = value;
+            return;
+        } else {
+            if (!obj.hasOwnProperty(key)) obj[key] = typeof nextKey === "number" ? [] : {};
+
+            util(obj[key], pathArr.slice(1), value);
         }
-
-        set(obj[thisKey], pathArr.slice(1), value);
     }
+    util(obj, pathArr, value);
 }
-set(obj, 'a.c.d.01.e.0.f', 'BFE');
-set(obj, 'a.b.c.4', 'BFE');
-console.log("obj", JSON.stringify(obj));
+// set(obj, 'a.c.d.01.e.0.f', 'BFE');
+// set(obj, 'a.b.c[4]', 'BFE');
+// console.log("obj", JSON.stringify(obj));
 
 
 
@@ -106,8 +99,8 @@ function flatten(arr, depth = 0) {
 
     return newArr;
 }
-const ans = flatten(arr2, 1);
-// console.log("fltten", ans)
+// const ans = flatten(arr2, 10);
+// console.log("flatten", ans)
 
 
 
@@ -163,10 +156,19 @@ function cloneDeep(data) {
 
 // const sym = Symbol()
 // const obj2 = { [sym]: 'bfe' }
+// const obj3 = {
+//     a: { b: { c: [1, 2, 3] } },
+//     b: [{ c: "c" }, 2, 3],
+//     c: true,
+//     d: 10,
+//     e: "e",
+//     f: undefined,
+//     g: null,
+// };
 
-// const clone = cloneDeep(obj2)
-// console.log(clone); //.not.toBe(obj2)
-// console.log(clone[sym]);
+// const cloned = cloneDeep(obj3)
+// console.log(cloned);
+// console.log(cloned.a);
 
 
 
