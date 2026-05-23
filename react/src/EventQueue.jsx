@@ -20,8 +20,6 @@ export default function EventQueue() {
     }
 
     return (
-        <button onClick={(e) => {
-            setQueue(prev => [...prev, handleClick.bind(this, e, queue.length)])
-        }}>click</button>
+        <button onClick={(e) => setQueue(prev => [...prev, handleClick.bind(this, e, queue.length)])}>click</button>
     )
 }

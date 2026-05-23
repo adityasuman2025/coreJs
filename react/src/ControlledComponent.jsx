@@ -11,6 +11,7 @@ export default function ControlledComponent() {
             type="text"
             defaultValue={"yo"} // gives warning that it contains both defaultValue and value // Input elements must be either controlled or uncontrolled (specify either the value prop, or the defaultValue prop, but not both)
             value={inputValue}
-            onChange={handleChange} />
+            onChange={handleChange}
+        />
     );
 }

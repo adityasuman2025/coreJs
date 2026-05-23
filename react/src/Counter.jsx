@@ -6,24 +6,28 @@ export default function Counter() {
     console.log("counter", counter);
 
     useEffect(() => {
-        setTimeout(() => {
-            setCounter((counter) => counter + 1);
-            // setCounter(counter + 1);
-        }, 100); // it will increase counter only 1 time, so counter will be rendered 2 times - 0(initial value) & 1 (increased value)
-
         // setInterval(() => {
-        //     // setCounter((counter) => counter + 1); // it will keep increasing counter, so counter will be rendered infinite times
-        //     setCounter(counter + 1); // it will increase counter only 1 time, so counter will be rendered 2 times - 0(initial value) & 1 (increased value)
+        //     // setCounter((counter) => counter + 1);
+        //     setCounter(counter + 1);
         // }, 2000);
 
+        // setTimeout(() => {
+        //     // setCounter((counter) => counter + 1);
+        //     setCounter(counter + 1);
+        // }, 100);
+
         /*
-            My own thought
+            useEffect with [] runs once. The arrow function inside setInterval is created during the very first render and never recreated.
 
-            setTimeout, setInterval and setCounter are asynchronous, they uses event loop, and put the callback in macrotask/callback queue
-            and counter is const, which is blocked scope, so in the setTimeout callback, value of counter will be the its value when it goes in callback queue
-            which will be initial value of counter, as setCounter is also asynchronous
+            That arrow function captures counter by closure. At the time of capture, counter === 0. JavaScript closures freeze that reference — the function will forever see counter as 0, regardless of what the component's state actually is.
 
-            check setTimeout.js file of the root directory
+            React bails out of identical updates. When setCounter(x) is called with a value React already has (via Object.is), it skips the re-render.
+
+            setInterval(() => {
+                // setCounter((counter) => counter + 1); // it will keep increasing counter, so counter will be rendered infinite times
+                console.log("interval")
+                setCounter(counter + 1); // it will increase counter only 1 time, so counter will be rendered 2 times - 0 (initial value) & 1 (increased value)
+            }, 2000);
         */
     }, []);
 
@@ -33,11 +37,11 @@ export default function Counter() {
         //     // setCounter(counter + 1); // counter will always be 1
         // }, 100);
 
-        // // first
-        // setCounter(counter + 1);
-        // setCounter(counter + 1);
-        // setCounter(counter + 1);
-        // // it will make counter to 1
+        // first
+        setCounter(counter + 1);
+        setCounter(counter + 1);
+        setCounter(counter + 1);
+        // it will make counter to 1
 
         // // second
         // setCounter(counter => counter + 1);

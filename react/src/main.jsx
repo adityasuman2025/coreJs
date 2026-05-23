@@ -38,7 +38,7 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <Test name={"Aditya"} />
+                {/* <Test name={"Aditya"} />
                 <br /><br />
 
                 <ControlledComponent />
@@ -48,12 +48,12 @@ export default class App extends React.Component {
                 <br /><br />
 
                 <EventQueue />
-                <br /><br />
+                <br /><br /> */}
 
                 <Counter />
                 <br /><br />
 
-                <AuthenticatedContent name="Aditya" />
+                {/* <AuthenticatedContent name="Aditya" />
                 <br /><br />
 
                 <h1>Counter</h1>
@@ -61,7 +61,7 @@ export default class App extends React.Component {
                 <button onClick={this.handleClick}>increase count</button>
                 <br /><br />
 
-                <h1>To Do's</h1>
+                <h1>To Do's</h1> */}
 
                 {
                     this.state.todos.length <= 5 ?
@@ -74,12 +74,12 @@ export default class App extends React.Component {
                         : null // will console unmounted from componentWillUnmount of ToDos component after 5 todos
                 }
 
-                <br /><br />
+                {/* <br /><br />
 
                 <ContextComp />
                 <br /><br />
 
-                <CustomHook />
+                <CustomHook /> */}
             </div>
         );
     }
