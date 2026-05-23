@@ -7,7 +7,7 @@ function allowOnlyNumber(text) {
 function formatMobileNumber(text) {
     let out = "";
 
-    const format = [{ pos: 6, symbol: " " }]; // symbol will be added at given pos // indian format
+    const format = [{ pos: 6, symbol: " " }, { pos: 8, symbol: "-" }]; // symbol will be added at given pos // indian format
     let formatIdx = 0;
 
     let c = 0;

@@ -11,7 +11,6 @@ function App() {
             {/* <OTPInput /> */}
             {/* <AutoCompleteWrapper /> */}
             {/* <CountDownTimer /> */}
-
             <MobileNoFormatter />
         </>
     )
