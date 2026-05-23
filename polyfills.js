@@ -13,6 +13,10 @@
     apply
     call
     promiseAll
+    compose
+    pipe
+    trim
+    promiseAllSettled
 */
 
 /*----------------------------------------map--------------------------------*/
@@ -103,18 +107,21 @@ Array.prototype.myForEach = function(func) {
 Array.prototype.chunk = function(size) {
     const arr = this;
 
-    let accIdx = 0, tempSize = 0;
-    return arr.reduce((acc, item, idx) => {
-        acc[accIdx] = [...(acc[accIdx] || []), item];
+    let res = [];
 
-        tempSize++;
-        if (tempSize === size) {
-            tempSize = 0;
-            accIdx++;
+    let j = size, temp = [];
+    for (let i = 0; i < arr.length; i++) {
+        temp.push(arr[i]);
+        j--;
+
+        if (!j || i == arr.length - 1) {
+            res.push(temp);
+            temp = [];
+            j = size;
         }
+    }
 
-        return acc;
-    }, []);
+    return res;
 };
 let arr2 = [1, 2, 3, 4, 5], size = 3;
 const chunkArr = arr2.chunk(size);
@@ -130,7 +137,7 @@ Array.prototype.myFind = function(func) {
         if (func(item, i)) return item
     };
 
-    return;
+    return undefined;
 }
 const newArrByFind = arr.myFind((item, index) => (item % 2 == 1) && (item > 3));
 // console.log("newArrByFind", newArrByFind);
@@ -156,7 +163,7 @@ const newArrByfindIndex = arr.myfindIndex((item, index) => (item % 2 == 1) && (i
 /*----------------------------------------indexOf--------------------------------*/
 Array.prototype.myIndexOf = function(toFind, startIdx = 0) {
     let arr = this;
-    for (let idx = (startIdx || 0); idx < arr.length; idx++) {
+    for (let idx = startIdx; idx < arr.length; idx++) {
         if (arr[idx] === toFind) return idx;
     }
 
@@ -313,28 +320,21 @@ console.log("yo" + ('    ✌️    \u3000').trim() + "yo"); //.toBe('✌️')
 Promise.myPromiseAll = function(promiseArr) {
     let resp = [], c = 0;
     return new Promise(function(resolve, reject) {
-        if (promiseArr.length === 0) resolve(resp); // no item in array
+        if (promiseArr.length === 0) return resolve(resp); // no item in array
 
         for (let i = 0; i < promiseArr.length; i++) {
-            if (typeof promiseArr[i] === "object") { // if that array item is promise
-                promiseArr[i]
-                    .then(promResp => {
-                        resp[i] = promResp;
-                        c++;
-                        if (c === promiseArr.length) resolve(resp)
-                    })
-                    .catch(error => reject(error));
-            } else {
-                resp[i] = promiseArr[i];
-                c++;
-                if (c === promiseArr.length) resolve(resp)
-            }
+            Promise.resolve(promiseArr[i]) // Promise.resolve converts a non-promise value into a promise and if already a promise then no effect
+                .then(promResp => {
+                    resp[i] = promResp;
+                    if (++c === promiseArr.length) resolve(resp)
+                })
+                .catch(error => reject(error));
         }
     });
 }
 
 const promA = Promise.resolve(1);
-const PromB = new Promise(function(resolve, reject) {
+const promB = new Promise(function(resolve, reject) {
     setTimeout(() => {
         resolve(2)
     }, 1000);
@@ -347,46 +347,32 @@ function promC() {
     });
 }
 
-// Promise.myPromiseAll([promA, promC(), PromB,])
-//     .then(resp => {
-//         console.log("resp", resp)
-//     })
-//     .catch(error => {
-//         console.log("error", error)
-//     });
+Promise.myPromiseAll([0, promA, promB, promC(), 4]).then(ans => console.log("resolve", ans)).catch(err => console.log("rejected", err))
 
 
 
 
 /*----------------------------------------promise All settled--------------------------------*/
-Promise.myPromiseAllSettled = function(promiseArr) {
-    let resp = [], c = 0;
+Promise.myAllSettled = function(arrProm) {
     return new Promise(function(resolve, reject) {
-        if (promiseArr.length === 0) resolve(resp); // no item in array
+        if (arrProm.length === 0) return resolve([]);
 
-        for (let i = 0; i < promiseArr.length; i++) {
-            if (typeof promiseArr[i] === "object") { // if that array item is promise
-                promiseArr[i]
-                    .then(promResp => {
-                        resp[i] = { status: "fulfilled", value: promResp };
-                        c++;
-                        if (c === promiseArr.length) resolve(resp)
-                    })
-                    .catch(error => {
-                        resp[i] = { status: "rejected", reason: error };
-                        c++;
-                        if (c === promiseArr.length) resolve(resp)
-                    });
-            } else {
-                resp[i] = { status: 'fulfilled', value: promiseArr[i] };
-                c++;
-                if (c === promiseArr.length) resolve(resp)
-            }
-        }
+        const ans = [];
+        let c = 0;
+        arrProm.forEach((prom, idx) => {
+            Promise.resolve(prom) // Promise.resolve converts a non-promise value into a promise and if already a promise then no effect
+                .then(value => {
+                    ans[idx] = { status: "fulfilled", value };
+                }).catch(reason => {
+                    ans[idx] = { status: "rejected", reason };
+                }).finally(() => { // finally always runs whether the promise runs or fails
+                    if (++c === arrProm.length) resolve(ans);
+                })
+        })
     });
 }
 
-// Promise.myPromiseAllSettled([1, 2, 3, Promise.resolve(4)]).then((value) => {
+// Promise.myAllSettled([1, 2, Promise.reject(3), Promise.resolve(4)]).then((value) => {
 //     console.log(value);
 //     /*
 //     [
