@@ -1,44 +1,39 @@
-import { useState } from "react";
+import { useState } from "react"
 
-function allowOnlyNumber(text) {
-    return text.split("").filter(char => (char !== "" && char !== " " && !isNaN(Number(char)))).join("");
-}
+const PREFIX = "+91 ", MAX_LENGTH = 10;
+const FORMATS = [{ pos: 2, sym: "-" }, { pos: 6, sym: " " }];
 
-function formatMobileNumber(text) {
-    let out = "";
+function formatMobNumber(str) {
+    str = str.replace(PREFIX, "");
 
-    const format = [{ pos: 6, symbol: " " }, { pos: 8, symbol: "-" }]; // symbol will be added at given pos // indian format
-    let formatIdx = 0;
+    let out = "", len = 0, formatIdx = 0;
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i];
+        if ("0123456789".includes(char)) { // keep only numbers
+            len++;
 
-    let c = 0;
-    for (let i = text.length - 1; i >= 0; i--) {
-        const { pos: formatPos, symbol: formatSymbol } = format?.[formatIdx] || {}
-        const char = text[i];
+            const { pos, sym } = FORMATS[formatIdx] || {};
+            if (pos === len - 1) {
+                out += sym;
+                formatIdx++;
+            }
 
-        if (c === formatPos) {
-            if (typeof formatSymbol === "function") out = formatSymbol(char, out);
-            else out = char + (formatSymbol || " ") + out;
+            out += char;
 
-            formatIdx++;
-        } else out = char + out;
-
-        c++;
+            if (len === MAX_LENGTH) break; // max length
+        }
     }
 
-    return (out.length > 0 ? "+91 " : "") + out;
+    return out;
 }
+
 
 export default function MobileNoFormatter() {
     const [value, setValue] = useState("");
 
     function handleInputChange(e) {
-        const text = e.target?.value?.trim() || "";
-
-        const prefixRemoved = text.replace("+91", "").trim();
-        const filteredOnlyNumber = allowOnlyNumber(prefixRemoved);
-        const mobileNoFormatted = formatMobileNumber(filteredOnlyNumber);
-
-        setValue(mobileNoFormatted);
+        const val = formatMobNumber(e.target.value).trim();
+        setValue(val ? PREFIX + val : "");
     }
 
     return (
