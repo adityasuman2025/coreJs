@@ -39,26 +39,13 @@ obj.f()();
 (obj.f())()
 obj.f().call({ a: 2 })
 
-/*
-    1
-    1
-    undefined
-    undefined
-    2
-    1
-    undefined
-    undefined
-    undefined
-*/
-
-
 // ref: https://bigfrontend.dev/quiz/this/discuss
 
 // console.log(obj.a); // 1
 // obj.b(); // 1
 // (obj.b)() // 1 // (obj.b)() is the same as obj.b()
 // const b = obj.b
-// b() // undefined
+// b() // undefined // window is calling the method function
 // obj.b.apply({ a: 2 }) // 2
 // obj.c() // 1
 // obj.d(); // undefined
