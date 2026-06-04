@@ -12,6 +12,7 @@ import EventQueue from "./EventQueue";
 import ApiCallUsingUseState from "./ApiCallUsingUseState";
 import ControlledComponent from "./ControlledComponent";
 import Test from "./Test";
+import KeyboardAccessibility from './KeyboardAccessibility';
 
 const AuthenticatedContent = hoc(Content);
 export default class App extends React.Component {
@@ -38,6 +39,8 @@ export default class App extends React.Component {
     render() {
         return (
             <div className="App">
+                <KeyboardAccessibility />
+
                 {/* <Test name={"Aditya"} />
                 <br /><br />
 
@@ -50,7 +53,7 @@ export default class App extends React.Component {
                 <EventQueue />
                 <br /><br /> */}
 
-                <Counter />
+                {/* <Counter /> */}
                 <br /><br />
 
                 {/* <AuthenticatedContent name="Aditya" />
@@ -66,10 +69,10 @@ export default class App extends React.Component {
                 {
                     this.state.todos.length <= 5 ?
                         <>
-                            <button onClick={this.handleAddToDo.bind(this)}>add to do</button>
+                            {/* <button onClick={this.handleAddToDo.bind(this)}>add to do</button> */}
                             {/* <button onClick={(e) => this.handleAddToDo.bind(this)(e)}>add to do</button> */}
                             {/* <button onClick={(e) => this.handleAddToDo.call(this, e)}>add to do</button> */}
-                            <ToDos todos={this.state.todos} />
+                            {/* <ToDos todos={this.state.todos} /> */}
                         </>
                         : null // will console unmounted from componentWillUnmount of ToDos component after 5 todos
                 }
