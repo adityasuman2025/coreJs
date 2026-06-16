@@ -46,17 +46,16 @@ The footer should be at the bottom of the page even if there is not enough conte
         }
 
         body {
-            padding: 0px;
-            margin: 0px;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            font-family: sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            margin: 0;
         }
 
-        #root {
+        .root {
             display: flex;
             flex-direction: column;
-            flex: 1;
+            height: 100vh;
         }
 
         header {
@@ -65,6 +64,9 @@ The footer should be at the bottom of the page even if there is not enough conte
 
             /* don't let the height/width to go below the defined (here height 60px) at any situation */
             flex-shrink: 0;
+
+            /* don't let the height/width to go above the defined (here height 60px) at any situation */
+            flex-grow: 0;
         }
 
         .content {
@@ -76,6 +78,7 @@ The footer should be at the bottom of the page even if there is not enough conte
             background-color: coral;
             width: 100px;
             flex-shrink: 0;
+            flex-grow: 0;
         }
 
         main {
@@ -87,18 +90,20 @@ The footer should be at the bottom of the page even if there is not enough conte
             background-color: sandybrown;
             width: 100px;
             flex-shrink: 0;
+            flex-grow: 0;
         }
 
         footer {
             background-color: slategray;
             height: 100px;
             flex-shrink: 0;
+            flex-grow: 0;
         }
     </style>
 </head>
 
 <body>
-    <div id="root">
+    <div class="root">
         <header>Header</header>
         <div class="content">
             <nav>Navigation</nav>
