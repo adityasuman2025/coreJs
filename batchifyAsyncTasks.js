@@ -25,12 +25,13 @@ function batchify(arrayOfPromises) {
 
         function createChunk(start, end) {
             console.log("processing chunk from", start, "to", end - 1)
-            Promise.all(arrayOfPromises.slice(start, end).map(func => func())).then(resp => {
-                result.push(...resp);
+            Promise.all(arrayOfPromises.slice(start, end).map(func => func()))
+                .then(resp => {
+                    result.push(...resp);
 
-                if (end >= totalSize) resolve(result);
-                else createChunk(end, Math.min(end + chunkSize, totalSize));
-            })
+                    if (end >= totalSize) resolve(result);
+                    else createChunk(end, Math.min(end + chunkSize, totalSize));
+                })
                 .catch(reject);
         }
         createChunk(0, chunkSize);
