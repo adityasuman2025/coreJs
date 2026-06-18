@@ -383,3 +383,27 @@ Promise.myAllSettled = function(arrProm) {
 //     ]
 //     */
 // });
+
+
+
+
+/*----------------------------------------promise any--------------------------------*/
+Promise.myPromiseAny = function(iterable) {
+    return new Promise(async (resolve, reject) => {
+        if (!iterable.length) resolve([]);
+
+        const errors = [];
+        let errC = 0;
+
+        for (let i = 0; i < iterable.length; i++) {
+            Promise.resolve(iterable[i])
+                .then((resp) => resolve(resp))
+                .catch((e) => {
+                    errC++;
+                    errors[i] = e;
+
+                    if (errC === iterable.length) reject(new AggregateError(errors, "All promises were rejected"));
+                });
+        }
+    });
+}
