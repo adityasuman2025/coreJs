@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="GZXPSmaVhjIoUHQAW1LW">
-    <mxGraphModel dx="1522" dy="1071" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1991" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -61,13 +61,13 @@
         <mxCell id="v2OB34sA-GqR4EwWEd6K-21" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;h1 style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-line: none; text-decoration-thickness: auto; text-decoration-style: solid; margin-top: 0px;&quot;&gt;Backend API&lt;/h1&gt;" vertex="1">
           <mxGeometry height="40" width="310" x="1430" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="v2OB34sA-GqR4EwWEd6K-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;autosize=1;resizable=0;" value="&lt;div&gt;getSheetData(sheetId: string) =&amp;gt;&amp;nbsp;SheetData&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;updateSheetData(cellRowId, cellColId, updatedValue) =&amp;gt; void&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;updatedValue&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;value: string | number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;formula: string,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;style: style[]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" vertex="1">
-          <mxGeometry height="150" width="350" x="1400" y="200" as="geometry" />
+        <mxCell id="v2OB34sA-GqR4EwWEd6K-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;autosize=1;resizable=0;" value="&lt;div&gt;getSheetData(sheetId: string) =&amp;gt;&amp;nbsp;SheetData&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;updateSheetData(sheetId, cellRowId, cellColId, updatedValue) =&amp;gt; void&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;updatedValue&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;value: string | number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;formula: string,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;style: style[]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="400" x="1360" y="200" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-24" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;h1 style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-line: none; text-decoration-thickness: auto; text-decoration-style: solid; margin-top: 0px;&quot;&gt;Data Model&lt;/h1&gt;" vertex="1">
           <mxGeometry height="40" width="180" x="1760" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="v2OB34sA-GqR4EwWEd6K-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;b&gt;SheetData&lt;/b&gt;&lt;/div&gt;[&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;[rowIdx]: [&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;[colIdx]: {&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;&#x9;computed: string | number,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;&#x9;raw: string,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;error: boolean&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;SheetGraph (DAG - Directed Acyclic Graph)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;[key: rowId_colId]: dependentCellIdx[ ]&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;dependentCellIdx: &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;rowId_colId&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;e.g.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;A1 (0, 0): 20&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;B1 (0, 1): =2*A1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;Sheet Graph: &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&quot;0_0&quot;: [&quot;0_1&quot;] // changing A1(0,0) will trigger B1(0,1)&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="v2OB34sA-GqR4EwWEd6K-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;b&gt;SheetData&lt;/b&gt;&lt;/div&gt;{&lt;br&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;[rowIdx: number]: {&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;[colIdx&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;: number&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;]: &lt;/span&gt;CellData&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;CellData&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;computed: string | number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;raw: string,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;error: boolean&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;SheetGraph (DAG - Directed Acyclic Graph)&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;[key: rowId_colId]: dependentCellIdx[ ]&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;dependentCellIdx: &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;rowId_colId&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;e.g.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;A1 (0, 0): 20&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;B1 (0, 1): =2*A1&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;Sheet Graph: &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&quot;0_0&quot;: [&quot;0_1&quot;] // changing A1(0,0) will trigger B1(0,1)&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="370" width="310" x="1770" y="190" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-27" parent="1" style="text;whiteSpace=wrap;html=1;" value="&lt;h1 style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-family: Helvetica; font-style: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-line: none; text-decoration-thickness: auto; text-decoration-style: solid; margin-top: 0px;&quot;&gt;Component API (State &amp;amp; Props)&lt;/h1&gt;" vertex="1">
@@ -108,24 +108,36 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-38" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" value="Backend" vertex="1">
-          <mxGeometry height="80" width="120" x="1020" y="485" as="geometry" />
+          <mxGeometry height="80" width="120" x="1030" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="v2OB34sA-GqR4EwWEd6K-50" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="v2OB34sA-GqR4EwWEd6K-45" value="">
+        <mxCell id="v2OB34sA-GqR4EwWEd6K-50" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=1;exitDx=0;exitDy=-15;exitPerimeter=0;" target="v2OB34sA-GqR4EwWEd6K-45" value="">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1080" y="830" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1060" y="740" />
+              <mxPoint x="1010" y="740" />
+              <mxPoint x="1010" y="955" />
+              <mxPoint x="990" y="955" />
+            </Array>
+            <mxPoint x="1050" y="700.0034782608698" as="sourcePoint" />
+            <mxPoint x="980" y="954.96" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-65" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="v2OB34sA-GqR4EwWEd6K-64">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-41" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="Sheet Data Store" vertex="1">
-          <mxGeometry height="80" width="60" x="1050" y="670" as="geometry" />
+          <mxGeometry height="80" width="60" x="1070" y="670" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-67" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=0;entryDy=52.5;entryPerimeter=0;" target="v2OB34sA-GqR4EwWEd6K-41">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="JV3XtrX8DMK4ZQXM5kw7-1" connectable="0" parent="v2OB34sA-GqR4EwWEd6K-67" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;b&gt;topological order&lt;/b&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1487" y="2" as="geometry">
+            <mxPoint x="-28" y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-42" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="Sheet Graph Store" vertex="1">
-          <mxGeometry height="80" width="60" x="730" y="735" as="geometry" />
+          <mxGeometry height="80" width="60" x="700" y="735" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-43" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="v2OB34sA-GqR4EwWEd6K-41">
           <mxGeometry relative="1" as="geometry" />
@@ -158,7 +170,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-61" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="createGraph &amp;amp; checkCycle" vertex="1">
-          <mxGeometry height="80" width="80" x="720" y="550" as="geometry" />
+          <mxGeometry height="80" width="80" x="690" y="550" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-68" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="v2OB34sA-GqR4EwWEd6K-61">
           <mxGeometry relative="1" as="geometry" />
@@ -173,18 +185,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-71" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="evaluateFormula" vertex="1">
-          <mxGeometry height="100" width="100" x="850" y="725" as="geometry" />
+          <mxGeometry height="100" width="100" x="800" y="725" as="geometry" />
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-76" parent="1" style="triangle;whiteSpace=wrap;html=1;" value="user types and press enter&amp;nbsp;&lt;div&gt;or remove focus (onBlur)&lt;/div&gt;" vertex="1">
           <mxGeometry height="145" width="130" x="1115" y="922.5" as="geometry" />
-        </mxCell>
-        <mxCell id="v2OB34sA-GqR4EwWEd6K-80" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.855;entryY=1;entryDx=0;entryDy=-4.35;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="v2OB34sA-GqR4EwWEd6K-41">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1180" y="836" />
-              <mxPoint x="1101" y="836" />
-            </Array>
-          </mxGeometry>
         </mxCell>
         <mxCell id="v2OB34sA-GqR4EwWEd6K-82" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.875;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="v2OB34sA-GqR4EwWEd6K-38">
           <mxGeometry relative="1" as="geometry" />
@@ -193,6 +197,9 @@
           <mxGeometry relative="1" x="-0.0014" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="JV3XtrX8DMK4ZQXM5kw7-2" edge="1" parent="1" source="v2OB34sA-GqR4EwWEd6K-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" target="v2OB34sA-GqR4EwWEd6K-41">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
