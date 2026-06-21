@@ -1,0 +1,203 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="L4bqTcX34I0xjt6dplUB">
+    <mxGraphModel dx="739" dy="520" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Nuhky4zTzuANJ8kUYa5s-1" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Google Docs" vertex="1">
+          <mxGeometry height="40" width="240" x="810" as="geometry" />
+        </mxCell>
+        <mxCell id="Nuhky4zTzuANJ8kUYa5s-2" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Requirements&lt;/h1&gt;&lt;div&gt;&lt;div&gt;&lt;b&gt;Functional Requirements&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;User should be able to write&lt;/li&gt;&lt;li&gt;User should be able to remove, add or modify any already written text&lt;/li&gt;&lt;li&gt;other user should be able to write in same document con-currently&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Non Functional Requirements&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;should scroll smoothly (60 FPS)&lt;/li&gt;&lt;li&gt;typed text should reflect on the web-page instantly&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="260" width="260" x="50" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-1" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Tech Stack&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Framework: React (any, depends on the company&#39;s / team expertise)&lt;/li&gt;&lt;li&gt;DOM Element: Canvas&lt;/li&gt;&lt;li&gt;Communication Protocol: WebSocket, HTTP Request&lt;/li&gt;&lt;li&gt;State Management: custom store file (using useSyncExternalStore) or Redux&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="170" width="270" x="50" y="630" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;ol&gt;&lt;li&gt;Requirements&lt;/li&gt;&lt;li&gt;Tech Stack&lt;/li&gt;&lt;li&gt;Component Design&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Component Hierarchy&amp;nbsp;&lt;/li&gt;&lt;li&gt;Dependency Graph&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Data Models&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Data Model&lt;/li&gt;&lt;li&gt;Backend API&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Performance &amp;amp; Optimization&amp;nbsp;&lt;/li&gt;&lt;li&gt;Accessibility&lt;/li&gt;&lt;/ol&gt;" placeholders="1" name="Variable" id="1QqdczRybNQaH0_Czadk-2">
+          <mxCell parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1">
+            <mxGeometry height="190" width="210" x="40" y="70" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="1QqdczRybNQaH0_Czadk-3" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component Design" vertex="1">
+          <mxGeometry height="40" width="300" x="1740" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-4" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component Hierarchy&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="300" x="1030" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;Google Docs" vertex="1">
+          <mxGeometry height="300" width="470" x="1000" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Canvas Page" vertex="1">
+          <mxGeometry height="230" width="180" x="1150" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-8" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Models" vertex="1">
+          <mxGeometry height="40" width="275" x="425" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-9" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Model" vertex="1">
+          <mxGeometry height="40" width="160" x="360" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;b&gt;Text content of the doc will be converted to this tree format to render it in canvas&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;DocsData&lt;/b&gt;&lt;/div&gt;{&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;totalHeight: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;totalPages: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;totalCharacters: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;pages: Page[]&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;b&gt;Page&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;top: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;bottom: number,&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;paras: Para[]&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Para&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;top: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;bottom: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;lines: Lines[],&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;charStartIdx: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Lines&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;top: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;bottom: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;charStartIdx: number,&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;charEndIdx: number,&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;text: string,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="510" width="260" x="690" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;b&gt;Text content of the doc will be stored in this format&lt;/b&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Piece Table&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;orgText: string,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;addedText: string,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;pieces = Piece[]&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Piece&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;type : &quot;org&quot; | &quot;added&quot;,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;start: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;length: number&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;e.g.&amp;nbsp;&lt;/div&gt;&lt;div&gt;if the document has initially text &quot;Hello World&quot; and then x is added at index position 5 i.e. after o and before space then piece table will look like&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;orgText: &quot;Hello World&quot;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;addedText: &quot;x&quot;,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;pieces: [&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;{ &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;type: &quot;org&quot;, &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;start: 0, &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;length: 5 &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}, // &quot;Hello&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;{ &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;type: &quot;added&quot;, &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;start: 0, &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;length: 1 &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}, // &quot;x&quot;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;{ &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;type: &quot;org&quot;, &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;start: 5, &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;length: 6 &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}, // &quot; World&quot;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;]&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="450" width="310" x="360" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-12" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Backend API" vertex="1">
+          <mxGeometry height="40" width="170" x="590" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-13" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;ol&gt;&lt;li&gt;HTTP getDocContent(docId: string) =&amp;gt; string&lt;br&gt;&lt;/li&gt;&lt;li&gt;WS onUpdate(Operation)&lt;br&gt;&lt;/li&gt;&lt;li&gt;WS sendUpdate(Operation)&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;Operation&lt;br&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;type: INSERT | MODIFY | REMOVE,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;index: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;text: string,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="370" x="590" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-15" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Dependency Tree" vertex="1">
+          <mxGeometry height="40" width="300" x="2025" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-50" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.16;exitY=0.55;exitDx=0;exitDy=0;exitPerimeter=0;" target="1QqdczRybNQaH0_Czadk-48">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="420" as="sourcePoint" />
+            <mxPoint x="1590" y="553.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-16" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" value="Backend" vertex="1">
+          <mxGeometry height="80" width="120" x="1620" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-25" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="1QqdczRybNQaH0_Czadk-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-17" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="PieceTable Store" vertex="1">
+          <mxGeometry height="120" width="90" x="1732.5" y="455" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-18" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.16;exitY=0.55;exitDx=0;exitDy=0;exitPerimeter=0;" target="1QqdczRybNQaH0_Czadk-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1610" y="234" />
+              <mxPoint x="1610" y="515" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-19" connectable="0" parent="1QqdczRybNQaH0_Czadk-18" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;span style=&quot;font-size: 12px; text-align: left; white-space: normal; background-color: rgb(236, 236, 236);&quot;&gt;HTTP getDocContent API&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.0955" y="1" as="geometry">
+            <mxPoint x="-21" y="-12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Canvas" vertex="1">
+          <mxGeometry height="70" width="130" x="2712.71" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-21" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="buildLayoutTree()" vertex="1">
+          <mxGeometry height="95" width="95" x="1730" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-24" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1QqdczRybNQaH0_Czadk-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-22" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="Layout Tree State" vertex="1">
+          <mxGeometry height="80" width="60" x="2747.71" y="797.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-23" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1QqdczRybNQaH0_Czadk-22">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2172.5" y="817.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-30" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="1QqdczRybNQaH0_Czadk-34" value="">
+          <mxGeometry relative="1" x="-0.7725" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-68" connectable="0" parent="1QqdczRybNQaH0_Czadk-30" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="user types something" vertex="1">
+          <mxGeometry relative="1" x="-0.1523" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-34" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="pieceTableModifier()" vertex="1">
+          <mxGeometry height="105" width="105" x="1920" y="462.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-35" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="1QqdczRybNQaH0_Czadk-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-37" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1QqdczRybNQaH0_Czadk-36" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2662.71" y="720" as="sourcePoint" />
+            <mxPoint x="2757.71" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-36" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;span style=&quot;font-size: 11px; white-space: nowrap; background-color: rgb(255, 255, 255);&quot;&gt;renderLayoutTreeToCanvas&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="2737.71" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-38" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;b&gt;StyleData&lt;/b&gt;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;bold: StyleInfo[],&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;italic: &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;StyleInfo[],&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;underline: &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;StyleInfo[],&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt; &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;b&gt;StyleInfo&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;{&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;start: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;end: number,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;value: string&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="265" x="360" y="640" as="geometry" />
+        </mxCell>
+        <UserObject label="because canvas html element does not support direct typing" placeholders="1" name="Variable" id="1QqdczRybNQaH0_Czadk-46">
+          <mxCell parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1">
+            <mxGeometry height="90" width="80" x="2190" y="320" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="1QqdczRybNQaH0_Czadk-49" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="1QqdczRybNQaH0_Czadk-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-48" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="StyleData Store" vertex="1">
+          <mxGeometry height="112.5" width="80" x="1530" y="557.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-54" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.55;entryY=0.95;entryDx=0;entryDy=0;entryPerimeter=0;" target="1QqdczRybNQaH0_Czadk-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-55" connectable="0" parent="1QqdczRybNQaH0_Czadk-54" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="WS&amp;nbsp;&lt;span style=&quot;font-size: 12px; text-align: left; white-space: normal; background-color: rgb(236, 236, 236);&quot;&gt;onUpdate&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.1818" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-56" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.855;entryY=0;entryDx=0;entryDy=4.35;entryPerimeter=0;exitX=0.875;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="1QqdczRybNQaH0_Czadk-17">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1725" y="290" />
+              <mxPoint x="1810" y="290" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-57" connectable="0" parent="1QqdczRybNQaH0_Czadk-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="WS sendUpdate" vertex="1">
+          <mxGeometry relative="1" x="0.1412" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-59" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="1QqdczRybNQaH0_Czadk-29" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2713" y="515" as="sourcePoint" />
+            <mxPoint x="2280" y="483.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-63" connectable="0" parent="1QqdczRybNQaH0_Czadk-59" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="user clicked somewhere" vertex="1">
+          <mxGeometry relative="1" x="-0.1051" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-29" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="calculatePointerPosIndex()" vertex="1">
+          <mxGeometry height="147.5" width="147.5" x="2403" y="441.25" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-66" edge="1" parent="1" source="1QqdczRybNQaH0_Czadk-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="1QqdczRybNQaH0_Czadk-65" value="">
+          <mxGeometry relative="1" x="-0.7725" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="2403" y="515" as="sourcePoint" />
+            <mxPoint x="2025" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-67" connectable="0" parent="1QqdczRybNQaH0_Czadk-66" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="index" vertex="1">
+          <mxGeometry relative="1" x="-0.2242" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-65" parent="1" style="triangle;whiteSpace=wrap;html=1;align=left;" value="&lt;span style=&quot;&quot;&gt;invisible textarea appears&lt;/span&gt;" vertex="1">
+          <mxGeometry height="97.5" width="70" x="2210" y="466.25" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-69" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Performance &amp;amp; Optimization&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="450" x="930" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-70" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;ol&gt;&lt;li style=&quot;&quot;&gt;Network Performance&lt;/li&gt;&lt;ol&gt;&lt;li style=&quot;&quot;&gt;compress&lt;/li&gt;&lt;li style=&quot;&quot;&gt;minify&lt;/li&gt;&lt;li style=&quot;&quot;&gt;cache&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;JS Performance&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Web Worker&lt;/li&gt;&lt;li&gt;Write Optimal Complexity Code&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Rendering Performance&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Virtualization&lt;/li&gt;&lt;li&gt;Perception: Loader/Error&lt;/li&gt;&lt;/ol&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="150" width="270" x="970" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-71" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Accessbility" vertex="1">
+          <mxGeometry height="40" width="210" x="960" y="837.5" as="geometry" />
+        </mxCell>
+        <mxCell id="1QqdczRybNQaH0_Czadk-72" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;ol&gt;&lt;li style=&quot;&quot;&gt;semantic HTML&lt;/li&gt;&lt;li style=&quot;&quot;&gt;keyboard accessibility (shortcuts)&lt;/li&gt;&lt;li style=&quot;&quot;&gt;aria attributes&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="70" width="270" x="960" y="890" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
