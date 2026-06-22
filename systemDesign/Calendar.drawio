@@ -1,0 +1,256 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="C0fx_pGiKJPbEjXmc7cn">
+    <mxGraphModel dx="1991" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-1" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Google Calendar&amp;nbsp;" vertex="1">
+          <mxGeometry height="40" width="240" x="610" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-2" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Requirements&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;User should be able the see calendar in multiple views like Weekly, Monthly, Yearly&lt;br&gt;&lt;/li&gt;&lt;li&gt;User should be able to see the events created for a day in Weekly, Monthly view arranged by start time&lt;/li&gt;&lt;li&gt;User should be able to create new events, delete/modify old events&lt;/li&gt;&lt;li&gt;User should be able to select start/end date/time and should be able to invite other user in a event&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="220" width="250" x="40" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-3" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;Requirements&lt;/li&gt;&lt;li&gt;Tech Stack&lt;/li&gt;&lt;li&gt;Component Architecture&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Component Hierarchy&amp;nbsp;&lt;/li&gt;&lt;li&gt;Dependency Tree&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Data Models&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Data Model&lt;/li&gt;&lt;li&gt;Component API&lt;/li&gt;&lt;li&gt;Backend API&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Performance Optimization&amp;nbsp;&lt;/li&gt;&lt;li&gt;Accessibility&lt;/li&gt;&lt;li&gt;Adaptability&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="250" width="260" x="20" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-4" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Tech Stack&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Framework: React any based on team experience&lt;/li&gt;&lt;li&gt;Language: TypeScript&lt;/li&gt;&lt;li&gt;State Management: js file store (subscribe it using useSyncExternalStore hook)&lt;/li&gt;&lt;li&gt;Layout: CSS Grid &amp;amp; Absolute Positioning&amp;nbsp;&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="140" width="270" x="40" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-5" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component Architecture" vertex="1">
+          <mxGeometry height="40" width="360" x="500" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-6" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component Hierarchy" vertex="1">
+          <mxGeometry height="40" width="360" x="370" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="380" width="600" x="350" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;align=left;" value="&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Header Component" vertex="1">
+          <mxGeometry height="40" width="580" x="360" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Weekly" vertex="1">
+          <mxGeometry height="30" width="50" x="740" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Monthly" vertex="1">
+          <mxGeometry height="30" width="60" x="800" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Yearly" vertex="1">
+          <mxGeometry height="30" width="60" x="870" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-21" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="TimeLine Component&amp;nbsp;" vertex="1">
+          <mxGeometry height="290" width="580" x="360" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Create Event" vertex="1">
+          <mxGeometry height="30" width="80" x="380" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="210" width="120" x="420" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-15" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Date 1" vertex="1">
+          <mxGeometry height="30" width="120" x="420" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-16" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Time 1" vertex="1">
+          <mxGeometry height="30" width="45" x="370" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-17" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Time 2" vertex="1">
+          <mxGeometry height="30" width="45" x="370" y="385" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-18" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Event 1" vertex="1">
+          <mxGeometry height="30" width="110" x="425" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Event 1" vertex="1">
+          <mxGeometry height="30" width="110" x="425" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Event 3" vertex="1">
+          <mxGeometry height="30" width="110" x="430" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-22" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Models" vertex="1">
+          <mxGeometry height="40" width="180" x="535" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-23" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Model" vertex="1">
+          <mxGeometry height="40" width="160" x="390" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;b&gt;Event&lt;/b&gt;&lt;/div&gt;{&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;eventiId: string,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;eventName: string,&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;eventStartDate: &lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;timeStamp&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;eventEndDate: &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;timeStamp&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;eventStartTime: timeStamp,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;eventEndTime: &lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;timeStamp&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;,&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;invitees: string[] // emails&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;div&gt;}&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="220" x="390" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-25" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component API" vertex="1">
+          <mxGeometry height="40" width="250" x="680" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-27" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;&lt;b&gt;Event Component&lt;/b&gt;&lt;/li&gt;&lt;ol&gt;&lt;li&gt;eventId: string&lt;/li&gt;&lt;li&gt;eventName: string&lt;/li&gt;&lt;li&gt;startTime:&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;dateTimeString&lt;/span&gt;&lt;/li&gt;&lt;li&gt;height: number&lt;/li&gt;&lt;li&gt;topPosition: number&lt;/li&gt;&lt;li&gt;leftPosition: number&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;&lt;b&gt;Date Component&lt;/b&gt;&lt;/li&gt;&lt;ol&gt;&lt;li&gt;isLarge: boolean (true for weekly view, which will use absolute positioning to position events, when false, just show few events inside it)&lt;/li&gt;&lt;li&gt;date: dateString&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;&lt;b&gt;TimelineComponent&lt;/b&gt;&lt;/li&gt;&lt;ol&gt;&lt;li&gt;startDate: string&lt;/li&gt;&lt;li&gt;endDate: string&lt;/li&gt;&lt;/ol&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="260" width="390" x="680" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&amp;lt;" vertex="1">
+          <mxGeometry height="30" width="30" x="660" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&amp;gt;" vertex="1">
+          <mxGeometry height="30" width="30" x="700" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-30" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Backend API" vertex="1">
+          <mxGeometry height="40" width="195" x="50" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-32" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;getEvents: (startDate, endDate) =&amp;gt; Event[]&lt;/li&gt;&lt;li&gt;createEvent: (event) =&amp;gt; Event&lt;/li&gt;&lt;li&gt;deleteEvent: (eventId: string) =&amp;gt; void&lt;/li&gt;&lt;li&gt;editEvent: (eventId: string, event: Event) =&amp;gt; void&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="70" width="310" x="20" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-33" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Dependency Tree" vertex="1">
+          <mxGeometry height="40" width="360" x="1400" y="60.00000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-42" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.014;entryY=0.227;entryDx=0;entryDy=0;entryPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1230" y="231.87" />
+              <mxPoint x="1230" y="421.87" />
+              <mxPoint x="1402" y="421.87" />
+            </Array>
+            <mxPoint x="1410" y="431.87" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-34" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" value="Backend" vertex="1">
+          <mxGeometry height="130" width="170" x="1030" y="131.87" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-59" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="1J0Z1twBoM3idAmu7u2K-50">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1560" y="256.87" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-60" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-59" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="if there is any activeEventId" vertex="1">
+          <mxGeometry relative="1" x="-0.0214" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-75" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.584;exitY=0.988;exitDx=0;exitDy=0;exitPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-76" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-75" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="events" vertex="1">
+          <mxGeometry relative="1" x="0.801" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-36" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="Store" vertex="1">
+          <mxGeometry height="120" width="105" x="1400" y="401.87" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-37" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=26;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Store State" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-38" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;div style=&quot;&quot;&gt;&lt;br&gt;activeStartDate: dateString,&lt;br&gt;activeEndDate: dateString,&lt;/div&gt;&lt;div style=&quot;&quot;&gt;activeEventId: string&lt;br&gt;events: &amp;nbsp;{&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;[key: string]: Event[] // key is date&lt;/span&gt;&lt;br&gt;}&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;multiDayEvents: {&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;[key: string]: Event[] // key is date&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="170" width="330" x="40" y="890" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-40" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1J0Z1twBoM3idAmu7u2K-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-41" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-40" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="getEvents(startDate, endDate)" vertex="1">
+          <mxGeometry relative="1" x="0.2507" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-54" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1J0Z1twBoM3idAmu7u2K-51" value="date">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-39" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Timeline Component" vertex="1">
+          <mxGeometry height="80" width="165" x="1360" y="798.12" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-43" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Header Component&lt;div&gt;(if user clicked on different view type, or next or previous button&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="195" x="1820" y="266.87" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-46" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=37.5;entryPerimeter=0;exitX=-0.003;exitY=0.666;exitDx=0;exitDy=0;exitPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1770" y="359.87" />
+              <mxPoint x="1770" y="361.87" />
+              <mxPoint x="1638" y="361.87" />
+              <mxPoint x="1638" y="439.87" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-47" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-46" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="change activeStartDate,&lt;div&gt;&amp;nbsp;activeEndDate&lt;/div&gt;&lt;div&gt;activeEventId to &quot;draft&quot; to open the event detail modal&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.4415" y="-3" as="geometry">
+            <mxPoint x="35" y="-36" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-48" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.419;exitY=1.008;exitDx=0;exitDy=0;exitPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-49" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-48" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="startDate, endDate" vertex="1">
+          <mxGeometry relative="1" x="-0.4667" y="1" as="geometry">
+            <mxPoint x="-15" y="105" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Event Detail/Edit Modal Component" vertex="1">
+          <mxGeometry height="110" width="200" x="1580" y="121.87" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-51" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Date Component" vertex="1">
+          <mxGeometry height="65" width="160" x="1600" y="805.62" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-52" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Event Component" vertex="1">
+          <mxGeometry height="47.5" width="140" x="1970" y="814.37" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-57" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-36">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1900" y="451.87" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-58" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-57" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="if user clicks on any event&lt;div&gt;-&amp;gt; sets activeEventId in store&lt;/div&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.6545" as="geometry">
+            <mxPoint x="-10" y="62" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-61" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.88;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-62" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-61" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="deleteEvent(eventId) or editEvent(eventId, event) or createEvent(event)" vertex="1">
+          <mxGeometry relative="1" x="-0.1276" y="-1" as="geometry">
+            <mxPoint x="7" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-64" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Performance &amp;amp; Optimisation" vertex="1">
+          <mxGeometry height="40" width="360" x="2169.91" y="91.87" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-65" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;&lt;b&gt;Network Performance&lt;/b&gt;&lt;/li&gt;&lt;ol&gt;&lt;li&gt;compress resources (gzip, brotli)&lt;/li&gt;&lt;li&gt;minify resources&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;&lt;b&gt;JS Performance&lt;/b&gt;&lt;/li&gt;&lt;ol&gt;&lt;li&gt;write optimal code&lt;/li&gt;&lt;li&gt;event delegaation&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;&lt;b&gt;Rendering Performance&lt;/b&gt;&lt;/li&gt;&lt;ol&gt;&lt;li&gt;prevent un-necessary re-renders&lt;/li&gt;&lt;li&gt;show perception - loader/error&lt;/li&gt;&lt;li&gt;load non-critical stuffs later&lt;/li&gt;&lt;/ol&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="180" width="280" x="2159.91" y="154" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-66" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Accessibility" vertex="1">
+          <mxGeometry height="40" width="190" x="2169.91" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-67" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;semantic HTML&lt;/li&gt;&lt;li&gt;tabIndex&lt;/li&gt;&lt;li&gt;aria attributes&lt;/li&gt;&lt;li&gt;keyboard shortcuts&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="85" width="220" x="2169.91" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-69" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Availability" vertex="1">
+          <mxGeometry height="40" width="190" x="2169.91" y="555" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-70" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;responsive&amp;nbsp;&lt;/li&gt;&lt;li&gt;offline support (service worker)&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="70" width="220" x="2169.91" y="595" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-71" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="1J0Z1twBoM3idAmu7u2K-52" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1760" y="837.87" as="sourcePoint" />
+            <mxPoint x="1840" y="871.87" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-74" connectable="0" parent="1J0Z1twBoM3idAmu7u2K-71" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="event" vertex="1">
+          <mxGeometry relative="1" x="-0.6133" y="2" as="geometry">
+            <mxPoint x="49" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-77" edge="1" parent="1" source="1J0Z1twBoM3idAmu7u2K-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.812;exitY=1.006;exitDx=0;exitDy=0;exitPerimeter=0;" target="1J0Z1twBoM3idAmu7u2K-79" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1485" y="522.87" as="sourcePoint" />
+            <mxPoint x="1680" y="805.87" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-79" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="sortEvents()&lt;div&gt;getEventPos()&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="1630" y="611.87" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-84" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Date 1" vertex="1">
+          <mxGeometry height="30" width="120" x="550" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-85" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Multiday Event" vertex="1">
+          <mxGeometry height="10" width="120" x="420" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="1J0Z1twBoM3idAmu7u2K-86" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Multiday Event" vertex="1">
+          <mxGeometry height="10" width="110" x="550" y="320" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
