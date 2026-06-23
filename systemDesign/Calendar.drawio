@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="C0fx_pGiKJPbEjXmc7cn">
-    <mxGraphModel dx="1991" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1522" dy="1071" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -239,7 +239,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="1J0Z1twBoM3idAmu7u2K-79" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="sortEvents()&lt;div&gt;getEventPos()&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="80" x="1630" y="611.87" as="geometry" />
+          <mxGeometry height="80" width="80" x="1580" y="610" as="geometry" />
         </mxCell>
         <mxCell id="1J0Z1twBoM3idAmu7u2K-84" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Date 1" vertex="1">
           <mxGeometry height="30" width="120" x="550" y="280" as="geometry" />
@@ -249,6 +249,9 @@
         </mxCell>
         <mxCell id="1J0Z1twBoM3idAmu7u2K-86" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Multiday Event" vertex="1">
           <mxGeometry height="10" width="110" x="550" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="KB2mAP6CRyAKBxz2i4kA-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;autosize=1;resizable=0;" value="for getting conflicting/overlapping events,&amp;nbsp;&lt;div&gt;we can use greedy algo over the sorted events (by time)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="320" x="1670" y="625" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
