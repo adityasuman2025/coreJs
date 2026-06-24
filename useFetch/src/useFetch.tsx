@@ -29,7 +29,7 @@ export default function useFetch({ endpoint, depdncy, enabled, retryLimit = 0, o
                 // throw { status: 500 }; // to mock
             })
             .catch((e) => {
-                if (e.name === 'AbortError') return; // Ignore aborts
+                if (e.name === 'AbortError') return; // Ignore aborts // when abort controller's is aborted then it sends AbortError
 
                 setIsLoading(false);
 
