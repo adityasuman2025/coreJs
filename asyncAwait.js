@@ -4,39 +4,68 @@
 
 */
 
-async function yo() {
-    return 2;
+// async function yo() {
+//     return 2;
+// }
+
+// console.log(yo())
+
+
+
+
+// function takeTime() {
+//     return new Promise(function(resolve, reject) {
+//         setTimeout(() => {
+//             resolve("done");
+//         }, 2000);
+//     });
+// }
+
+
+// async function biro() {
+//     const greet = "hello world";
+//     const resp = await takeTime();
+//     console.log("resp", resp);
+
+//     // takeTime().then(resp => {
+//     //     console.log("resp", resp);
+//     // });
+
+//     console.log("greet", greet)
+// }
+
+// async function yoBiro() {
+//     console.log("nyc");
+
+//     await biro();
+
+//     console.log("pik");
+// }
+// yoBiro()
+
+
+
+
+console.log("A");
+
+async function foo() {
+    console.log("B");
+
+    await Promise.resolve();
+    console.log("C");
+
+    await Promise.resolve();
+    console.log("D");
 }
+foo();
 
-console.log(yo())
-
-
-function takeTime() {
-    return new Promise(function(resolve, reject) {
-        setTimeout(() => {
-            resolve("done");
-        }, 2000);
+Promise.resolve()
+    .then(() => {
+        console.log("E");
     });
-}
 
+setTimeout(() => {
+    console.log("F");
+}, 0);
 
-async function biro() {
-    const greet = "hello world";
-    const resp = await takeTime();
-    console.log("resp", resp);
-
-    // takeTime().then(resp => {
-    //     console.log("resp", resp);
-    // });
-
-    console.log("greet", greet)
-}
-
-async function yoBiro() {
-    console.log("nyc");
-
-    await biro();
-
-    console.log("pik");
-}
-yoBiro()
+console.log("G");
