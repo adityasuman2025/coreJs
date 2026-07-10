@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import InputBox from './InputBox';
 import ListItem from './ListItem';
 import useFetch from "./useFetch";
+import Button from './Button';
 
 const API = 'https://dummyjson.com/products/search?q=';
 
@@ -23,6 +24,9 @@ export default function App() {
 
     return (
         <main>
+            <Button />
+
+            {/* 
             <InputBox onChange={handleChange} />
 
             {isLoading ? (
@@ -42,7 +46,7 @@ export default function App() {
                         />
                     ))}
                 </>
-            )}
+            )} */}
         </main>
     );
 }
