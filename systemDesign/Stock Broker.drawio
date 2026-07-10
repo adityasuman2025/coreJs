@@ -1,0 +1,233 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="fEw7YAjXA1syozRMgXxP">
+    <mxGraphModel dx="2353" dy="1655" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="41rbekOjbsT3yBnaVnjB-2" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Stock Broker Platform" vertex="1">
+          <mxGeometry height="40" width="370" x="890" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-3" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Functional Requirements&lt;/h1&gt;&lt;p&gt;1. Users should be able to see live price update of the stocks in their watchlist&lt;/p&gt;&lt;p&gt;2. User should be able to see price history + chart of a stock&lt;/p&gt;&lt;p&gt;3. User should be able to place order of a stock at any fixed price&lt;/p&gt;&lt;p&gt;4. User should see stocks in their portfolio, their live profit/loss&amp;nbsp;&lt;/p&gt;&lt;p&gt;5. Notification of success/failure status or placed order&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="190" width="390" x="425" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-4" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Non-Functional Requirements&lt;/h1&gt;&lt;p&gt;1. 60fps rendering performance of live stock price updates&lt;/p&gt;&lt;p&gt;2. UI should be pessimistic, only show final state when get response from the server&lt;/p&gt;&lt;p&gt;4. User should be able to use/control the app from keyboard&lt;/p&gt;&lt;p&gt;5. App should be responsive&lt;/p&gt;" vertex="1">
+          <mxGeometry height="210" width="390" x="425" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-5" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;Requirements&lt;/li&gt;&lt;li&gt;Tech Stack&lt;/li&gt;&lt;li&gt;Data Models&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Data Model&lt;/li&gt;&lt;li&gt;Data Store Model&lt;/li&gt;&lt;li&gt;Component API&lt;/li&gt;&lt;li&gt;Backend API&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Component Architecture&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Component Hierarchy&lt;/li&gt;&lt;li&gt;Dependency Graph&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Performance &amp;amp; Optimisation&lt;/li&gt;&lt;li&gt;Accessibility&lt;/li&gt;&lt;li&gt;Availiability&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="200" width="240" x="10" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-7" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Tech Stack&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Library: React (depends on team)&lt;br&gt;&lt;/li&gt;&lt;li&gt;State Management: Redux&lt;br&gt;&lt;/li&gt;&lt;li&gt;List Item: div DOM element (Virtualised List)&lt;br&gt;&lt;/li&gt;&lt;li&gt;Network Communication: HTTP Request, WebSocket (because here too communication is bi-directional - client will subscribe/un-subscribe the stocks for which they want the live updates&lt;br&gt;&lt;/li&gt;&lt;li&gt;3rd party packages: react-window, react-redux&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="200" width="310" x="30" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-8" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Models" vertex="1">
+          <mxGeometry height="40" width="160" x="295" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-9" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Model" vertex="1">
+          <mxGeometry height="40" width="160" x="25" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-10" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="symbol: string&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;stockMetadata&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;id: string,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;name: string,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;symbol: string,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;industry: string,&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;...etc&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;price&amp;nbsp;&lt;/div&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;basePrice: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;price: number&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;bookingData: {&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;avgPrice: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;totalQuantity: number,&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;details: &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;bookingDetail[]&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;bookingDetails&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;{&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;bookPrice: number,&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;quantity&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;}&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="460" width="200" x="30" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-12" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=26;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Backend API" vertex="1">
+          <mxGeometry height="40" width="160" x="560" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-15" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;getWatchlistStocks(whatlistId: string) =&amp;gt; stockMetadata[]&lt;/li&gt;&lt;li&gt;getPriceHistory(stockId: string) =&amp;gt; priceHistory&lt;/li&gt;&lt;li&gt;placeOrder(stockId: string, bookPrice: number, units: number) =&amp;gt; void&lt;/li&gt;&lt;li&gt;getPortfolioStocks() =&amp;gt; { [symbol]:&amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;bookingData&lt;/span&gt;&amp;nbsp;&lt;/span&gt;}&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="140" width="260" x="560" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-16" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Data Store Model" vertex="1">
+          <mxGeometry height="40" width="200" x="275" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-17" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;autosize=1;resizable=0;" value="{&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;symbols: symbol[],&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;metadata: {&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&#x9;[key: symbol] : &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;&quot;&gt;stockMetadata&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;},&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;prices: {&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&#x9;[key: symbol] : &lt;/span&gt;price&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;},&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;orders: {&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&#x9;[key: symbol] : &lt;/span&gt;bookingData&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;}&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="230" x="275" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-18" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component API" vertex="1">
+          <mxGeometry height="40" width="240" x="270" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-19" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;StockGrid&lt;/li&gt;&lt;ol&gt;&lt;li&gt;fromPortfolio&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;StockItem&lt;/li&gt;&lt;ol&gt;&lt;li&gt;symbol&lt;/li&gt;&lt;li&gt;fromPortfolio&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Chart&lt;/li&gt;&lt;ol&gt;&lt;li&gt;symbol&lt;/li&gt;&lt;/ol&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="100" width="260" x="275" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-21" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component Architecture" vertex="1">
+          <mxGeometry height="40" width="300" x="1600" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-22" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Component Hierarchy" vertex="1">
+          <mxGeometry height="40" width="300" x="920" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-24" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="420" width="320" x="930" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="40" width="300" x="940" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Watchlist" vertex="1">
+          <mxGeometry height="30" width="50" x="960" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-27" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Portfolio" vertex="1">
+          <mxGeometry height="30" width="50" x="1065" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="User" vertex="1">
+          <mxGeometry height="30" width="50" x="1170" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;Portfolio Page&lt;div&gt;or&lt;br&gt;&lt;div&gt;Watchlist Page&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="330" width="285" x="945" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-30" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;Stock Grid" vertex="1">
+          <mxGeometry height="270" width="270" x="952" y="228" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="StockItem" vertex="1">
+          <mxGeometry height="40" width="250" x="960" y="237" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="StockItem" vertex="1">
+          <mxGeometry height="40" width="250" x="960" y="287" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="StockItem" vertex="1">
+          <mxGeometry height="40" width="250" x="961" y="337" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-34" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Dependency Tree" vertex="1">
+          <mxGeometry height="40" width="300" x="1870" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-44" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="41rbekOjbsT3yBnaVnjB-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-45" connectable="0" parent="41rbekOjbsT3yBnaVnjB-44" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="event: if stock price changes" vertex="1">
+          <mxGeometry relative="1" x="-0.4267" y="-3" as="geometry">
+            <mxPoint x="37" y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-35" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" value="WS Server" vertex="1">
+          <mxGeometry height="80" width="120" x="1360" y="327" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-38" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="41rbekOjbsT3yBnaVnjB-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1470" y="990" />
+              <mxPoint x="1470" y="795" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-39" connectable="0" parent="41rbekOjbsT3yBnaVnjB-38" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="getWatchlistStocks API" vertex="1">
+          <mxGeometry relative="1" x="-0.1215" y="-1" as="geometry">
+            <mxPoint x="-13" y="-49" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-61" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="41rbekOjbsT3yBnaVnjB-54">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2410.33" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-62" connectable="0" parent="41rbekOjbsT3yBnaVnjB-61" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="getPriceHistory API" vertex="1">
+          <mxGeometry relative="1" x="-0.4778" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-36" parent="1" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" value="API Server" vertex="1">
+          <mxGeometry height="80" width="120" x="1800.33" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-52" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="41rbekOjbsT3yBnaVnjB-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-56" connectable="0" parent="41rbekOjbsT3yBnaVnjB-52" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="symbol" vertex="1">
+          <mxGeometry relative="1" x="-0.48" y="-2" as="geometry">
+            <mxPoint x="28" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-37" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Stock Grid (render virtualised list)" vertex="1">
+          <mxGeometry height="233" width="120" x="1510" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-40" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.55;entryY=0.95;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" target="41rbekOjbsT3yBnaVnjB-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-41" connectable="0" parent="41rbekOjbsT3yBnaVnjB-40" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="subscribe: on mount subscribe to those watchlist stocks" vertex="1">
+          <mxGeometry relative="1" x="0.0951" y="3" as="geometry">
+            <mxPoint x="2" y="25" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-53" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="41rbekOjbsT3yBnaVnjB-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-55" connectable="0" parent="41rbekOjbsT3yBnaVnjB-53" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="store subscription:&amp;nbsp;prices[symbol]]" vertex="1">
+          <mxGeometry relative="1" x="0.0892" as="geometry">
+            <mxPoint x="15" y="27" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-57" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.145;exitY=1;exitDx=0;exitDy=-4.35;exitPerimeter=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="41rbekOjbsT3yBnaVnjB-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-58" connectable="0" parent="41rbekOjbsT3yBnaVnjB-57" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="store subscription: metadata[symbol]" vertex="1">
+          <mxGeometry relative="1" x="-0.4334" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-67" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="41rbekOjbsT3yBnaVnjB-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-68" connectable="0" parent="41rbekOjbsT3yBnaVnjB-67" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="store subscription:&amp;nbsp;prices[symbol]]" vertex="1">
+          <mxGeometry relative="1" x="0.4628" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-42" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="Store" vertex="1">
+          <mxGeometry height="160" width="200.33" x="2060" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-43" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;" value="store middleware" vertex="1">
+          <mxGeometry height="80" width="120" x="1640" y="327" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-48" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="41rbekOjbsT3yBnaVnjB-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-49" connectable="0" parent="41rbekOjbsT3yBnaVnjB-48" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="requestAnimationFrame" vertex="1">
+          <mxGeometry relative="1" x="-0.1853" y="-1" as="geometry">
+            <mxPoint x="67" y="2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-59" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="41rbekOjbsT3yBnaVnjB-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-60" connectable="0" parent="41rbekOjbsT3yBnaVnjB-59" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="onClick" vertex="1">
+          <mxGeometry relative="1" x="-0.0817" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="StockItem" vertex="1">
+          <mxGeometry height="60" width="250.33" x="2030" y="706.5" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-54" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="PriceHistoryModal (exists inside StockItem component)" vertex="1">
+          <mxGeometry height="176.5" width="140" x="2370.33" y="648.25" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-69" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Performance &amp;amp; Optimisation" vertex="1">
+          <mxGeometry height="40" width="350" x="860" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-71" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;Rendering Perfomance&lt;/li&gt;&lt;ol&gt;&lt;li&gt;Perception - loader, error&lt;/li&gt;&lt;li&gt;list virtualisation&lt;/li&gt;&lt;li&gt;requestAnimationFrame&lt;/li&gt;&lt;li&gt;prevent un-necessary re-renders - useCallback, useMemo, memo, global store&lt;/li&gt;&lt;li&gt;css animation&lt;/li&gt;&lt;li&gt;load non-critical stuffs later&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;Network Performance&lt;/li&gt;&lt;ol&gt;&lt;li&gt;debounce on search bar&lt;/li&gt;&lt;li&gt;compressed files (js, html, css)&lt;/li&gt;&lt;li&gt;caching resources&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;JS Performance&lt;/li&gt;&lt;ol&gt;&lt;li&gt;write optimal code&lt;/li&gt;&lt;/ol&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="210" width="360" x="851" y="730" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-72" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Accessibility" vertex="1">
+          <mxGeometry height="40" width="240" x="520" y="813" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-73" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;tabIndex&lt;/li&gt;&lt;li&gt;keyboard shortcuts (space, enter)&lt;/li&gt;&lt;li&gt;semantic HTML&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="100" width="260" x="535" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-74" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=27;fontStyle=1;verticalAlign=middle;align=center;autosizeText=1;" value="Availability" vertex="1">
+          <mxGeometry height="40" width="240" x="520" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-75" parent="1" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" value="&lt;ol&gt;&lt;li&gt;responsive - css media queries&lt;/li&gt;&lt;/ol&gt;" vertex="1">
+          <mxGeometry height="60" width="260" x="535" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-76" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="accumulate them and release at once" vertex="1">
+          <mxGeometry height="80" width="80" x="1790" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-77" edge="1" parent="1" source="41rbekOjbsT3yBnaVnjB-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.8;entryY=0.8;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="41rbekOjbsT3yBnaVnjB-35">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1570" y="470" />
+              <mxPoint x="1456" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="41rbekOjbsT3yBnaVnjB-78" connectable="0" parent="41rbekOjbsT3yBnaVnjB-77" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="un-subscribe: on un-mount subscribe to those watchlist stocks" vertex="1">
+          <mxGeometry relative="1" x="-0.3733" y="-4" as="geometry">
+            <mxPoint x="36" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
