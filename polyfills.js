@@ -389,7 +389,7 @@ Promise.myAllSettled = function(arrProm) {
 
 /*----------------------------------------promise any--------------------------------*/
 Promise.myPromiseAny = function(iterable) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
         if (!iterable.length) resolve([]);
 
         const errors = [];
@@ -407,3 +407,29 @@ Promise.myPromiseAny = function(iterable) {
         }
     });
 }
+
+
+
+/*----------------------------------------promise race--------------------------------*/
+
+Promise.myRace = function(arrOfPromises) {
+    return new Promise((resolve, reject) => {
+        if (!arrOfPromises.length) resolve();
+
+        for (let i = 0; i < arrOfPromises.length; i++) {
+            const thisPromise = Promise.resolve(arrOfPromises[i]);
+
+            thisPromise
+                .then(resp => {
+                    resolve(resp)
+                })
+                .catch(err => {
+                    reject(err)
+                });
+        }
+    });
+}
+
+Promise.myRace([promA, promB, promC()])
+    .then(resp => console.log("resolved", resp))
+    .catch(err => console.log("rejected", err))
