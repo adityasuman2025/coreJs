@@ -32,8 +32,12 @@ function get(source, path, defaultVal = undefined) {
 
 
 /*---------------------- set ----------------------*/
+function isNumber(val) {
+    return Number.isFinite(Number(val)) && val !== "";
+}
+
 function set(obj, path, value) {
-    const pathArr = Array.isArray(path) ? path : path.replaceAll("[", ".").replaceAll("]", '').split(".")
+    const pathArr = (Array.isArray(path) ? path : path.replaceAll("[", ".").replaceAll("]", '').split("."))
         .map(key => isFinite(Number(key)) ? Number(key) : key); // to convert the integer keys (for array representation) to number data type (from string)
 
     function util(obj, pathArr, value) {
@@ -43,7 +47,8 @@ function set(obj, path, value) {
             obj[key] = value;
             return;
         } else {
-            if (!obj.hasOwnProperty(key)) obj[key] = typeof nextKey === "number" ? [] : {};
+            if (!Object.hasOwn(obj, key)) obj[key] = isNumber(nextKey) ? [] : {};
+            else if (typeof obj[key] !== "object" || obj[key] === null || obj[key] === undefined) obj[key] = isNumber(nextKey) ? [] : {}; // if we need to go deeper (object/array required) but the current value is a primitive, null or undefined
 
             util(obj[key], pathArr.slice(1), value);
         }
