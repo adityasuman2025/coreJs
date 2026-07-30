@@ -16,28 +16,33 @@ const obj3 = Object.create(obj2);
 console.log("obj3", obj3); // obj3 itself is empty
 obj3.greet(); // but it has inherited all properties from obj2, those properties exists in its prototype chain
 
-
-
-// used to create pure object (with no prototype properties, even not the default ones)
-const pureObj = Object.create(null);
-console.log("pureObj proto", pureObj.__proto__)
-console.log(pureObj.toString); // undefined
+obj2.hello = function() {
+    console.log("hello word");
+}
+obj3.hello(); // as the reference of the object is stored in the prototype chain of the created object (using Object.create()) so if a new property/key is added in the original object, prototype of the created object can access that too
 
 
 
-// used to define custom properties with strict access rules
-const carPrototype = {
-    drive() { console.log("Vroom!"); }
-};
+// // used to create pure object (with no prototype properties, even not the default ones)
+// const pureObj = Object.create(null);
+// console.log("pureObj proto", pureObj.__proto__)
+// console.log(pureObj.toString); // undefined
 
-const myCar = Object.create(carPrototype, {
-    make: {
-        value: "Tesla",
-        writable: false,     // Cannot be changed (read-only)
-        enumerable: true,    // Shows up in for...in loops
-        configurable: true   // Can be deleted or modified later
-    }
-});
 
-myCar.make = "BMW"; // Ignored in strict mode / fails silently otherwise
-console.log(myCar.make); // Output: "Tesla"
+
+// // used to define custom properties with strict access rules
+// const carPrototype = {
+//     drive() { console.log("Vroom!"); }
+// };
+
+// const myCar = Object.create(carPrototype, {
+//     make: {
+//         value: "Tesla",
+//         writable: false,     // Cannot be changed (read-only)
+//         enumerable: true,    // Shows up in for...in loops
+//         configurable: true   // Can be deleted or modified later
+//     }
+// });
+
+// myCar.make = "BMW"; // Ignored in strict mode / fails silently otherwise
+// console.log(myCar.make); // Output: "Tesla"

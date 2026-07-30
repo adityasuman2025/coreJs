@@ -22,3 +22,30 @@ console.log(c.bar)
 
     In the last instance, we are actually replacing the the Foo.prototype to a new object which will break the prototype chain. Hence, only newly created objects beyond this will have bar as 3
 */
+
+
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.greet = function() {
+    return `Hello, I'm ${this.name}`;
+};
+
+function Employee(name, position) {
+    Person.call(this, name);
+    this.position = position;
+}
+
+// Set up inheritance
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype.constructor = Employee;
+
+// Add method to Employee
+Employee.prototype.getRole = function() {
+    return this.position;
+};
+
+const john = new Employee('John', 'Developer');
+console.log(john.greet()); // What's the output? => 
+console.log(john.getRole()); // What's the output? => 
