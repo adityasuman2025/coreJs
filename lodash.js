@@ -143,6 +143,11 @@ function cloneDeep(data) {
     function clone(data) {
         if ([null, undefined].includes(data)) return data;
 
+        if (typeof data === "function") {
+            const clonedFn = data.bind(null);
+            return clonedFn;
+        }
+
         if (typeof data === "object") {
             const clonedObj = Array.isArray(data) ? [] : {};
 
@@ -159,21 +164,24 @@ function cloneDeep(data) {
     return clone(data);
 }
 
-// const sym = Symbol()
-// const obj2 = { [sym]: 'bfe' }
-// const obj3 = {
-//     a: { b: { c: [1, 2, 3] } },
-//     b: [{ c: "c" }, 2, 3],
-//     c: true,
-//     d: 10,
-//     e: "e",
-//     f: undefined,
-//     g: null,
-// };
+function h() {
+    console.log("hi")
+}
 
-// const cloned = cloneDeep(obj3)
-// console.log(cloned);
-// console.log(cloned.a);
+const obj3 = {
+    a: { b: { c: [1, 2, 3] } },
+    b: [{ c: "c" }, 2, 3],
+    c: true,
+    d: 10,
+    e: "e",
+    f: undefined,
+    g: null,
+    h: h,
+};
+
+const cloned = cloneDeep(obj3)
+console.log(cloned);
+console.log(cloned.h === h);
 
 
 
