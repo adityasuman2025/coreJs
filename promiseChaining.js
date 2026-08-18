@@ -1,3 +1,5 @@
+/*-------------- prblm 1 ----------------*/
+
 function asyncOperation(value) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -33,3 +35,19 @@ asyncOperation(2)
     .catch(error => { // this catch will handle all the errors if any, above it, because this catch is at the end of the chain
         console.error('Error:', error);
     });
+
+
+/*-------------- prblm 2 ----------------*/
+/*
+    In Promise chain each then/catch/finally returns a promise, that is the reason promise chaining is possible as each then/catch/finally returns a promise over which we can chain new then/catch/finally.
+    If the then/catch/finally explicitly returns a promise then it is returned, but if it returns a value then resolved promise with that value is returned.
+    microtask [ 1, 3, 2, 4 ]
+*/
+
+Promise.resolve()
+    .then(() => console.log(1))
+    .then(() => console.log(2));
+
+Promise.resolve().
+    then(() => console.log(3))
+    .then(() => console.log(4));

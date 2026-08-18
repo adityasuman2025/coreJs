@@ -1,6 +1,6 @@
 /*
-    A function created with an async keyword always returns a promise. 
-    If we directly return a promise from it then fine, but if we return a value then JS engine wraps the value within a Promise and returns it.
+    A function created with an async keyword always returns a promise.
+    If we directly return a promise from it then fine, but if we return a value then JS engine wraps the value with Promise.resolve() and returns it.
 
 */
 
@@ -13,6 +13,7 @@
 
 
 
+/*--------------- prblm 1 ---------------*/
 // function takeTime() {
 //     return new Promise(function(resolve, reject) {
 //         setTimeout(() => {
@@ -26,10 +27,6 @@
 //     const greet = "hello world";
 //     const resp = await takeTime();
 //     console.log("resp", resp);
-
-//     // takeTime().then(resp => {
-//     //     console.log("resp", resp);
-//     // });
 
 //     console.log("greet", greet)
 // }
@@ -46,6 +43,7 @@
 
 
 
+/*--------------- prblm 2 ---------------*/
 console.log("A");
 
 async function foo() {
